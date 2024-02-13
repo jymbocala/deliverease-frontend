@@ -2,6 +2,7 @@
 
 const awesomeFeature = () => {
   console.log('awesome feature');
+  console.log('Jym Test');
 }
 
 export default awesomeFeature;
