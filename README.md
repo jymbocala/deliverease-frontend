@@ -8,7 +8,7 @@
 3. [Target Audience](#Target-Audience)  
 4. [Tech Stack](#Tech-Stack)  
 5. [Data Flow Diagram](#Data-Flow-Diagram)
-6. [Application Architecture Diagram](#Application-Architecture-Diagrams)  
+6. [Application Architecture Diagram](#Application-Architecture-Diagram)  
 7. [User Stories](#User-Stories)  
 8. [Wireframes](#Wireframes) 
    - [Home Page](#Home-Page)
@@ -17,6 +17,8 @@
 9. [Project Management](#Project-Management)
 
 <br/>
+
+---
 
 ### Purpose
 
@@ -67,6 +69,8 @@ Additional technologies we used:
 
 <br/>
 
+---
+
 ### Data Flow Diagram
 
 <p align="center">
@@ -74,6 +78,8 @@ Additional technologies we used:
 </p>
 
 <br/>
+
+---
 
 ### Application Architecture Diagram
 
@@ -83,10 +89,12 @@ Additional technologies we used:
 
 <br/>
 
+---
+
 ### User Stories
 User Stories serve as concise narratives outlining specific functionalities from an end-user perspective. Through this exercise, our team gained a deeper understanding of DeliverEase's core value and our minimum viable product (MVP) by dissecting user needs and translating them into actionable features.
 
-**User stories progress, February 11:**
+#### *User stories progress, February 11:*
 In the early stages of DeliverEase development, our team collaborated to outline essential user stories. We emphasized crafting clear narratives for user registration, login, and password security. Addressing delivery drivers' needs, we detailed location instructions and contact information for seamless navigation and communication. Additionally, we conceptualized a search and discovery feature for efficient access to logged delivery locations based on specific criteria.
 
 <ins>Registration & Login</ins>
@@ -107,7 +115,7 @@ In the early stages of DeliverEase development, our team collaborated to outline
 -   As a courier company owner, I want to see additional information about delivery locations, such as parking availability, loading dock access, and delivery restrictions, to facilitate smooth and efficient delivery logistics.
 
 
-**User stories progress, February 12:**
+#### *User stories progress, February 12:*
 We then refined our user stories, we focused on addressing the needs of delivery drivers, our main user base. We defined admin roles and permissions for efficient team management and allowed users to edit their profiles. Additionally, we conceptualized navigation assistance to prevent drivers from getting lost.
 
 <ins>Admin Roles & Permissions</ins>
@@ -123,15 +131,16 @@ We then refined our user stories, we focused on addressing the needs of delivery
 
 -   As a delivery driver, I want access to maps or navigation tools integrated into the application, so that I can easily navigate to delivery locations and avoid getting lost.
 
-**User stories progress, February 13:**
+#### *User stories progress, February 13:*
 In our ongoing refinement process, we were able to identify a wishlist of potential features for DeliverEase. These features represent our aspirations for the app, however it is important to note that these additions will only be implemented if time permits, as we plan on prioritizing core functionalities and user needs first.
 
 -   As a user, I want to control my notification preferences so that I receive system updates in the way that works best for me.
 -   As an administrator, I want to track user activity logs so that I can monitor system usage and identify any suspicious behavior.
 -   As an administrator, I want to assign different roles and permissions to users so that I can control their access to sensitive information and features.
 
-
 <br/>
+
+---
 
 ### Wireframes
 #### *Home Page*
@@ -156,6 +165,8 @@ In our ongoing refinement process, we were able to identify a wishlist of potent
 </p>
 
 <br/>
+
+---
 
 ### Project Management
 [_• Trello Project Board_](https://trello.com/b/jmxlxfhw/deliverease)
