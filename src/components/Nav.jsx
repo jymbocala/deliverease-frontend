@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "/docs/images/deliverease-logo.png"; 
+import Logo from "../assets/images/deliverease-logo.png";
 
 const Nav = () => {
   return (
