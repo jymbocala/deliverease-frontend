@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import { useSpring, animated } from "react-spring";
 
 const Home = () => {
@@ -40,7 +41,7 @@ const Home = () => {
             <img
               className="object-cover object-center rounded"
               alt="hero"
-              src="/docs/images/hero.png"
+              src="src/assets/images/hero.png"
               style={{ transform: "scale(2)" }}
             />
           </div>
@@ -62,14 +63,14 @@ const Home = () => {
             {/* Feature 1 */}
             <div className="sm:w-32 sm:h-32 h-20 w-20 sm:mr-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0 overflow-hidden">
               <img
-                src="/docs/images/map-image.png"
+                src="src/assets/images/map-image.png"
                 alt="Map"
                 className="sm:w-48 sm:h-48 w-24 h-24 object-cover"
               />
             </div>
 
             <div className="flex-grow sm:text-left text-center mt-6 sm:mt-0">
-              <h2 className="text-gray-900 text-lg title-font font-medium mb-2">
+              <h2 className="text-gray-900 text-xl title-font font-medium mb-2">
                 Effortless Delivery Location Management
               </h2>
               <p className="leading-relaxed text-base">
@@ -81,7 +82,7 @@ const Home = () => {
           </div>
           <div className="flex items-center lg:w-3/5 mx-auto border-b pb-10 mb-10 border-gray-200 sm:flex-row flex-col">
             <div className="flex-grow sm:text-left text-center mt-6 sm:mt-0">
-              <h2 className="text-gray-900 text-lg title-font font-medium mb-2">
+              <h2 className="text-gray-900 text-xl title-font font-medium mb-2">
                 Comprehensive Location Details
               </h2>
               <p className="leading-relaxed text-base">
@@ -92,7 +93,7 @@ const Home = () => {
             </div>
             <div className="sm:w-32 sm:h-32 h-20 w-20 sm:mr-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0 overflow-hidden">
               <img
-                src="/docs/images/document-image.png"
+                src="src/assets/images/document-image.png"
                 alt="Map"
                 className="sm:w-48 sm:h-48 w-24 h-24 object-cover"
               />
@@ -101,13 +102,13 @@ const Home = () => {
           <div className="flex items-center lg:w-3/5 mx-auto sm:flex-row flex-col">
             <div className="sm:w-32 sm:h-32 h-20 w-20 sm:mr-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0 overflow-hidden">
               <img
-                src="/docs/images/dashboard-image.png"
+                src="src/assets/images/dashboard-image.png"
                 alt="Map"
                 className="sm:w-48 sm:h-48 w-24 h-24 object-cover"
               />
             </div>
             <div className="flex-grow sm:text-left text-center mt-6 sm:mt-0">
-              <h2 className="text-gray-900 text-lg title-font font-medium mb-2">
+              <h2 className="text-gray-900 text-xl title-font font-medium mb-2">
                 User-Friendly Interface
               </h2>
               <p className="leading-relaxed text-base">
@@ -118,9 +119,42 @@ const Home = () => {
               </p>
             </div>
           </div>
-          <button className="flex mx-auto mt-20 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">
+          <button className="flex mx-auto mt-20 text-white bg-primary border-0 py-2 px-8 focus:outline-none hover:bg-secondary rounded text-lg">
             Button
           </button>
+        </div>
+      </section>
+      <section className="p-6 bg-secondary dark:text-gray-100">
+        <div className="container mx-auto">
+          <h2 className="text-5xl font-bold text-center dark:text-gray-50">
+            How does it work?
+          </h2>
+          <div className="grid gap-6 my-16 lg:grid-cols-3">
+            <div className="flex flex-col p-8 space-y-4 rounded-md bg-primary">
+              <div className="flex items-center justify-center flex-shrink-0 w-12 h-12 text-xl font-bold rounded-full bg-accent dark:text-gray-900">
+                1
+              </div>
+              <p className="text-2xl font-semibold">
+                <b>Sign Up</b> to Deliver<em className="text-accent">Ease</em>.
+              </p>
+            </div>
+            <div className="flex flex-col p-8 space-y-4 rounded-md bg-primary">
+              <div className="flex items-center justify-center flex-shrink-0 w-12 h-12 text-xl font-bold rounded-full bg-accent dark:text-gray-900">
+                2
+              </div>
+              <p className="text-2xl font-semibold">
+                <b>Easily</b> log all of your delivery locations.
+              </p>
+            </div>
+            <div className="flex flex-col p-8 space-y-4 rounded-md bg-primary">
+              <div className="flex items-center justify-center flex-shrink-0 w-12 h-12 text-xl font-bold rounded-full bg-accent dark:text-gray-900">
+                3
+              </div>
+              <p className="text-2xl font-semibold">
+                <b>Search</b> locations quickly on the go.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
     </>
