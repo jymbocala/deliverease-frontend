@@ -83,7 +83,7 @@ const Nav = () => {
 
             {/* Navbar End */}
             <div className="navbar-end">
-                <a className="btn bg-primary text-white" href="/login">
+                <a className="btn primary" style={{ color: "white" }}>
                     Sign In
                 </a>
             </div>
