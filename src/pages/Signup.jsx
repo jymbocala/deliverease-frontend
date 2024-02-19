@@ -23,21 +23,15 @@ const Login = () => {
                 <div className="mb-10">
                   <input
                     type="submit"
-                    value="Log In"
+                    value="Sign Up"
                     className="w-full cursor-pointer rounded-md border border-primary bg-primary px-5 py-3 text-base font-medium text-white transition hover:bg-opacity-90"
                   />
                 </div>
               </form>
-              <a
-                href="/#"
-                className="mb-2 inline-block text-base text-dark hover:text-primary hover:underline"
-              >
-                Forget Password?
-              </a>
               <p className="text-base text-body-color dark:text-dark-6">
-                <span className="pr-0.5">Not a member yet?</span>
-                <a href="/sign-up" className="text-primary hover:underline font-semibold">
-                  Sign Up
+                <span className="pr-0.5">Already a member?</span>
+                <a href="/login" className="text-primary hover:underline font-semibold">
+                  Log in
                 </a>
               </p>
 
