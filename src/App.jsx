@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
 import Login from './pages/Login';
-import Home from './pages/Home'; // Import the Home component
+
 
 function App() {
   return (
@@ -10,11 +10,11 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} /> 
+            <Route index element={<h1>Home</h1>} />
             <Route path="login" element={<Login />} />
             <Route path="contact" element={<h1>Contact Page</h1>} />
 
-            {/* TODO: Set up authentication to access routes below */}
+            {/* TODO: Set up authication to access routes below */}
             <Route path="locations" element={<h1>All locations</h1>} />
             <Route
               path="locations/new"
