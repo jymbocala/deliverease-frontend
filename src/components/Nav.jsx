@@ -3,7 +3,7 @@ import Logo from "/docs/images/deliverease-logo.png";
 
 const Nav = () => {
   return (
-    <div className="navbar navbar-custom" style={{ height: "70px" }}>
+    <div className="navbar navbar-custom sticky top-0 z-50" style={{ height: "70px", backgroundColor: "#f2f7fd", boxShadow: "0 2px 4px 0 rgba(0,0,0,0.2)" }}>
       <div className="navbar-start">
         {/* Dropdown */}
         <div className="dropdown">
