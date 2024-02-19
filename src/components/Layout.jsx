@@ -8,14 +8,10 @@ export default function Layout() {
     return (
         <div className="site-wrapper">
             <Nav />
-            <Hero />
             <main>
                 <Outlet />
             </main>
             <Footer />
         </div>
-            <div className="mt-40">
-                <Features />
-            </div>
     );
 }
