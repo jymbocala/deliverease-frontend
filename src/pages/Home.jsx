@@ -1,5 +1,6 @@
 import React from "react";
-import { useState } from "react";
+import { Link as RouterLink } from "react-router-dom";
+import { Link as ScrollLink } from "react-scroll";
 import { useSpring, animated } from "react-spring";
 
 const Home = () => {
@@ -28,13 +29,25 @@ const Home = () => {
               Experience seamless delivery operations with DeliverEase at your
               fingertips.
             </p>
-            <div className="flex justify-center">
-              <button className="inline-flex text-white bg-primary border-0 py-2 px-6 focus:outline-none hover:bg-primary-dark rounded text-lg">
-                Get Started
-              </button>
-              <button className="ml-4 inline-flex text-gray-700 bg-secondary border-0 py-2 px-6 focus:outline-none hover:bg-secondary-dark rounded text-lg">
-                Learn More
-              </button>
+            <div className="flex flex-col lg:flex-row justify-center lg:items-center">
+              <RouterLink to="/sign-up" className="mb-4 lg:mb-0">
+                <button className="inline-flex text-white bg-primary border-0 py-2 px-6 focus:outline-none hover:bg-primary-dark rounded text-lg">
+                  Get Started
+                </button>
+              </RouterLink>
+              <ScrollLink
+                to="howDoesItWork"
+                smooth={true}
+                duration={500}
+                className="ml-0 lg:ml-4"
+              >
+                <button
+                  className="inline-flex text-gray-700 bg-secondary border-0 py-2 px-6 focus:outline-none hover:bg-secondary-dark rounded text-lg"
+                  style={{ cursor: "pointer" }}
+                >
+                  Learn More
+                </button>
+              </ScrollLink>
             </div>
           </div>
           <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
@@ -119,13 +132,15 @@ const Home = () => {
               </p>
             </div>
           </div>
-          <button className="flex mx-auto mt-20 text-white bg-primary border-0 py-2 px-8 focus:outline-none hover:bg-secondary rounded text-lg">
-            Button
-          </button>
+          <RouterLink to="/sign-up">
+            <button className="flex mx-auto mt-20 text-white bg-primary border-0 py-2 px-8 focus:outline-none hover:bg-secondary rounded text-lg">
+              Sign Up
+            </button>
+          </RouterLink>
         </div>
       </section>
       <section className="p-6 bg-secondary dark:text-gray-100">
-        <div className="container mx-auto">
+        <div id="howDoesItWork" className="container mx-auto">
           <h2 className="text-5xl font-bold text-center dark:text-gray-50">
             How does it work?
           </h2>
