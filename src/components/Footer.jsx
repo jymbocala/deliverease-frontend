@@ -4,8 +4,7 @@ import Logo from "/docs/images/deliverease-logo.png";
 const Footer = () => {
     return (
         <div className="flex flex-col min-h-screen justify-between"> 
-            <div className="flex-grow"> 
-                {/* Your Main Page Content Goes Here */} 
+            <div className="flex-grow">  
             </div>
             <footer className="bg-base-100 text-gray-600 body-font">
                 <div className="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
