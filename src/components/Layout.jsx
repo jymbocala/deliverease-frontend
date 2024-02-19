@@ -12,5 +12,8 @@ export default function Layout() {
             </main>
             <Footer />
         </div>
-    )
+            <div className="mt-40">
+                <Features />
+            </div>
+    );
 }
