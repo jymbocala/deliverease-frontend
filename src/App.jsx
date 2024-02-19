@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
+import Login from './pages/Login';
 
 
 function App() {
@@ -10,7 +11,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<h1>Home</h1>} />
-            <Route path="login" element={<h1>Login page</h1>} />
+            <Route path="login" element={<Login />} />
             <Route path="contact" element={<h1>Contact Page</h1>} />
 
             {/* TODO: Set up authication to access routes below */}
