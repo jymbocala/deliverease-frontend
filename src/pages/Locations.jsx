@@ -1,6 +1,18 @@
 import { Info, Search, Plus } from "lucide-react";
 
 const Locations = () => {
+  // JYM TEST
+  // example of potentially adding more to this file
+  // 1. make changes
+  // 2. commit changes to jym-testing-merging-to-ui-branch
+  // 3. push changes to github
+  // 4. create pull request to merge jym-testing-merging-to-ui-branch into ui-branch
+  // 5. merge pull request
+  // 6. delete jym-testing-merging-to-ui-branch
+  // 7. pull changes from ui-branch to local machine by running `git pull origin ui-branch`
+  // 8. continue working on ui-branch
+  // 9. repeat steps 1-8
+
   return (
     <div className="flex flex-col items-center p-16">
       <h1 className="mb-16 text-3xl">My Locations</h1>
