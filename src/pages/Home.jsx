@@ -53,7 +53,7 @@ const Home = () => {
                 </button>
               </RouterLink>
               <ScrollLink
-                to="howDoesItWork"
+                to="keyFeatures"
                 smooth={true}
                 duration={500}
                 className="ml-0 lg:ml-4"
