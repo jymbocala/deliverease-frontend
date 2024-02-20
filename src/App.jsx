@@ -4,8 +4,9 @@ import Layout from './components/Layout';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Home from './pages/Home';
-import Locations from './pages/Locations';
-
+import Locations from './pages/Locations'; 
+import About from './pages/About';
+import Contact from './pages/Contact'; 
 function App() {
   return (
     <>
@@ -15,7 +16,8 @@ function App() {
             <Route index element={<Home />} />
             <Route path="login" element={<Login />} />
             <Route path="sign-up" element={<Signup />} />
-            <Route path="contact" element={<h1>Contact Page</h1>} />
+            <Route path="about" element={<About />} />
+            <Route path="contact" element={<Contact />} /> 
 
             {/* TODO: Set up authication to access routes below */}
             <Route path="locations" element={<Locations />} />

@@ -1,9 +1,17 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Logo from "../assets/images/deliverease-logo.png";
 
 const Nav = () => {
   return (
-    <div className="navbar navbar-custom sticky top-0 z-50" style={{ height: "70px", backgroundColor: "#f2f7fd", boxShadow: "0 2px 4px 0 rgba(0,0,0,0.2)" }}>
+    <div
+      className="navbar navbar-custom sticky top-0 z-50"
+      style={{
+        height: "70px",
+        backgroundColor: "#f2f7fd",
+        boxShadow: "0 2px 4px 0 rgba(0,0,0,0.2)",
+      }}
+    >
       <div className="navbar-start">
         {/* Dropdown */}
         <div className="dropdown">
@@ -28,7 +36,9 @@ const Nav = () => {
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <a>Home</a>
+              <Link to="/" className="primary-text">
+                Home
+              </Link>
             </li>
             <li>
               <a>Locations</a>
@@ -61,30 +71,34 @@ const Nav = () => {
         </div>
       </div>
 
-            {/* Navbar Center (Hidden on smaller screens) */}
-            <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1">
-                    <li>
-                        <a className="primary-text">Home</a>
-                    </li>
-                    <li>
-                        <details>
-                            <summary className="primary-text">Locations</summary>
-                            <ul className="p-2">
-                                <li>
-                                    <a className="primary-text">New Location</a>
-                                </li>
-                                <li>
-                                    <a className="primary-text">All Locations</a>
-                                </li>
-                            </ul>
-                        </details>
-                    </li>
-                    <li>
-                        <a className="primary-text">Contact Us</a>
-                    </li>
-                </ul>
-            </div>
+      {/* Navbar Center (Hidden on smaller screens) */}
+      <div className="navbar-center hidden lg:flex">
+        <ul className="menu menu-horizontal px-1">
+          <li>
+            <Link to="/" className="primary-text">
+              Home
+            </Link>
+          </li>
+          <li>
+            <details>
+              <summary className="primary-text">Locations</summary>
+              <ul className="p-2">
+                <li>
+                  <a className="primary-text">New Location</a>
+                </li>
+                <li>
+                  <a className="primary-text">All Locations</a>
+                </li>
+              </ul>
+            </details>
+          </li>
+          <li>
+            <Link to="/contact" className="primary-text">
+              Contact Us
+            </Link>
+          </li>
+        </ul>
+      </div>
 
       {/* Navbar End */}
       <div className="navbar-end">
