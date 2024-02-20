@@ -4,9 +4,9 @@ import Layout from './components/Layout';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Home from './pages/Home';
+import Locations from './pages/Locations'; 
 import About from './pages/About';
-import Contact from './pages/Contact';
-
+import Contact from './pages/Contact'; 
 function App() {
   return (
     <>
@@ -20,7 +20,7 @@ function App() {
             <Route path="contact" element={<Contact />} /> 
 
             {/* TODO: Set up authication to access routes below */}
-            <Route path="locations" element={<h1>All locations</h1>} />
+            <Route path="locations" element={<Locations />} />
             <Route
               path="locations/new"
               element={<h1>Add new location page</h1>}
