@@ -44,66 +44,76 @@ const Nav = () => {
               <a>Locations</a>
               <ul className="p-2">
                 <li>
-                  <a>All Locations</a>
+                  <Link to="/locations">All Locations</Link>
                 </li>
                 <li>
-                  <a>New Location</a>
+                  <Link to="/locations/new">New Location</Link>
                 </li>
               </ul>
             </li>
             <li>
-              <a>Contact Us</a>
+              <Link to="/contact">Contact Us</Link>
             </li>
           </ul>
         </div>
 
-        {/* Logo Container */}
-        <div className="logo-container">
-          <img
-            src={Logo}
-            alt="DeliverEase Logo"
-            style={{
-              objectFit: "contain",
-              maxHeight: "250px", // Adjust the logo height here
-              marginLeft: "20px", // Adjust the logo margin here
-            }}
-          />
-        </div>
+        {/* Logo Container - Wrapped in Link */}
+        <Link to="/">
+          <div className="logo-container">
+            <img
+              src={Logo}
+              alt="DeliverEase Logo"
+              style={{
+                objectFit: "contain",
+                maxHeight: "250px", // Adjust the logo height here
+                marginLeft: "20px", // Adjust the logo margin here
+              }}
+            />
+          </div>
+        </Link>
       </div>
 
-            {/* Navbar Center (Hidden on smaller screens) */}
-            <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1">
-                    <li>
-                        <a className="primary-text">Home</a>
-                    </li>
-                    <li>
-                        <details>
-                            <summary className="primary-text">Locations</summary>
-                            <ul className="p-2">
-                                <li>
-                                    <a className="primary-text">New Location</a>
-                                </li>
-                                <li>
-                                    <a className="primary-text">All Locations</a>
-                                </li>
-                            </ul>
-                        </details>
-                    </li>
-                    <li>
-                        <a className="primary-text">Contact Us</a>
-                    </li>
-                </ul>
-            </div>
+      {/* Navbar Center (Hidden on smaller screens) */}
+      <div className="navbar-center hidden lg:flex">
+        <ul className="menu menu-horizontal px-1">
+          <li>
+            <Link to="/" className="primary-text">
+              Home
+            </Link>
+          </li>
+          <li>
+            <details>
+              <summary className="primary-text">Locations</summary>
+              <ul className="p-2">
+                <li>
+                  <Link to="/locations/new" className="primary-text">
+                    New Location
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/locations" className="primary-text">
+                    All Locations
+                  </Link>
+                </li>
+              </ul>
+            </details>
+          </li>
+          <li>
+            <Link to="/contact" className="primary-text">
+              Contact Us
+            </Link>
+          </li>
+        </ul>
+      </div>
 
       {/* Navbar End */}
       <div className="navbar-end">
-        <a
+        <Link
+          to="/login"
           className="btn bg-primary hover:bg-secondary text-white transition-colors duration-200"
-          href="/login"
         >
           Sign In
-        </a>
+        </Link>
       </div>
     </div>
   );
