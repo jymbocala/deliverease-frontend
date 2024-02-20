@@ -4,7 +4,8 @@ import Layout from './components/Layout';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Home from './pages/Home';
-import Locations from './pages/Locations'; 
+import Locations from './pages/Locations';
+import SingleLocation from './pages/SingleLocation'; 
 import About from './pages/About';
 import Contact from './pages/Contact'; 
 import NewLocation from './pages/NewLocation';
@@ -29,7 +30,7 @@ function App() {
             />
             <Route
               path="locations/:locationId"
-              element={<h1>One location page</h1>}
+              element={<SingleLocation />}
             />
 
             <Route path="*" element={<h1>Not Found</h1>} />
