@@ -4,7 +4,6 @@ import Layout from './components/Layout';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Home from './pages/Home';
-import About from './pages/About';
 
 function App() {
   return (
@@ -15,7 +14,6 @@ function App() {
             <Route index element={<Home />} />
             <Route path="login" element={<Login />} />
             <Route path="sign-up" element={<Signup />} />
-            <Route path="about" element={<About />} />
             <Route path="contact" element={<h1>Contact Page</h1>} />
 
             {/* TODO: Set up authication to access routes below */}
