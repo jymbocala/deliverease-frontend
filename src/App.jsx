@@ -7,6 +7,8 @@ import Home from './pages/Home';
 import Locations from './pages/Locations'; 
 import About from './pages/About';
 import Contact from './pages/Contact'; 
+import NewLocation from './pages/NewLocation';
+
 function App() {
   return (
     <>
@@ -23,7 +25,7 @@ function App() {
             <Route path="locations" element={<Locations />} />
             <Route
               path="locations/new"
-              element={<h1>Add new location page</h1>}
+              element={< NewLocation />}
             />
             <Route
               path="locations/:locationId"
