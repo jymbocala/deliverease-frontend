@@ -1,16 +1,53 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Layout from './components/Layout';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
-import Home from './pages/Home';
-import Locations from './pages/Locations';
-import SingleLocation from './pages/SingleLocation'; 
-import About from './pages/About';
-import Contact from './pages/Contact'; 
-import NewLocation from './pages/NewLocation';
+import React, { useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from "./components/Layout";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import Home from "./pages/Home";
+import Locations from "./pages/Locations";
+import SingleLocation from "./pages/SingleLocation";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import NewLocation from "./pages/NewLocation";
 
 function App() {
+  const [locations, setLocations] = useState([
+    {
+      id: 1,
+      name: "Kmart Wynumm Plaza",
+      address: "2021 Wynnum Rd, Wynnum, QLD 4178",
+      dockNumber: "Dock 1",
+      dockHours: "8am - 5pm",
+      parking: "Parking available at the front of the store for 2 hours",
+      contactName: "Receiving Department",
+      contactNumber: "(07) 3308 5300",
+      notes: "Please call ahead to book a time for delivery",
+    },
+    {
+      id: 2,
+      name: "Bunnings Caloundra",
+      address: "54 Caloundra Rd, Caloundra QLD 4551",
+      dockNumber: "Dock 2",
+      dockHours: "10am - 5pm",
+      parking: "",
+      contactName: "Dwight Schrute",
+      contactNumber: "(07) 5490 5000",
+      notes: "",
+    },
+    {
+      id: 3,
+      name: "JB Hi-Fi Mount Gravatt",
+      address: "1230 Logan Rd, Mount Gravatt QLD 4122",
+      dockNumber: "Dock 1",
+      dockHours: "11am - 7pm",
+      parking: "",
+      contactName: "Michael Scott",
+      contactNumber: "0733209300",
+      notes: "Enter road through Nersery Rd, then turn left into the loading dock area.",
+    },
+  ]);
+
+
   return (
     <>
       <BrowserRouter>
@@ -20,18 +57,12 @@ function App() {
             <Route path="login" element={<Login />} />
             <Route path="sign-up" element={<Signup />} />
             <Route path="about" element={<About />} />
-            <Route path="contact" element={<Contact />} /> 
+            <Route path="contact" element={<Contact />} />
 
             {/* TODO: Set up authication to access routes below */}
             <Route path="locations" element={<Locations />} />
-            <Route
-              path="locations/new"
-              element={< NewLocation />}
-            />
-            <Route
-              path="locations/:locationId"
-              element={<SingleLocation />}
-            />
+            <Route path="locations/new" element={<NewLocation />} />
+            <Route path="locations/:locationId" element={<SingleLocation />} />
 
             <Route path="*" element={<h1>Not Found</h1>} />
           </Route>
