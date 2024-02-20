@@ -1,4 +1,6 @@
 const NewLocation = () => {
+  // Testing
+
   return (
     <>
       <section className="text-gray-600 body-font relative">
