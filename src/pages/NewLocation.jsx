@@ -1,6 +1,5 @@
 const NewLocation = () => {
-  // Testing
-  // Testing 2
+
 
   return (
     <>
