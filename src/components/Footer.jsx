@@ -25,7 +25,7 @@ const Footer = () => {
             </a>
           </p>
           <span className="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
-            <a className="text-gray-500">
+            <a className="text-gray-500" href="https://github.com/jymbocala/deliverease-frontend" target="_blank" rel="noopener noreferrer">
               <svg
                 fill="currentColor"
                 strokeLinecap="round"
