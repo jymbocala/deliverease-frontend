@@ -1,4 +1,5 @@
 const NewLocation = () => {
+  // Jym test
   return (
     <>
       <section className="text-gray-600 body-font relative">
