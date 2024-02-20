@@ -71,32 +71,30 @@ const Nav = () => {
         </div>
       </div>
 
-      {/* Navbar Center (Hidden on smaller screens) */}
-      <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
-          <li>
-            <Link to="/" className="primary-text">
-              Home
-            </Link>
-          </li>
-          <li>
-            <details>
-              <summary className="primary-text">Locations</summary>
-              <ul className="p-2">
-                <li>
-                  <a className="primary-text">New Location</a>
-                </li>
-                <li>
-                  <a className="primary-text">All Locations</a>
-                </li>
-              </ul>
-            </details>
-          </li>
-          <li>
-            <a className="primary-text">Contact Us</a>
-          </li>
-        </ul>
-      </div>
+            {/* Navbar Center (Hidden on smaller screens) */}
+            <div className="navbar-center hidden lg:flex">
+                <ul className="menu menu-horizontal px-1">
+                    <li>
+                        <a className="primary-text">Home</a>
+                    </li>
+                    <li>
+                        <details>
+                            <summary className="primary-text">Locations</summary>
+                            <ul className="p-2">
+                                <li>
+                                    <a className="primary-text">New Location</a>
+                                </li>
+                                <li>
+                                    <a className="primary-text">All Locations</a>
+                                </li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li>
+                        <a className="primary-text">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
 
       {/* Navbar End */}
       <div className="navbar-end">
