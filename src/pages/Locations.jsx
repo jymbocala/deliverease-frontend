@@ -6,6 +6,7 @@ const Locations = ({ locations }) => {
   const nav = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchText, setSearchText] = useState("");
+  const [selectedFilter, setSelectedFilter] = useState("A-Z");
 
   // function to add background opacity to every second location
   function addBGOpacity(id) {
@@ -17,10 +18,18 @@ const Locations = ({ locations }) => {
     nav(`/locations/${id}`);
   }
 
-  // Filter locations based on search text
-  const filteredLocations = locations.filter((location) =>
-    location.name.toLowerCase().includes(searchText.toLowerCase())
-  );
+  // Filter locations based on search text and selected filter
+  const filteredLocations = locations
+    .filter((location) =>
+      location.name.toLowerCase().includes(searchText.toLowerCase())
+    )
+    .sort((a, b) => {
+      if (selectedFilter === "Most Recent") {
+        return new Date(b.date) - new Date(a.date);
+      } else {
+        return a.name.localeCompare(b.name);
+      }
+    });
 
   // Update search params when search text changes
   useEffect(() => {
@@ -53,6 +62,11 @@ const Locations = ({ locations }) => {
       )
     );
   }
+
+  // Handle filter change
+  const handleFilterChange = (event) => {
+    setSelectedFilter(event.target.value);
+  };
 
   // Map through the locations array and return a list item for each location
   const locationsElements = filteredLocations.map((location, index) => {
@@ -159,10 +173,11 @@ const Locations = ({ locations }) => {
       {/* FILTER */}
       <div className="mt-8">
         <label>Filter:</label>
-        <select className="select select-ghost max-w-xs">
-          {/* <option disabled selected>
-        Filter
-    </option> */}
+        <select
+          className="select select-ghost max-w-xs"
+          value={selectedFilter}
+          onChange={handleFilterChange}
+        >
           <option value="A-Z">A-Z</option>
           <option value="Most Recent">Most Recent</option>
         </select>
