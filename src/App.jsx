@@ -90,7 +90,7 @@ function App() {
             <Route path="contact" element={<Contact />} />
 
             {/* TODO: Set up authication to access routes below */}
-            <Route path="locations" element={<Locations />} />
+            <Route path="locations" element={<Locations locations={locations}/>} />
             <Route
               path="locations/new"
               element={<NewLocation addLocation={addLocation} />}
