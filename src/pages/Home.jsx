@@ -188,8 +188,8 @@ const Home = () => {
           </RouterLink>
         </div>
       </section>
-      <section className="p-6 bg-secondary dark:text-gray-100">
-        <div id="howDoesItWork" className="container mx-auto">
+      <section className="p-6 bg-base-100 dark:text-gray-100">
+        <div id="howDoesItWork" className="container mx-auto mb-64">
           <h2 className="text-5xl font-bold text-center dark:text-gray-50">
             How does it work?
           </h2>
