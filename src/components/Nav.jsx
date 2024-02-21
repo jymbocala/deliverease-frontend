@@ -44,31 +44,33 @@ const Nav = () => {
               <a>Locations</a>
               <ul className="p-2">
                 <li>
-                  <a>All Locations</a>
+                  <Link to="/locations">All Locations</Link>
                 </li>
                 <li>
-                  <a>New Location</a>
+                  <Link to="/locations/new">New Location</Link>
                 </li>
               </ul>
             </li>
             <li>
-              <a>Contact Us</a>
+              <Link to="/contact">Contact Us</Link>
             </li>
           </ul>
         </div>
 
-        {/* Logo Container */}
-        <div className="logo-container">
-          <img
-            src={Logo}
-            alt="DeliverEase Logo"
-            style={{
-              objectFit: "contain",
-              maxHeight: "250px", // Adjust the logo height here
-              marginLeft: "20px", // Adjust the logo margin here
-            }}
-          />
-        </div>
+        {/* Logo Container - Wrapped in Link */}
+        <Link to="/">
+          <div className="logo-container">
+            <img
+              src={Logo}
+              alt="DeliverEase Logo"
+              style={{
+                objectFit: "contain",
+                maxHeight: "250px", // Adjust the logo height here
+                marginLeft: "20px", // Adjust the logo margin here
+              }}
+            />
+          </div>
+        </Link>
       </div>
 
       {/* Navbar Center (Hidden on smaller screens) */}
@@ -84,10 +86,14 @@ const Nav = () => {
               <summary className="primary-text">Locations</summary>
               <ul className="p-2">
                 <li>
-                  <a className="primary-text">New Location</a>
+                  <Link to="/locations/new" className="primary-text">
+                    New Location
+                  </Link>
                 </li>
                 <li>
-                  <a className="primary-text">All Locations</a>
+                  <Link to="/locations" className="primary-text">
+                    All Locations
+                  </Link>
                 </li>
               </ul>
             </details>
@@ -102,12 +108,12 @@ const Nav = () => {
 
       {/* Navbar End */}
       <div className="navbar-end">
-        <a
+        <Link
+          to="/login"
           className="btn bg-primary hover:bg-secondary text-white transition-colors duration-200"
-          href="/login"
         >
           Sign In
-        </a>
+        </Link>
       </div>
     </div>
   );
