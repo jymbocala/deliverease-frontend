@@ -48,6 +48,7 @@ function App() {
     },
   ]);
 
+
   console.log("All locations", locations);
 
   // Function to add a new location to the locations state
@@ -94,7 +95,10 @@ function App() {
               path="locations/new"
               element={<NewLocation addLocation={addLocation} />}
             />
-            <Route path="locations/:locationId" element={<SingleLocation />} />
+            <Route
+              path="locations/:locationId"
+              element={<SingleLocation locations={locations} />}
+            />
 
             <Route path="*" element={<h1>Not Found</h1>} />
           </Route>
