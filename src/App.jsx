@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import Login from "./pages/Login";
@@ -43,10 +43,39 @@ function App() {
       parking: "",
       contactName: "Michael Scott",
       contactNumber: "0733209300",
-      notes: "Enter road through Nersery Rd, then turn left into the loading dock area.",
+      notes:
+        "Enter road through Nersery Rd, then turn left into the loading dock area.",
     },
   ]);
 
+  console.log("All locations", locations);
+
+  // Function to add a new location to the locations state
+  async function addLocation(location) {
+    console.log("NEW LOCATION", location);
+
+    // Create a new ID for the location
+    const newId = locations.length + 1;
+
+    // Create a new location object
+    const newLocation = {
+      id: newId,
+      name: location.name,
+      address: location.address,
+      dockNumber: location.dockNumber,
+      dockHours: location.dockHours,
+      parking: location.parking,
+      contactName: location.contactName,
+      contactNumber: location.contactNumber,
+      notes: location.notes,
+    };
+
+    // Add the new location to the locations state
+    setLocations([...locations, newLocation]);
+
+    // Return the new ID to use in the redirect
+    return newId;
+  }
 
   return (
     <>
@@ -61,7 +90,10 @@ function App() {
 
             {/* TODO: Set up authication to access routes below */}
             <Route path="locations" element={<Locations />} />
-            <Route path="locations/new" element={<NewLocation />} />
+            <Route
+              path="locations/new"
+              element={<NewLocation addLocation={addLocation} />}
+            />
             <Route path="locations/:locationId" element={<SingleLocation />} />
 
             <Route path="*" element={<h1>Not Found</h1>} />
