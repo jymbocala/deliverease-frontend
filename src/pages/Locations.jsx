@@ -1,10 +1,17 @@
 import { Info, Search, Plus } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Locations = ({ locations }) => {
+  const nav = useNavigate();
+
   // function to add background opacity to every second location
   function addBGOpacity(id) {
     return id % 2 === 0 ? "bg-opacity-20" : "bg-opacity-50";
+  }
+
+  // Function to go to the page when a location is clicked
+  function goToLocation(id) {
+    nav(`/locations/${id}`);
   }
 
   // Map through the locations array and return a list item for each location
@@ -13,11 +20,14 @@ const Locations = ({ locations }) => {
     const isFirstLocation = index === 0;
 
     return (
-      <>
+      <div key={location.id}>
         <li
           className={`flex items-center justify-between p-4 bg-secondary group/item hover:border-accent border-transparent border-2 cursor-pointer ${
             isLastLocation && `rounded-b-lg`
           } ${isFirstLocation && `rounded-t-lg`} ${addBGOpacity(location.id)}`}
+          onClick={() => {
+            goToLocation(location.id);
+          }}
         >
           <div>
             <h2 className="text-lg">{location.name}</h2>
@@ -27,9 +37,10 @@ const Locations = ({ locations }) => {
             <Info
               color="#31485e"
               className="group-hover/edit:scale-110"
-              onClick={() =>
-                document.getElementById(`my_modal_${location.id}`).showModal()
-              }
+              onClick={(e) => {
+                e.stopPropagation(); // Stop the click event from bubbling up to the parent
+                document.getElementById(`my_modal_${location.id}`).showModal();
+              }}
             />
 
             <dialog
@@ -38,7 +49,15 @@ const Locations = ({ locations }) => {
             >
               <div className="modal-box">
                 <form method="dialog">
-                  <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                  <button
+                    className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+                    onClick={(e) => {
+                      e.stopPropagation(); // Stop the click event from bubbling up to the parent
+                      document
+                        .getElementById(`my_modal_${location.id}`)
+                        .close();
+                    }}
+                  >
                     ✕
                   </button>
                 </form>
@@ -48,7 +67,13 @@ const Locations = ({ locations }) => {
                 <p className="py-4">{location.dockHours}</p>
                 <p className="py-4">{location.notes}</p>
               </div>
-              <form method="dialog" className="modal-backdrop">
+              <form
+                method="dialog"
+                className="modal-backdrop"
+                onClick={(e) => {
+                  e.stopPropagation(); // Stop the click event from bubbling up to the parent
+                }}
+              >
                 <button>close</button>
               </form>
             </dialog>
@@ -57,7 +82,7 @@ const Locations = ({ locations }) => {
         {!isLastLocation && (
           <span style={{ borderTop: "1px solid #31485e" }}></span>
         )}
-      </>
+      </div>
     );
   });
 
@@ -92,10 +117,10 @@ const Locations = ({ locations }) => {
         <label>Filter:</label>
         <select className="select select-ghost max-w-xs">
           {/* <option disabled selected>
-            Filter
-          </option> */}
-          <option selected>A-Z</option>
-          <option>Most Recent</option>
+        Filter
+    </option> */}
+          <option value="A-Z">A-Z</option>
+          <option value="Most Recent">Most Recent</option>
         </select>
       </div>
 
