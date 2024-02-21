@@ -22,6 +22,7 @@ function App() {
       contactName: "Receiving Department",
       contactNumber: "(07) 3308 5300",
       notes: "Please call ahead to book a time for delivery",
+      dateCreated: new Date("2022-02-20T12:00:00"),
     },
     {
       id: 2,
@@ -33,6 +34,7 @@ function App() {
       contactName: "Dwight Schrute",
       contactNumber: "(07) 5490 5000",
       notes: "",
+      dateCreated: new Date("2023-02-19T09:00:00"),
     },
     {
       id: 3,
@@ -45,9 +47,9 @@ function App() {
       contactNumber: "0733209300",
       notes:
         "Enter road through Nersery Rd, then turn left into the loading dock area.",
+      dateCreated: new Date("2024-02-18T15:30:00"),
     },
   ]);
-
 
   console.log("All locations", locations);
 
@@ -90,7 +92,10 @@ function App() {
             <Route path="contact" element={<Contact />} />
 
             {/* TODO: Set up authication to access routes below */}
-            <Route path="locations" element={<Locations locations={locations}/>} />
+            <Route
+              path="locations"
+              element={<Locations locations={locations} />}
+            />
             <Route
               path="locations/new"
               element={<NewLocation addLocation={addLocation} />}

@@ -25,7 +25,7 @@ const Locations = ({ locations }) => {
     )
     .sort((a, b) => {
       if (selectedFilter === "Most Recent") {
-        return new Date(b.date) - new Date(a.date);
+        return new Date(b.dateCreated) - new Date(a.dateCreated);
       } else {
         return a.name.localeCompare(b.name);
       }
