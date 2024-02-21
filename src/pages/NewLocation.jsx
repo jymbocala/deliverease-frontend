@@ -102,7 +102,7 @@ const NewLocation = ({ addLocation }) => {
                     Dock Number
                   </label>
                   <input
-                    type="number"
+                    type="text"
                     id="dockNumber"
                     name="dockNumber"
                     placeholder='E.g. "Dock 1"'
