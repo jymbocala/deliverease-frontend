@@ -1,8 +1,11 @@
+import { useEffect, useState } from "react";
 import { Info, Search, Plus } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 
 const Locations = ({ locations }) => {
   const nav = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchText, setSearchText] = useState("");
 
   // function to add background opacity to every second location
   function addBGOpacity(id) {
@@ -14,9 +17,46 @@ const Locations = ({ locations }) => {
     nav(`/locations/${id}`);
   }
 
+  // Filter locations based on search text
+  const filteredLocations = locations.filter((location) =>
+    location.name.toLowerCase().includes(searchText.toLowerCase())
+  );
+
+  // Update search params when search text changes
+  useEffect(() => {
+    // Update the search param in the URL
+    setSearchParams({ search: searchText });
+  }, [searchText, setSearchParams]);
+
+  // Update search text when search params change
+  useEffect(() => {
+    // Retrieve search text from search params when component mounts
+    const params = new URLSearchParams(searchParams);
+    // Get the search param from the URL
+    const search = params.get("search") || "";
+    // Set the search text state to the search param
+    setSearchText(search);
+  }, [searchParams]);
+
+  // Helper function to highlight matching characters in the location name
+  function highlightMatchingText(text, searchText) {
+    if (!searchText) return text;
+
+    const regex = new RegExp(`(${searchText})`, "gi");
+    return text.split(regex).map((part, index) =>
+      regex.test(part) ? (
+        <span key={index} style={{ backgroundColor: "yellow" }}>
+          {part}
+        </span>
+      ) : (
+        part
+      )
+    );
+  }
+
   // Map through the locations array and return a list item for each location
-  const locationsElements = locations.map((location, index) => {
-    const isLastLocation = index === locations.length - 1;
+  const locationsElements = filteredLocations.map((location, index) => {
+    const isLastLocation = index === filteredLocations.length - 1;
     const isFirstLocation = index === 0;
 
     return (
@@ -30,7 +70,9 @@ const Locations = ({ locations }) => {
           }}
         >
           <div>
-            <h2 className="text-lg">{location.name}</h2>
+            <h2 className="text-lg">
+              {highlightMatchingText(location.name, searchText)}
+            </h2>
             <p>{location.address}</p>
           </div>
           <div className="flex gap-4 group/edit invisible group-hover/item:visible">
@@ -96,10 +138,12 @@ const Locations = ({ locations }) => {
             type="text"
             className="grow bg-base-100"
             placeholder="Search"
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
           />
-          <button className="btn inline-flex text-white bg-primary border-0 py-2 px-6 focus:outline-none hover:bg-primary">
+          {/* <button className="btn inline-flex text-white bg-primary border-0 py-2 px-6 focus:outline-none hover:bg-primary">
             <Search />
-          </button>
+          </button> */}
         </label>
 
         {/* NEW LOCATION BUTTON */}
