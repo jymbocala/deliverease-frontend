@@ -1,7 +1,18 @@
 import React, { useState } from "react";
-import gpsLocationExample from "/src/assets/images/gps-location-example.jpg"; // Import the image
+import { FaMapMarkerAlt, FaUser, FaPhone, FaCar, FaStickyNote, FaInfoCircle } from "react-icons/fa";
+import { useParams, Link } from "react-router-dom";
 
-const SingleLocation = () => {
+const DetailLine = ({ IconComponent, text }) => (
+  <div className="flex items-center mb-2 border-b border-gray-200 pb-2">
+    <IconComponent className="mr-2" />
+    <div>{text}</div>
+  </div>
+);
+
+const SingleLocation = ({ locations }) => {
+  const { locationId } = useParams();
+  const location = locations.find(loc => loc.id === parseInt(locationId));
+  
   const [open, setOpen] = useState("details");
 
   const handleTabOpen = (tabCategory) => {
@@ -11,25 +22,35 @@ const SingleLocation = () => {
   const TabContent = ({ details, tabCategory, open }) => {
     return (
       <div
-        className={`tabcontent ${open === tabCategory ? "block" : "hidden"}`}
+        className={`tabcontent ${open === tabCategory ? "block" : "hidden"} p-4 mt-4 border border-gray-300 bg-white shadow-md rounded-lg`}
       >
-        <div dangerouslySetInnerHTML={{ __html: details }} />
+        {details}
       </div>
     );
   };
 
+  const details = location && (
+    <>
+      <DetailLine IconComponent={FaMapMarkerAlt} text={location.address} />
+      <DetailLine IconComponent={FaCar} text={location.dockNumber} />
+      <DetailLine IconComponent={FaStickyNote} text={`Dock Hours: ${location.dockHours}`} />
+      <DetailLine IconComponent={FaStickyNote} text={`Parking: ${location.parking}`} />
+      <DetailLine IconComponent={FaUser} text={location.contactName} />
+      <DetailLine IconComponent={FaPhone} text={location.contactNumber} />
+      <DetailLine IconComponent={FaStickyNote} text={location.notes} />
+    </>
+  );
+
   return (
     <>
-      <section className="py-20 dark:bg-dark lg:py-[120px]">
-        <div className="container">
-          <h2 className="text-2xl font-bold mb-4 text-center">Location</h2>
-          <div className="-mx-4 flex flex-wrap justify-center">
-            <div className="w-full lg:w-[70%] px-4">
-              <img src={gpsLocationExample} alt="GPS Location Example" className="w-full" /> {/* Display the image */}
-            </div>
-            <div className="w-full lg:w-[30%] px-4">
-              <div className="mb-4 text-center">
-                <h3 className="text-lg font-bold mb-2">Info</h3>
+      <section className="py-20 dark:bg-dark lg:py-[120px] flex justify-center items-center">
+        <div className="container mx-auto text-center">
+          <h2 className="text-2xl font-bold mb-4">{location ? location.name : "Location"}</h2>
+          <div className="flex flex-wrap justify-center">
+            <div className="w-full lg:w-[30%] px-4 mx-auto">
+              <div className="mb-4 flex items-center justify-center">
+                <FaInfoCircle className="mr-2" />
+                <h3 className="text-lg font-bold mb-2 text-accent">Info</h3>
               </div>
               <div className="flex flex-row justify-center">
                 <a
@@ -54,7 +75,7 @@ const SingleLocation = () => {
                 </a>
               </div>
               <TabContent
-                details={`279 Brisbane Road, Milton, QLD 4000<br /><br />Jim Smith<br /><br />0400 123 456<br /><br />Notes: Drive to the back of the building and park in the car park. The entrance is on the right-hand side of the building.`}
+                details={details}
                 tabCategory="details"
                 open={open}
               />
@@ -63,6 +84,9 @@ const SingleLocation = () => {
                 tabCategory="photos"
                 open={open}
               />
+              <div className="mt-4">
+                <Link to="/locations" className="bg-secondary text-white py-2 px-4 rounded transform transition duration-500 ease-in-out hover:bg-primary hover:scale-105">Locations</Link>
+              </div>
             </div>
           </div>
         </div>

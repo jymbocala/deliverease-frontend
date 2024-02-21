@@ -43,10 +43,10 @@ function App() {
       parking: "",
       contactName: "Michael Scott",
       contactNumber: "0733209300",
-      notes: "Enter road through Nersery Rd, then turn left into the loading dock area.",
+      notes:
+        "Enter road through Nersery Rd, then turn left into the loading dock area.",
     },
   ]);
-
 
   return (
     <>
@@ -62,7 +62,10 @@ function App() {
             {/* TODO: Set up authication to access routes below */}
             <Route path="locations" element={<Locations />} />
             <Route path="locations/new" element={<NewLocation />} />
-            <Route path="locations/:locationId" element={<SingleLocation />} />
+            <Route
+              path="locations/:locationId"
+              element={<SingleLocation locations={locations} />}
+            />
 
             <Route path="*" element={<h1>Not Found</h1>} />
           </Route>
