@@ -9,8 +9,8 @@ const Locations = ({ locations }) => {
   const [selectedFilter, setSelectedFilter] = useState("A-Z");
 
   // function to add background opacity to every second location
-  function addBGOpacity(id) {
-    return id % 2 === 0 ? "bg-opacity-20" : "bg-opacity-50";
+  function addBGOpacity(index) {
+    return index % 2 === 0 ? "bg-opacity-50" : "bg-opacity-20";
   }
 
   // Function to go to the page when a location is clicked
@@ -21,12 +21,16 @@ const Locations = ({ locations }) => {
   // Filter locations based on search text and selected filter
   const filteredLocations = locations
     .filter((location) =>
+      // Check if the location name includes the search text
       location.name.toLowerCase().includes(searchText.toLowerCase())
     )
     .sort((a, b) => {
+      // Sort the locations based on the selected filter
       if (selectedFilter === "Most Recent") {
+        // Sort by date created
         return new Date(b.dateCreated) - new Date(a.dateCreated);
       } else {
+        // Sort alphabetically
         return a.name.localeCompare(b.name);
       }
     });
@@ -49,9 +53,12 @@ const Locations = ({ locations }) => {
 
   // Helper function to highlight matching characters in the location name
   function highlightMatchingText(text, searchText) {
+    // If there's no search text, return the original text
     if (!searchText) return text;
 
+    // Create a regular expression to match the search text
     const regex = new RegExp(`(${searchText})`, "gi");
+    // Split the text into parts based on the search text
     return text.split(regex).map((part, index) =>
       regex.test(part) ? (
         <span key={index} style={{ backgroundColor: "yellow" }}>
@@ -65,6 +72,7 @@ const Locations = ({ locations }) => {
 
   // Handle filter change
   const handleFilterChange = (event) => {
+    // Update the selected filter state
     setSelectedFilter(event.target.value);
   };
 
@@ -78,7 +86,7 @@ const Locations = ({ locations }) => {
         <li
           className={`flex items-center justify-between p-4 bg-secondary group/item hover:border-accent border-transparent border-2 cursor-pointer ${
             isLastLocation && `rounded-b-lg`
-          } ${isFirstLocation && `rounded-t-lg`} ${addBGOpacity(location.id)}`}
+          } ${isFirstLocation && `rounded-t-lg`} ${addBGOpacity(index)}`}
           onClick={() => {
             goToLocation(location.id);
           }}
@@ -146,8 +154,8 @@ const Locations = ({ locations }) => {
     <div className="flex flex-col items-center p-16">
       <h1 className="mb-16 text-3xl">My Locations</h1>
       {/* SEARCH */}
-      <div className="flex w-full">
-        <label className="input input-bordered flex items-center gap-2 grow mr-4">
+      <div className="flex w-full items-center justify-center">
+        <label className="input input-bordered flex items-center gap-2 grow mr-2">
           <input
             type="text"
             className="grow bg-base-100"
@@ -155,15 +163,14 @@ const Locations = ({ locations }) => {
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
           />
-          {/* <button className="btn inline-flex text-white bg-primary border-0 py-2 px-6 focus:outline-none hover:bg-primary">
-            <Search />
-          </button> */}
         </label>
+
+        <div className="h-auto min-h-[1em] w-px mx-3 self-stretch bg-gradient-to-tr from-transparent via-neutral-500 to-transparent opacity-20 dark:opacity-100"></div>
 
         {/* NEW LOCATION BUTTON */}
         <Link
           to="new"
-          className="btn inline-flex btn-outline btn-primary px-3 text-md"
+          className="btn inline-flex btn-outline btn-primary px-3 text-md ml-2"
         >
           <Plus color="#31485e" />
           New Location
@@ -171,7 +178,7 @@ const Locations = ({ locations }) => {
       </div>
 
       {/* FILTER */}
-      <div className="mt-8">
+      <div className="mt-10 self-start">
         <label>Filter:</label>
         <select
           className="select select-ghost max-w-xs"
@@ -184,11 +191,11 @@ const Locations = ({ locations }) => {
       </div>
 
       {/* LOCATIONS LIST */}
-      <ul role="list" className="flex flex-col mt-8 w-full">
+      <ul role="list" className="flex flex-col mt-2 w-full">
         {locationsElements}
       </ul>
 
-      {/* PAGINATION */}
+      {/* TODO: Add pagination logic */}
       {/* <div className="join mt-40">
         <input
           className="join-item btn btn-square"
