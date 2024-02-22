@@ -1,257 +1,202 @@
+import { useEffect, useState } from "react";
 import { Info, Search, Plus } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 
-const Locations = () => {
+const Locations = ({ locations }) => {
+  const nav = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchText, setSearchText] = useState("");
+  const [selectedFilter, setSelectedFilter] = useState("A-Z");
+
+  // function to add background opacity to every second location
+  function addBGOpacity(index) {
+    return index % 2 === 0 ? "bg-opacity-50" : "bg-opacity-20";
+  }
+
+  // Function to go to the page when a location is clicked
+  function goToLocation(id) {
+    nav(`/locations/${id}`);
+  }
+
+  // Filter locations based on search text and selected filter
+  const filteredLocations = locations
+    .filter((location) =>
+      // Check if the location name includes the search text
+      location.name.toLowerCase().includes(searchText.toLowerCase())
+    )
+    .sort((a, b) => {
+      // Sort the locations based on the selected filter
+      if (selectedFilter === "Most Recent") {
+        // Sort by date created
+        return new Date(b.dateCreated) - new Date(a.dateCreated);
+      } else {
+        // Sort alphabetically
+        return a.name.localeCompare(b.name);
+      }
+    });
+
+  // Update search params when search text changes
+  useEffect(() => {
+    // Update the search param in the URL
+    setSearchParams({ search: searchText });
+  }, [searchText, setSearchParams]);
+
+  // Update search text when search params change
+  useEffect(() => {
+    // Retrieve search text from search params when component mounts
+    const params = new URLSearchParams(searchParams);
+    // Get the search param from the URL
+    const search = params.get("search") || "";
+    // Set the search text state to the search param
+    setSearchText(search);
+  }, [searchParams]);
+
+  // Helper function to highlight matching characters in the location name
+  function highlightMatchingText(text, searchText) {
+    // If there's no search text, return the original text
+    if (!searchText) return text;
+
+    // Create a regular expression to match the search text
+    const regex = new RegExp(`(${searchText})`, "gi");
+    // Split the text into parts based on the search text
+    return text.split(regex).map((part, index) =>
+      regex.test(part) ? (
+        <span key={index} style={{ backgroundColor: "yellow" }}>
+          {part}
+        </span>
+      ) : (
+        part
+      )
+    );
+  }
+
+  // Handle filter change
+  const handleFilterChange = (event) => {
+    // Update the selected filter state
+    setSelectedFilter(event.target.value);
+  };
+
+  // Map through the locations array and return a list item for each location
+  const locationsElements = filteredLocations.map((location, index) => {
+    const isLastLocation = index === filteredLocations.length - 1;
+    const isFirstLocation = index === 0;
+
+    return (
+      <div key={location.id}>
+        <li
+          className={`flex items-center justify-between p-4 bg-secondary group/item hover:border-accent border-transparent border-2 cursor-pointer ${
+            isLastLocation && `rounded-b-lg`
+          } ${isFirstLocation && `rounded-t-lg`} ${addBGOpacity(index)}`}
+          onClick={() => {
+            goToLocation(location.id);
+          }}
+        >
+          <div>
+            <h2 className="text-lg">
+              {highlightMatchingText(location.name, searchText)}
+            </h2>
+            <p>{location.address}</p>
+          </div>
+          <div className="flex gap-4 group/edit invisible group-hover/item:visible">
+            <Info
+              color="#31485e"
+              className="group-hover/edit:scale-110"
+              onClick={(e) => {
+                e.stopPropagation(); // Stop the click event from bubbling up to the parent
+                document.getElementById(`my_modal_${location.id}`).showModal();
+              }}
+            />
+
+            <dialog
+              id={"my_modal_" + location.id}
+              className="modal modal-bottom sm:modal-middle"
+            >
+              <div className="modal-box">
+                <form method="dialog">
+                  <button
+                    className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+                    onClick={(e) => {
+                      e.stopPropagation(); // Stop the click event from bubbling up to the parent
+                      document
+                        .getElementById(`my_modal_${location.id}`)
+                        .close();
+                    }}
+                  >
+                    ✕
+                  </button>
+                </form>
+                <h3 className="font-bold text-lg">{location.name}</h3>
+                <p className="py-4">{location.address}</p>
+                <p className="py-4">{location.dockNumber}</p>
+                <p className="py-4">{location.dockHours}</p>
+                <p className="py-4">{location.notes}</p>
+              </div>
+              <form
+                method="dialog"
+                className="modal-backdrop"
+                onClick={(e) => {
+                  e.stopPropagation(); // Stop the click event from bubbling up to the parent
+                }}
+              >
+                <button>close</button>
+              </form>
+            </dialog>
+          </div>
+        </li>
+        {!isLastLocation && (
+          <span style={{ borderTop: "1px solid #31485e" }}></span>
+        )}
+      </div>
+    );
+  });
+
   return (
     <div className="flex flex-col items-center p-16">
       <h1 className="mb-16 text-3xl">My Locations</h1>
       {/* SEARCH */}
-      <div className="flex w-full">
-        <label className="input input-bordered flex items-center gap-2 grow mr-4">
+      <div className="flex w-full items-center justify-center">
+        <label className="input input-bordered flex items-center gap-2 grow mr-2">
           <input
             type="text"
             className="grow bg-base-100"
             placeholder="Search"
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
           />
-          <button className="btn inline-flex text-white bg-primary border-0 py-2 px-6 focus:outline-none hover:bg-primary">
-            <Search />
-          </button>
         </label>
 
+        <div className="h-auto min-h-[1em] w-px mx-3 self-stretch bg-gradient-to-tr from-transparent via-neutral-500 to-transparent opacity-20 dark:opacity-100"></div>
+
         {/* NEW LOCATION BUTTON */}
-        <Link to="new" className="btn inline-flex btn-outline btn-primary px-3 text-md">
+        <Link
+          to="new"
+          className="btn inline-flex btn-outline btn-primary px-3 text-md ml-2"
+        >
           <Plus color="#31485e" />
           New Location
         </Link>
       </div>
 
       {/* FILTER */}
-      <div className="mt-8">
+      <div className="mt-10 self-start">
         <label>Filter:</label>
-        <select className="select select-ghost max-w-xs">
-          {/* <option disabled selected>
-            Filter
-          </option> */}
-          <option selected>A-Z</option>
-          <option>Most Recent</option>
+        <select
+          className="select select-ghost max-w-xs"
+          value={selectedFilter}
+          onChange={handleFilterChange}
+        >
+          <option value="A-Z">A-Z</option>
+          <option value="Most Recent">Most Recent</option>
         </select>
-
       </div>
 
       {/* LOCATIONS LIST */}
-      <ul role="list" className="flex flex-col mt-8 w-full">
-        <li className="flex items-center justify-between p-4 bg-secondary group/item hover:border-accent border-transparent border-2 bg-opacity-50 cursor-pointer">
-          <div>
-            <h2 className="text-lg">Location 1</h2>
-            <p>Address</p>
-          </div>
-          <div className="flex gap-4 group/edit invisible group-hover/item:visible">
-            <Info
-              color="#31485e"
-              className="group-hover/edit:scale-110"
-              onClick={() => document.getElementById("my_modal_1").showModal()}
-            />
-
-            <dialog
-              id="my_modal_1"
-              className="modal modal-bottom sm:modal-middle"
-            >
-              <div className="modal-box">
-                <form method="dialog">
-                  <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-                    ✕
-                  </button>
-                </form>
-                <h3 className="font-bold text-lg">Location Heading1</h3>
-                <p className="py-4">Address</p>
-                <p className="py-4">Contacts</p>
-                <p className="py-4">Notes</p>
-              </div>
-              <form method="dialog" className="modal-backdrop">
-                <button>close</button>
-              </form>
-            </dialog>
-          </div>
-        </li>
-        <span style={{ borderTop: "1px solid #31485e" }}></span>
-
-        <li className="flex items-center justify-between p-4 bg-secondary group/item hover:border-accent border-transparent border-2 bg-opacity-20 cursor-pointer">
-          <div>
-            <h2 className="text-lg">Location 2</h2>
-            <p>Address</p>
-          </div>
-          <div className="flex gap-4 group/edit invisible group-hover/item:visible">
-            <Info
-              color="#31485e"
-              className="group-hover/edit:scale-110"
-              onClick={() => document.getElementById("my_modal_2").showModal()}
-            />
-
-            <dialog
-              id="my_modal_2"
-              className="modal modal-bottom sm:modal-middle"
-            >
-              <div className="modal-box">
-                <form method="dialog">
-                  <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-                    ✕
-                  </button>
-                </form>
-                <h3 className="font-bold text-lg">Location Heading2</h3>
-                <p className="py-4">Address</p>
-                <p className="py-4">Contacts</p>
-                <p className="py-4">Notes</p>
-              </div>
-              <form method="dialog" className="modal-backdrop">
-                <button>close</button>
-              </form>
-            </dialog>
-          </div>
-        </li>
-        <span style={{ borderTop: "1px solid #31485e" }}></span>
-
-        <li className="flex items-center justify-between p-4 bg-secondary group/item hover:border-accent border-transparent border-2 bg-opacity-50 cursor-pointer">
-          <div>
-            <h2 className="text-lg">Location 3</h2>
-            <p>Address</p>
-          </div>
-          <div className="flex gap-4 group/edit invisible group-hover/item:visible">
-            <Info
-              color="#31485e"
-              className="group-hover/edit:scale-110"
-              onClick={() => document.getElementById("my_modal_3").showModal()}
-            />
-
-            <dialog
-              id="my_modal_3"
-              className="modal modal-bottom sm:modal-middle"
-            >
-              <div className="modal-box">
-                <form method="dialog">
-                  <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-                    ✕
-                  </button>
-                </form>
-                <h3 className="font-bold text-lg">Location Heading2</h3>
-                <p className="py-4">Address</p>
-                <p className="py-4">Contacts</p>
-                <p className="py-4">Notes</p>
-              </div>
-              <form method="dialog" className="modal-backdrop">
-                <button>close</button>
-              </form>
-            </dialog>
-          </div>
-        </li>
-        <span style={{ borderTop: "1px solid #31485e" }}></span>
-
-        <li className="flex items-center justify-between p-4 bg-secondary group/item hover:border-accent border-transparent border-2 bg-opacity-20 cursor-pointer">
-          <div>
-            <h2 className="text-lg">Location 4</h2>
-            <p>Address</p>
-          </div>
-          <div className="flex gap-4 group/edit invisible group-hover/item:visible">
-            <Info
-              color="#31485e"
-              className="group-hover/edit:scale-110"
-              onClick={() => document.getElementById("my_modal_4").showModal()}
-            />
-
-            <dialog
-              id="my_modal_4"
-              className="modal modal-bottom sm:modal-middle"
-            >
-              <div className="modal-box">
-                <form method="dialog">
-                  <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-                    ✕
-                  </button>
-                </form>
-                <h3 className="font-bold text-lg">Location Heading4</h3>
-                <p className="py-4">Address</p>
-                <p className="py-4">Contacts</p>
-                <p className="py-4">Notes</p>
-              </div>
-              <form method="dialog" className="modal-backdrop">
-                <button>close</button>
-              </form>
-            </dialog>
-          </div>
-        </li>
-        <span style={{ borderTop: "1px solid #31485e" }}></span>
-
-        <li className="flex items-center justify-between p-4 bg-secondary group/item hover:border-accent border-transparent border-2 bg-opacity-50 cursor-pointer">
-          <div>
-            <h2 className="text-lg">Location 5</h2>
-            <p>Address</p>
-          </div>
-          <div className="flex gap-4 group/edit invisible group-hover/item:visible">
-            <Info
-              color="#31485e"
-              className="group-hover/edit:scale-110"
-              onClick={() => document.getElementById("my_modal_5").showModal()}
-            />
-
-            <dialog
-              id="my_modal_5"
-              className="modal modal-bottom sm:modal-middle"
-            >
-              <div className="modal-box">
-                <form method="dialog">
-                  <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-                    ✕
-                  </button>
-                </form>
-                <h3 className="font-bold text-lg">Location Heading5</h3>
-                <p className="py-4">Address</p>
-                <p className="py-4">Contacts</p>
-                <p className="py-4">Notes</p>
-              </div>
-              <form method="dialog" className="modal-backdrop">
-                <button>close</button>
-              </form>
-            </dialog>
-          </div>
-        </li>
-        <span style={{ borderTop: "1px solid #31485e" }}></span>
-
-        <li className="flex items-center justify-between p-4 bg-secondary group/item hover:border-accent border-transparent border-2 bg-opacity-20 cursor-pointer">
-          <div>
-            <h2 className="text-lg">Location 6</h2>
-            <p>Address</p>
-          </div>
-          <div className="flex gap-4 group/edit invisible group-hover/item:visible">
-            <Info
-              color="#31485e"
-              className="group-hover/edit:scale-110"
-              onClick={() => document.getElementById("my_modal_6").showModal()}
-            />
-
-            <dialog
-              id="my_modal_6"
-              className="modal modal-bottom sm:modal-middle"
-            >
-              <div className="modal-box">
-                <form method="dialog">
-                  <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-                    ✕
-                  </button>
-                </form>
-                <h3 className="font-bold text-lg">Location Heading6</h3>
-                <p className="py-4">Address</p>
-                <p className="py-4">Contacts</p>
-                <p className="py-4">Notes</p>
-              </div>
-              <form method="dialog" className="modal-backdrop">
-                <button>close</button>
-              </form>
-            </dialog>
-          </div>
-        </li>
+      <ul role="list" className="flex flex-col mt-2 w-full">
+        {locationsElements}
       </ul>
 
-      {/* PAGINATION */}
-      <div className="join mt-40">
+      {/* TODO: Add pagination logic */}
+      {/* <div className="join mt-40">
         <input
           className="join-item btn btn-square"
           type="radio"
@@ -277,7 +222,7 @@ const Locations = () => {
           name="options"
           aria-label="4"
         />
-      </div>
+      </div> */}
     </div>
   );
 };
