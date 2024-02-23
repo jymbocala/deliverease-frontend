@@ -80,7 +80,7 @@ const SingleLocation = ({ locations }) => {
                 open={open}
               />
               <TabContent
-                details="Photos Content Goes Here"
+                details={<img src={location.imageURL} alt="Location" />}
                 tabCategory="photos"
                 open={open}
               />
