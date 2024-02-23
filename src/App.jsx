@@ -23,6 +23,7 @@ function App() {
       contactNumber: "(07) 3308 5300",
       notes: "Please call ahead to book a time for delivery",
       dateCreated: new Date("2022-02-20T12:00:00"),
+      imageURL: "",
     },
     {
       id: 2,
@@ -35,6 +36,7 @@ function App() {
       contactNumber: "(07) 5490 5000",
       notes: "",
       dateCreated: new Date("2023-02-19T09:00:00"),
+      imageURL: "",
     },
     {
       id: 3,
@@ -48,6 +50,7 @@ function App() {
       notes:
         "Enter road through Nersery Rd, then turn left into the loading dock area.",
       dateCreated: new Date("2024-02-18T15:30:00"),
+      imageURL: "",
     },
   ]);
 
@@ -71,6 +74,8 @@ function App() {
       contactName: location.contactName,
       contactNumber: location.contactNumber,
       notes: location.notes,
+      dateCreated: location.dateCreated,
+      imageURL: location.imageURL,
     };
 
     // Add the new location to the locations state
