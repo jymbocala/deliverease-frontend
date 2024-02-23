@@ -107,7 +107,12 @@ function App() {
             />
             <Route
               path="locations/:locationId"
-              element={<SingleLocation locations={locations} />}
+              element={
+                <SingleLocation
+                  locations={locations}
+                  setLocations={setLocations}
+                />
+              }
             />
 
             <Route path="*" element={<h1>Not Found</h1>} />
