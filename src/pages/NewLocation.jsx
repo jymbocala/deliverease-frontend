@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import ImageUpload from "../components/ImageUpload";
 
 const NewLocation = ({ addLocation }) => {
   const nav = useNavigate();
@@ -12,7 +13,17 @@ const NewLocation = ({ addLocation }) => {
     contactName: "",
     contactNumber: "",
     notes: "",
+    dateCreated: new Date(),
+    imageURL: "",
   });
+
+  // Function to set the imageURL in the location state
+  const setImageURL = (url) => {
+    setLocation((prevLocation) => ({
+      ...prevLocation,
+      imageURL: url,
+    }));
+  };
 
   async function createLocation(e) {
     // Prevent from refreshing the page
@@ -206,6 +217,9 @@ const NewLocation = ({ addLocation }) => {
                   ></textarea>
                 </div>
               </div>
+              {/* Image Upload Component */}
+              <ImageUpload setImageURL={setImageURL} />
+
               <div className="p-2 w-full">
                 <button
                   className=" btn flex mx-auto text-white bg-primary border-0 py-2 px-8 focus:outline-none hover:bg-secondary text-lg"
