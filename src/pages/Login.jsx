@@ -1,7 +1,64 @@
-import React from "react";
+import { useState } from "react";
 import Logo from "../assets/images/deliverease-logo-cropped.png";
 
 const Login = () => {
+  const [loginFormData, setLoginFormData] = useState({
+    email: "",
+    password: "",
+  });
+  const [status, setStatus] = useState("idle");
+  const [error, setError] = useState(null);
+
+  // Function to handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus("submitting");
+
+    try {
+      // Make a POST request to your API route
+      const response = await fetch("http://127.0.0.1:3000/users/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(loginFormData),
+      });
+
+      
+      
+      const data = await response.json();
+      
+      // Handle the response if the request is unsuccessful
+      if (!response.ok) {
+        throw new Error(data.message);
+      }
+      
+      console.log("Login data", data);
+
+      // Set the user in the state and local storage to persist the login state
+      localStorage.setItem("loggedin", true);
+
+      setError(null);
+
+      // Set the status to success
+      setStatus("idle");
+    } catch (error) {
+      console.error("Login error", error);
+      setError(error);
+    } finally {
+      setStatus("idle");
+    }
+  };
+
+  // Function to handle form input changes
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setLoginFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
   return (
     <section className="bg-gray-1 py-20 dark:bg-dark lg:py-[120px]">
       <div className="container mx-auto">
@@ -10,22 +67,37 @@ const Login = () => {
             <div className="relative mx-auto max-w-[525px] overflow-hidden rounded-lg bg-white px-10 py-16 text-center dark:bg-dark-2 sm:px-12 md:px-[60px]">
               <div className="mb-10 text-center md:mb-16">
                 <a href="/#" className="mx-auto inline-block max-w-[280px]">
-                  <img src={Logo} alt="DeliverEase Logo"/>
+                  <img src={Logo} alt="DeliverEase Logo" />
                 </a>
               </div>
+              {error?.message && (
+                <h3 className="text-error">{error.message}</h3>
+              )}
               <form>
-                <InputBox type="email" name="email" placeholder="Email" />
+                <InputBox
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  onChange={handleChange}
+                  value={loginFormData.email}
+                />
                 <InputBox
                   type="password"
                   name="password"
                   placeholder="Password"
+                  onChange={handleChange}
+                  value={loginFormData.password}
                 />
                 <div className="mb-10">
-                  <input
-                    type="submit"
-                    value="Log In"
+                  <button
+                    // type="submit"
+                    // value="Log In"
                     className="w-full cursor-pointer rounded-md border border-primary bg-primary px-5 py-3 text-base font-medium text-white transition hover:bg-opacity-90"
-                  />
+                    onClick={handleSubmit}
+                    disabled={status === "submitting"}
+                  >
+                    {status === "submitting" ? "Logging in..." : "Log in"}
+                  </button>
                 </div>
               </form>
               <a
@@ -36,7 +108,10 @@ const Login = () => {
               </a>
               <p className="text-base text-body-color dark:text-dark-6">
                 <span className="pr-0.5">Not a member yet?</span>
-                <a href="/sign-up" className="text-primary hover:underline font-semibold">
+                <a
+                  href="/sign-up"
+                  className="text-primary hover:underline font-semibold"
+                >
                   Sign Up
                 </a>
               </p>
