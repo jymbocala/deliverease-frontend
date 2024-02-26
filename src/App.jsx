@@ -9,6 +9,8 @@ import SingleLocation from "./pages/SingleLocation";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import NewLocation from "./pages/NewLocation";
+import EditLocation from "./pages/EditLocation";
+import AuthRequired from "./components/AuthRequired";
 
 function App() {
   const [locations, setLocations] = useState([
@@ -96,24 +98,29 @@ function App() {
             <Route path="about" element={<About />} />
             <Route path="contact" element={<Contact />} />
 
-            {/* TODO: Set up authication to access routes below */}
-            <Route
-              path="locations"
-              element={<Locations locations={locations} />}
-            />
-            <Route
-              path="locations/new"
-              element={<NewLocation addLocation={addLocation} />}
-            />
-            <Route
-              path="locations/:locationId"
-              element={
-                <SingleLocation
-                  locations={locations}
-                  setLocations={setLocations}
-                />
-              }
-            />
+            <Route element={<AuthRequired />}>
+              <Route
+                path="locations"
+                element={<Locations locations={locations} />}
+              />
+              <Route
+                path="locations/new"
+                element={<NewLocation addLocation={addLocation} />}
+              />
+              <Route
+                path="locations/:locationId"
+                element={
+                  <SingleLocation
+                    locations={locations}
+                    setLocations={setLocations}
+                  />
+                }
+              ></Route>
+              <Route
+                path="locations/:locationId/edit"
+                element={<EditLocation />}
+              />
+            </Route>
 
             <Route path="*" element={<h1>Not Found</h1>} />
           </Route>

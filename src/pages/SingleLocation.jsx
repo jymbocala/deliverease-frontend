@@ -151,6 +151,14 @@ const SingleLocation = ({ locations, setLocations }) => {
           <h2 className="text-2xl font-bold mb-4">
             {location ? location.name : "Location"}
           </h2>
+
+          {/* Edit Location button */}
+          <Link to={`/locations/${locationId}/edit`}>
+          <button className="border border-secondary text-secondary py-2 px-4 rounded transform transition duration-500 ease-in-out hover:bg-secondary hover:text-white">
+              Edit
+            </button>
+          </Link>
+
           <div className="flex flex-wrap justify-center">
             <div className="w-full lg:w-[30%] px-4 mx-auto">
               <div className="mb-4 flex items-center justify-center">
