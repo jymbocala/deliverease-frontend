@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Logo from "../assets/images/deliverease-logo-cropped.png";
 import { useNavigate } from "react-router-dom";
+import { loginUser } from "../api/auth";
 
 const Login = () => {
   const [loginFormData, setLoginFormData] = useState({
@@ -21,20 +22,7 @@ const Login = () => {
     try {
       console.log("Login form data", loginFormData);
       // Make a POST request to your API route
-      const response = await fetch("http://127.0.0.1:3000/users/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(loginFormData),
-      });
-
-      const data = await response.json();
-
-      // Handle the response if the request is unsuccessful
-      if (!response.ok) {
-        throw new Error(data.message);
-      }
+      await loginUser(loginFormData);
 
       // Set the user in the state and local storage to persist the login state
       localStorage.setItem("loggedin", true);
