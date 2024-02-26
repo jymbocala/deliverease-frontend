@@ -1,13 +1,17 @@
 import { useState } from "react";
 import Logo from "../assets/images/deliverease-logo-cropped.png";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [loginFormData, setLoginFormData] = useState({
     email: "",
     password: "",
   });
+
   const [status, setStatus] = useState("idle");
   const [error, setError] = useState(null);
+
+  const navigate = useNavigate();
 
   // Function to handle form submission
   const handleSubmit = async (e) => {
@@ -15,6 +19,7 @@ const Login = () => {
     setStatus("submitting");
 
     try {
+      console.log("Login form data", loginFormData);
       // Make a POST request to your API route
       const response = await fetch("http://127.0.0.1:3000/users/login", {
         method: "POST",
@@ -24,21 +29,21 @@ const Login = () => {
         body: JSON.stringify(loginFormData),
       });
 
-      
-      
       const data = await response.json();
-      
+
       // Handle the response if the request is unsuccessful
       if (!response.ok) {
         throw new Error(data.message);
       }
-      
-      console.log("Login data", data);
 
       // Set the user in the state and local storage to persist the login state
       localStorage.setItem("loggedin", true);
+      console.log("Logged in", localStorage.getItem("loggedin"));
 
       setError(null);
+
+      // Redirect the user to the locations page
+      navigate("/locations");
 
       // Set the status to success
       setStatus("idle");
@@ -51,13 +56,18 @@ const Login = () => {
   };
 
   // Function to handle form input changes
-  const handleChange = (e) => {
+  function handleChange(e) {
     const { name, value } = e.target;
     setLoginFormData((prev) => ({
       ...prev,
       [name]: value,
     }));
-  };
+
+    console.log("Login form data", {
+      ...loginFormData,
+      [name]: value,
+    });
+  }
 
   return (
     <section className="bg-gray-1 py-20 dark:bg-dark lg:py-[120px]">
@@ -74,24 +84,28 @@ const Login = () => {
                 <h3 className="text-error">{error.message}</h3>
               )}
               <form>
-                <InputBox
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                  onChange={handleChange}
-                  value={loginFormData.email}
-                />
-                <InputBox
-                  type="password"
-                  name="password"
-                  placeholder="Password"
-                  onChange={handleChange}
-                  value={loginFormData.password}
-                />
+                <div className="mb-6">
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    className="w-full rounded-md border border-stroke bg-transparent px-5 py-3 text-base text-body-color outline-none focus:border-primary focus-visible:shadow-none"
+                    onChange={handleChange}
+                    value={loginFormData.email}
+                  />
+                </div>
+                <div className="mb-6">
+                  <input
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    className="w-full rounded-md border border-stroke bg-transparent px-5 py-3 text-base text-body-color outline-none focus:border-primary focus-visible:shadow-none"
+                    onChange={handleChange}
+                    value={loginFormData.password}
+                  />
+                </div>
                 <div className="mb-10">
                   <button
-                    // type="submit"
-                    // value="Log In"
                     className="w-full cursor-pointer rounded-md border border-primary bg-primary px-5 py-3 text-base font-medium text-white transition hover:bg-opacity-90"
                     onClick={handleSubmit}
                     disabled={status === "submitting"}
@@ -344,16 +358,3 @@ const Login = () => {
 };
 
 export default Login;
-
-const InputBox = ({ type, placeholder, name }) => {
-  return (
-    <div className="mb-6">
-      <input
-        type={type}
-        placeholder={placeholder}
-        name={name}
-        className="w-full rounded-md border border-stroke bg-transparent px-5 py-3 text-base text-body-color outline-none focus:border-primary focus-visible:shadow-none"
-      />
-    </div>
-  );
-};
