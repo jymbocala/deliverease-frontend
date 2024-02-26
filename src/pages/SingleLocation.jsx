@@ -46,7 +46,7 @@ const SingleLocation = ({ locations, setLocations }) => {
 
       // Make a DELETE request to your API route
       const response = await fetch(
-        `http://127.0.0.1:5004/s3/delete/${fileKey}`,
+        `http://127.0.0.1:3000/s3/delete/${fileKey}`,
         {
           method: "DELETE",
         }
@@ -56,68 +56,75 @@ const SingleLocation = ({ locations, setLocations }) => {
         throw new Error("Failed to delete photo");
       }
 
-      // Optionally, you can handle the successful deletion here
       console.log("Photo deleted successfully");
-      // Remove the deleted photo from the list of displayed photos
+      // Update the location object to remove the imageURL
+      const updatedLocation = { ...location, imageURL: null };
+      // Update the state with the modified location object
       setLocations((prevLocations) =>
-        prevLocations.filter((loc) => loc.imageURL !== location.imageURL)
+        prevLocations.map((loc) =>
+          loc.id === updatedLocation.id ? updatedLocation : loc
+        )
       );
     } catch (error) {
       console.error("Error deleting photo:", error);
     }
   };
 
-  const photosTabElements = location.imageURL ? (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-2">
-      <img
-        src={location.imageURL}
-        className="cursor-pointer hover:border-solid hover:border-accent border-transparent border-2 rounded-lg "
-        alt="photo"
-        onClick={(e) => {
-          e.stopPropagation(); // Stop the click event from bubbling up to the parent
-          document.getElementById(`my_modal_${location.id}`).showModal();
-        }}
-      />
-
-      <dialog
-        id={"my_modal_" + location.id}
-        className="modal modal-bottom sm:modal-middle"
-      >
-        <div className="modal-box">
-          <form method="dialog">
-            <button
-              className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
-              onClick={(e) => {
-                e.stopPropagation(); // Stop the click event from bubbling up to the parent
-                document.getElementById(`my_modal_${location.id}`).close();
-              }}
-            >
-              ✕
-            </button>
-          </form>
-          <img
-            src={location.imageURL}
-            className="w-full h-full rounded-lg"
-            alt={location.name}
-          />
-          <button className="btn btn-outline btn-accent" onClick={deletePhoto}>
-            Delete Photo
-          </button>
-        </div>
-        <form
-          method="dialog"
-          className="modal-backdrop"
+  const photosTabElements =
+    location && location.imageURL ? (
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-2">
+        <img
+          src={location.imageURL}
+          className="cursor-pointer hover:border-solid hover:border-accent border-transparent border-2 rounded-lg "
+          alt="photo"
           onClick={(e) => {
             e.stopPropagation(); // Stop the click event from bubbling up to the parent
+            document.getElementById(`my_modal_${location.id}`).showModal();
           }}
+        />
+
+        <dialog
+          id={"my_modal_" + location.id}
+          className="modal modal-bottom sm:modal-middle"
         >
-          <button>close</button>
-        </form>
-      </dialog>
-    </div>
-  ) : (
-    <p>No photos available</p>
-  );
+          <div className="modal-box">
+            <form method="dialog">
+              <button
+                className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+                onClick={(e) => {
+                  e.stopPropagation(); // Stop the click event from bubbling up to the parent
+                  document.getElementById(`my_modal_${location.id}`).close();
+                }}
+              >
+                ✕
+              </button>
+            </form>
+            <img
+              src={location.imageURL}
+              className="w-full h-full rounded-lg"
+              alt={location.name}
+            />
+            <button
+              className="btn btn-outline btn-accent"
+              onClick={deletePhoto}
+            >
+              Delete Photo
+            </button>
+          </div>
+          <form
+            method="dialog"
+            className="modal-backdrop"
+            onClick={(e) => {
+              e.stopPropagation(); // Stop the click event from bubbling up to the parent
+            }}
+          >
+            <button>close</button>
+          </form>
+        </dialog>
+      </div>
+    ) : (
+      <p>No photos available</p>
+    );
 
   const details = location && (
     <>

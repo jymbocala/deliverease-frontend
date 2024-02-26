@@ -25,7 +25,7 @@ const ImageUpload = ({ setImageURL }) => {
         const formData = new FormData();
         formData.append("file", file);
 
-        const response = await fetch("http://127.0.0.1:5004/s3/upload", {
+        const response = await fetch("http://127.0.0.1:3000/s3/upload", {
           method: "POST",
           body: formData,
         });
@@ -39,7 +39,7 @@ const ImageUpload = ({ setImageURL }) => {
 
         // Fetch the URL of the uploaded image
         const urlResponse = await fetch(
-          `http://127.0.0.1:5004/s3/url/${data.fileKey}`
+          `http://127.0.0.1:3000/s3/url/${data.fileKey}`
         );
         const urlData = await urlResponse.json();
         setImageUrl(urlData.url);
