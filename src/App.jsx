@@ -9,6 +9,7 @@ import SingleLocation from "./pages/SingleLocation";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import NewLocation from "./pages/NewLocation";
+import EditLocation from "./pages/EditLocation";
 
 function App() {
   const [locations, setLocations] = useState([
@@ -113,6 +114,10 @@ function App() {
                   setLocations={setLocations}
                 />
               }
+            ></Route>
+            <Route
+              path="locations/:locationId/edit"
+              element={<EditLocation />}
             />
 
             <Route path="*" element={<h1>Not Found</h1>} />
