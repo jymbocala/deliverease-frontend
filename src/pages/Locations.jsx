@@ -8,9 +8,6 @@ const Locations = ({ locations }) => {
   const [searchText, setSearchText] = useState("");
   const [selectedFilter, setSelectedFilter] = useState("A-Z");
 
-  console.log("Logged in", localStorage.getItem("loggedin"));
-
-
   // function to add background opacity to every second location
   function addBGOpacity(index) {
     return index % 2 === 0 ? "bg-opacity-50" : "bg-opacity-20";
