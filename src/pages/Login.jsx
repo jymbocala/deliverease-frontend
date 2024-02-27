@@ -21,7 +21,7 @@ const Login = ({ updateLoginStatus }) => {
 
     try {
       console.log("Login form data", loginFormData);
-      // Make a POST request to your API route
+      // Make a POST request to API route
       await loginUser(loginFormData);
 
       // Set the user in the state and local storage to persist the login state
@@ -54,10 +54,10 @@ const Login = ({ updateLoginStatus }) => {
       [name]: value,
     }));
 
-    console.log("Login form data", {
-      ...loginFormData,
-      [name]: value,
-    });
+    // console.log("Login form data", {
+    //   ...loginFormData,
+    //   [name]: value,
+    // });
   }
 
   return (

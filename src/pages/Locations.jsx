@@ -15,7 +15,11 @@ const Locations = ({ locations }) => {
 
   // Function to go to the page when a location is clicked
   function goToLocation(id) {
-    nav(`/locations/${id}`);
+    if (id) {
+      nav(`/locations/${id}`);
+    } else {
+      console.error("Location ID is missing");
+    }
   }
 
   // Filter locations based on search text and selected filter
@@ -82,13 +86,14 @@ const Locations = ({ locations }) => {
     const isFirstLocation = index === 0;
 
     return (
-      <div key={location.id}>
+      <div key={location._id}>
         <li
           className={`flex items-center justify-between p-4 bg-secondary group/item hover:border-accent border-transparent border-2 cursor-pointer ${
             isLastLocation && `rounded-b-lg`
           } ${isFirstLocation && `rounded-t-lg`} ${addBGOpacity(index)}`}
           onClick={() => {
-            goToLocation(location.id);
+            // console.log("Location clicked:", location._id);
+            goToLocation(location._id);
           }}
         >
           <div>
@@ -103,12 +108,12 @@ const Locations = ({ locations }) => {
               className="group-hover/edit:scale-110"
               onClick={(e) => {
                 e.stopPropagation(); // Stop the click event from bubbling up to the parent
-                document.getElementById(`my_modal_${location.id}`).showModal();
+                document.getElementById(`my_modal_${location._id}`).showModal();
               }}
             />
 
             <dialog
-              id={"my_modal_" + location.id}
+              id={"my_modal_" + location._id}
               className="modal modal-bottom sm:modal-middle"
             >
               <div className="modal-box">
@@ -118,7 +123,7 @@ const Locations = ({ locations }) => {
                     onClick={(e) => {
                       e.stopPropagation(); // Stop the click event from bubbling up to the parent
                       document
-                        .getElementById(`my_modal_${location.id}`)
+                        .getElementById(`my_modal_${location._id}`)
                         .close();
                     }}
                   >
