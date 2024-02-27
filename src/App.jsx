@@ -12,7 +12,7 @@ import NewLocation from "./pages/NewLocation";
 import EditLocation from "./pages/EditLocation";
 import AuthRequired from "./components/AuthRequired";
 import Profile from "./pages/Profile";
-import { fetchUserLocations } from "./api/locations";
+import { fetchUserLocations, addLocation } from "./api/locations";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(
@@ -82,32 +82,28 @@ function App() {
   console.log("All locations", locations);
 
   // Function to add a new location to the locations state
-  async function addLocation(location) {
-    console.log("NEW LOCATION", location);
+  async function handleAddLocation(location) {
+    try {
+      // Call the API function to add a new location
+      const newLocationId = await addLocation(location);
+      console.log("New location ID:", newLocationId);
 
-    // Create a new ID for the location
-    const newId = locations.length + 1;
+      // // Add the new location to the list of locations
+      // setLocations((prevLocations) => [
+      //   ...prevLocations,
+      //   { id: newLocationId, ...location },
+      // ]);
 
-    // Create a new location object
-    const newLocation = {
-      id: newId,
-      name: location.name,
-      address: location.address,
-      dockNumber: location.dockNumber,
-      dockHours: location.dockHours,
-      parking: location.parking,
-      contactName: location.contactName,
-      contactNumber: location.contactNumber,
-      notes: location.notes,
-      dateCreated: location.dateCreated,
-      imageURL: location.imageURL,
-    };
+      // Fetch updated locations from the backend
+      const updatedLocations = await fetchUserLocations();
+      setLocations(updatedLocations);
 
-    // Add the new location to the locations state
-    setLocations([...locations, newLocation]);
-
-    // Return the new ID to use in the redirect
-    return newId;
+      return newLocationId; // Return the new ID to use in the redirect
+    } catch (error) {
+      console.error("Error adding location:", error.message);
+      // Handle error if necessary
+      throw new Error("Failed to add location");
+    }
   }
 
   return (
@@ -140,7 +136,7 @@ function App() {
               />
               <Route
                 path="locations/new"
-                element={<NewLocation addLocation={addLocation} />}
+                element={<NewLocation handleAddLocation={handleAddLocation} />}
               />
               <Route
                 path="locations/:locationId"

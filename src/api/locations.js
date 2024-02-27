@@ -23,4 +23,28 @@ const fetchUserLocations = async () => {
   }
 };
 
-export { fetchUserLocations };
+// create new location for user
+const addLocation = async (location) => {
+  try {
+    const response = await fetch(`${BASE_URL}/locations/new`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify(location),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.message);
+    }
+
+    return data.id;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+export { fetchUserLocations, addLocation };

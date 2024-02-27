@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ImageUpload from "../components/ImageUpload";
 
-const NewLocation = ({ addLocation }) => {
+const NewLocation = ({ handleAddLocation }) => {
   const nav = useNavigate();
   const [location, setLocation] = useState({
     name: "",
@@ -30,7 +30,7 @@ const NewLocation = ({ addLocation }) => {
     e.preventDefault();
 
     // Add the new location to the list of locations and get the new id
-    const id = await addLocation(location);
+    const id = await handleAddLocation(location);
 
     // Navigate to the new entry page
     nav(`/locations/${id}`);
