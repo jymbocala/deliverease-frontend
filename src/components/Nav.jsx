@@ -122,7 +122,13 @@ const Nav = () => {
               </details>
             </li>
           )}
-
+          {isLoggedIn && (
+            <li>
+              <Link to="/profile" className="primary-text">
+                Profile
+              </Link>
+            </li>
+          )}
           <li>
             <Link to="/contact" className="primary-text">
               Contact Us
