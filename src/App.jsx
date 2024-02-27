@@ -13,6 +13,15 @@ import EditLocation from "./pages/EditLocation";
 import AuthRequired from "./components/AuthRequired";
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    localStorage.getItem("loggedin")
+  );
+
+  // Callback function to update login status
+  const updateLoginStatus = (loggedIn) => {
+    setIsLoggedIn(loggedIn);
+  };
+
   const [locations, setLocations] = useState([
     {
       id: 1,
@@ -91,9 +100,9 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Layout />}>
+          <Route path="/" element={<Layout isLoggedIn={isLoggedIn} updateLoginStatus={updateLoginStatus} />}>
             <Route index element={<Home />} />
-            <Route path="login" element={<Login />} />
+            <Route path="login" element={<Login updateLoginStatus={updateLoginStatus} />} />
             <Route path="sign-up" element={<Signup />} />
             <Route path="about" element={<About />} />
             <Route path="contact" element={<Contact />} />

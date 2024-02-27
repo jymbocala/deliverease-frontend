@@ -3,7 +3,7 @@ import Logo from "../assets/images/deliverease-logo-cropped.png";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../api/auth";
 
-const Login = () => {
+const Login = ({ updateLoginStatus }) => {
   const [loginFormData, setLoginFormData] = useState({
     email: "",
     password: "",
@@ -28,7 +28,10 @@ const Login = () => {
       localStorage.setItem("loggedin", true);
       console.log("Logged in", localStorage.getItem("loggedin"));
 
-      setError(null);
+      // Update the login status in the parent component
+      updateLoginStatus(true);
+      
+      // setError(null);
 
       // Redirect the user to the locations page
       navigate("/locations");

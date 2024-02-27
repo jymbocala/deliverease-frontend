@@ -2,11 +2,13 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../assets/images/deliverease-logo.png";
 
-const Nav = () => {
+const Nav = ({ isLoggedIn, updateLoginStatus }) => {
+  // localStorage.removeItem("loggedin");
+
   // State to check if user is logged in
-  const [isLoggedIn, setIsLoggedIn] = useState(
-    localStorage.getItem("loggedin")
-  );
+  // const [isLoggedIn, setIsLoggedIn] = useState(
+  //   localStorage.getItem("loggedin")
+  // );
 
   const nav = useNavigate();
 
@@ -16,7 +18,7 @@ const Nav = () => {
 
     // Clear localStorage and update login state
     localStorage.removeItem("loggedin");
-    setIsLoggedIn(false);
+    updateLoginStatus(false);
 
     // Redirect to home page
     nav("/");
