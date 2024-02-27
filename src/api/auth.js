@@ -21,7 +21,11 @@ const loginUser = async (loginFormData) => {
       throw new Error(data.message);
     }
 
-    return data.token; // Assuming the token is returned from the backend upon successful login
+    // Store the token and user ID in local storage
+    localStorage.setItem('token', data.token);
+    localStorage.setItem('userId', data.userId); // Assuming the user's ID is returned as `userId` in the response
+
+    return data.token;
   } catch (error) {
     throw new Error(error.message);
   }

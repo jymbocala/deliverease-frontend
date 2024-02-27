@@ -11,6 +11,7 @@ import Contact from "./pages/Contact";
 import NewLocation from "./pages/NewLocation";
 import EditLocation from "./pages/EditLocation";
 import AuthRequired from "./components/AuthRequired";
+import Profile from "./pages/Profile";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(
@@ -106,6 +107,7 @@ function App() {
             <Route path="sign-up" element={<Signup />} />
             <Route path="about" element={<About />} />
             <Route path="contact" element={<Contact />} />
+            <Route path="profile" element={<Profile />} />
 
             <Route element={<AuthRequired />}>
               <Route
