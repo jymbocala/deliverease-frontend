@@ -15,7 +15,11 @@ const Locations = ({ locations }) => {
 
   // Function to go to the page when a location is clicked
   function goToLocation(id) {
-    nav(`/locations/${id}`);
+    if (id) {
+      nav(`/locations/${id}`);
+    } else {
+      console.error("Location ID is missing");
+    }
   }
 
   // Filter locations based on search text and selected filter
@@ -88,7 +92,8 @@ const Locations = ({ locations }) => {
             isLastLocation && `rounded-b-lg`
           } ${isFirstLocation && `rounded-t-lg`} ${addBGOpacity(index)}`}
           onClick={() => {
-            goToLocation(location.id);
+            console.log("Location clicked:", location._id);
+            goToLocation(location._id);
           }}
         >
           <div>

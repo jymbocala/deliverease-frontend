@@ -18,7 +18,10 @@ const DetailLine = ({ IconComponent, text }) => (
 
 const SingleLocation = ({ locations, setLocations }) => {
   const { locationId } = useParams();
-  const location = locations.find((loc) => loc.id === parseInt(locationId));
+  // console.log("locationId:", locationId);
+
+  const location = locations.find((loc) => loc._id === locationId);
+  // console.log("location:", location);
 
   const [open, setOpen] = useState("details");
 

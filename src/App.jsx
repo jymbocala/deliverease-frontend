@@ -67,6 +67,7 @@ function App() {
     setIsLoggedIn(loggedIn);
   };
 
+
   useEffect(() => {
     // Fetch locations data only if the user is logged in
     if (isLoggedIn) {
