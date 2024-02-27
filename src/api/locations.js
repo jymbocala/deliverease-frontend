@@ -47,4 +47,21 @@ const addLocation = async (location) => {
   }
 };
 
-export { fetchUserLocations, addLocation };
+// Delete a location photo
+const deletePhoto = async (fileKey) => {
+  try {
+    const response = await fetch(`${BASE_URL}/s3/delete/${fileKey}`, {
+      method: "DELETE",
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to delete photo");
+    }
+
+    console.log("Photo deleted successfully");
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+export { fetchUserLocations, addLocation, deletePhoto };

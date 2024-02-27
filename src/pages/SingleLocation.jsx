@@ -8,6 +8,7 @@ import {
   FaInfoCircle,
 } from "react-icons/fa";
 import { useParams, Link } from "react-router-dom";
+import { deletePhoto } from "../api/locations";
 
 const DetailLine = ({ IconComponent, text }) => (
   <div className="flex items-center mb-2 border-b border-gray-200 pb-2">
@@ -47,19 +48,8 @@ const SingleLocation = ({ locations, setLocations }) => {
       // Extract the file key from the imageURL
       const fileKey = location.imageURL.split("/").pop();
 
-      // Make a DELETE request to your API route
-      const response = await fetch(
-        `http://127.0.0.1:3000/s3/delete/${fileKey}`,
-        {
-          method: "DELETE",
-        }
-      );
+      await deletePhoto(fileKey);
 
-      if (!response.ok) {
-        throw new Error("Failed to delete photo");
-      }
-
-      console.log("Photo deleted successfully");
       // Update the location object to remove the imageURL
       const updatedLocation = { ...location, imageURL: null };
       // Update the state with the modified location object
