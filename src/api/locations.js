@@ -64,4 +64,26 @@ const deletePhoto = async (fileKey) => {
   }
 };
 
-export { fetchUserLocations, addLocation, deletePhoto };
+// Delete a location
+const deleteLocation = async (locationId) => {
+  try {
+    const response = await fetch(`${BASE_URL}/locations/${locationId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.message);
+    }
+
+    return data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+export { fetchUserLocations, addLocation, deletePhoto, deleteLocation };

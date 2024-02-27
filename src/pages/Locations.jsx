@@ -108,12 +108,12 @@ const Locations = ({ locations }) => {
               className="group-hover/edit:scale-110"
               onClick={(e) => {
                 e.stopPropagation(); // Stop the click event from bubbling up to the parent
-                document.getElementById(`my_modal_${location.id}`).showModal();
+                document.getElementById(`my_modal_${location._id}`).showModal();
               }}
             />
 
             <dialog
-              id={"my_modal_" + location.id}
+              id={"my_modal_" + location._id}
               className="modal modal-bottom sm:modal-middle"
             >
               <div className="modal-box">
@@ -123,7 +123,7 @@ const Locations = ({ locations }) => {
                     onClick={(e) => {
                       e.stopPropagation(); // Stop the click event from bubbling up to the parent
                       document
-                        .getElementById(`my_modal_${location.id}`)
+                        .getElementById(`my_modal_${location._id}`)
                         .close();
                     }}
                   >

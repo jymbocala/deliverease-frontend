@@ -7,8 +7,8 @@ import {
   FaStickyNote,
   FaInfoCircle,
 } from "react-icons/fa";
-import { useParams, Link } from "react-router-dom";
-import { deletePhoto } from "../api/locations";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import { deletePhoto, deleteLocation, fetchUserLocations } from "../api/locations";
 
 const DetailLine = ({ IconComponent, text }) => (
   <div className="flex items-center mb-2 border-b border-gray-200 pb-2">
@@ -18,6 +18,7 @@ const DetailLine = ({ IconComponent, text }) => (
 );
 
 const SingleLocation = ({ locations, setLocations }) => {
+  const nav = useNavigate();
   const { locationId } = useParams();
   // console.log("locationId:", locationId);
 
@@ -43,7 +44,7 @@ const SingleLocation = ({ locations, setLocations }) => {
   };
 
   // Function to delete the photo
-  const deletePhoto = async () => {
+  const handleDeletePhoto = async () => {
     try {
       // Extract the file key from the imageURL
       const fileKey = location.imageURL.split("/").pop();
@@ -58,8 +59,28 @@ const SingleLocation = ({ locations, setLocations }) => {
           loc.id === updatedLocation.id ? updatedLocation : loc
         )
       );
+
+      console.log("Photo deleted successfully");
     } catch (error) {
       console.error("Error deleting photo:", error);
+    }
+  };
+
+  // Function to delete the location
+  const handleDeleteLocation = async () => {
+    try {
+      await deleteLocation(locationId);
+
+      // Fetch updated list of locations from the backend
+      const updatedLocations = await fetchUserLocations();
+
+      // Update frontend state with the updated list of locations
+      setLocations(updatedLocations);
+
+      // Redirect to the locations page
+      nav("/locations");
+    } catch (error) {
+      console.error("Error deleting location:", error);
     }
   };
 
@@ -99,7 +120,7 @@ const SingleLocation = ({ locations, setLocations }) => {
             />
             <button
               className="btn btn-outline btn-accent"
-              onClick={deletePhoto}
+              onClick={handleDeletePhoto}
             >
               Delete Photo
             </button>
@@ -147,10 +168,59 @@ const SingleLocation = ({ locations, setLocations }) => {
 
           {/* Edit Location button */}
           <Link to={`/locations/${locationId}/edit`}>
-          <button className="border border-secondary text-secondary py-2 px-4 rounded transform transition duration-500 ease-in-out hover:bg-secondary hover:text-white">
+            <button className="btn btn-outline btn-secondary text-white py-2 px-4 transform transition duration-500 ease-in-out hover:bg-secondary hover:text-white">
               Edit
             </button>
           </Link>
+
+          {/* Delete Location button */}
+          <button
+            className="btn btn-outline btn-warning  text-danger py-2 px-4 transform transition duration-500 ease-in-out hover:bg-danger hover:text-white"
+            onClick={(e) => {
+              e.stopPropagation(); // Stop the click event from bubbling up to the parent
+              document.getElementById(`my_modal_${location._id}`).showModal();
+            }}
+          >
+            Delete
+          </button>
+
+          <dialog
+            id={"my_modal_" + location._id}
+            className="modal modal-bottom sm:modal-middle"
+          >
+            <div className="modal-box">
+              <form method="dialog">
+                <button
+                  className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+                  onClick={(e) => {
+                    e.stopPropagation(); // Stop the click event from bubbling up to the parent
+                    document.getElementById(`my_modal_${location._id}`).close();
+                  }}
+                >
+                  ✕
+                </button>
+              </form>
+              <h4 className="font-bold pb-8">Delete {location.name}?</h4>
+              <button
+                className="transform transition duration-500 ease-in-out btn btn-outline btn-error"
+                onClick={(e) => {
+                  e.stopPropagation(); // Stop the click event from bubbling up to the parent
+                  handleDeleteLocation();
+                }}
+              >
+                Delete Location
+              </button>
+            </div>
+            <form
+              method="dialog"
+              className="modal-backdrop"
+              onClick={(e) => {
+                e.stopPropagation(); // Stop the click event from bubbling up to the parent
+              }}
+            >
+              <button>close</button>
+            </form>
+          </dialog>
 
           <div className="flex flex-wrap justify-center">
             <div className="w-full lg:w-[30%] px-4 mx-auto">
