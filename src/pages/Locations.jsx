@@ -86,7 +86,7 @@ const Locations = ({ locations }) => {
     const isFirstLocation = index === 0;
 
     return (
-      <div key={location.id}>
+      <div key={location._id}>
         <li
           className={`flex items-center justify-between p-4 bg-secondary group/item hover:border-accent border-transparent border-2 cursor-pointer ${
             isLastLocation && `rounded-b-lg`
