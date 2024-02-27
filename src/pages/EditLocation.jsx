@@ -1,9 +1,12 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import ImageUpload from "../components/ImageUpload";
 
-const NewLocation = ({ addLocation }) => {
-  const nav = useNavigate();
+const EditLocation = () => {
+  // Get the location id from the URL
+  const { locationId } = useParams();
+
+  // State to store the location data
   const [location, setLocation] = useState({
     name: "",
     address: "",
@@ -13,29 +16,34 @@ const NewLocation = ({ addLocation }) => {
     contactName: "",
     contactNumber: "",
     notes: "",
-    dateCreated: new Date(),
     imageURL: "",
   });
 
-  // Function to set the imageURL in the location state
-  const setImageURL = (url) => {
-    setLocation((prevLocation) => ({
-      ...prevLocation,
-      imageURL: url,
-    }));
-  };
+  // Fetch the location data from the API based on the locationId
+  useEffect(
+    () => {
+      async function fetchLocation() {
+        try {
+          const response = await fetch(
+            `http://localhost:3000/locations/${locationId}`
+          );
+          if (!response.ok) {
+            throw new Error("Failed to fetch location details");
+          }
+          const data = await response.json();
+          // Set the location state with the fetched data
+          setLocation(data);
+        } catch (error) {
+          console.error("Error fetching location data:", error);
+        }
+      }
+      fetchLocation();
+    },
+    // Add the location state to the dependency array to re-run the effect when the location state changes or the locationId changes
+    [locationId]
+  );
 
-  async function createLocation(e) {
-    // Prevent from refreshing the page
-    e.preventDefault();
-
-    // Add the new location to the list of locations and get the new id
-    const id = await addLocation(location);
-
-    // Navigate to the new entry page
-    nav(`/locations/${id}`);
-  }
-
+  // Function to handle the form input changes
   function handleChange(event) {
     // Destructure the name and value from the event target
     const { name, value } = event.target;
@@ -47,6 +55,38 @@ const NewLocation = ({ addLocation }) => {
       // Update the new value
       [name]: value,
     }));
+  }
+
+  // Function to set the imageURL in the location state
+  const handleImageUpload = (imageURL) => {
+    setLocation((prevLocation) => ({
+      ...prevLocation,
+      imageURL: imageURL, // Update the imageURL state with the new image URL
+    }));
+  };
+
+  // Function to handle form submission
+  async function createLocation() {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/locations/${locationId}`,
+        {
+          // Use the PUT method to update the location
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          // Convert the location state to a JSON string so it can be sent in the request body as a JSON object else it will be sent as a string and not an object 
+          body: JSON.stringify(location),
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Failed to update location");
+      }
+      console.log("Location updated successfully");
+    } catch (error) {
+      console.error("Error updating location:", error);
+    }
   }
 
   return (
@@ -218,7 +258,7 @@ const NewLocation = ({ addLocation }) => {
                 </div>
               </div>
               {/* Image Upload Component */}
-              <ImageUpload setImageURL={setImageURL} />
+              <ImageUpload setImageURL={handleImageUpload} />
 
               <div className="p-2 w-full">
                 <button
@@ -236,4 +276,4 @@ const NewLocation = ({ addLocation }) => {
   );
 };
 
-export default NewLocation;
+export default EditLocation;

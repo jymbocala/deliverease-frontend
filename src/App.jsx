@@ -9,8 +9,19 @@ import SingleLocation from "./pages/SingleLocation";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import NewLocation from "./pages/NewLocation";
+import EditLocation from "./pages/EditLocation";
+import AuthRequired from "./components/AuthRequired";
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    localStorage.getItem("loggedin")
+  );
+
+  // Callback function to update login status
+  const updateLoginStatus = (loggedIn) => {
+    setIsLoggedIn(loggedIn);
+  };
+
   const [locations, setLocations] = useState([
     {
       id: 1,
@@ -23,6 +34,7 @@ function App() {
       contactNumber: "(07) 3308 5300",
       notes: "Please call ahead to book a time for delivery",
       dateCreated: new Date("2022-02-20T12:00:00"),
+      imageURL: "",
     },
     {
       id: 2,
@@ -35,6 +47,7 @@ function App() {
       contactNumber: "(07) 5490 5000",
       notes: "",
       dateCreated: new Date("2023-02-19T09:00:00"),
+      imageURL: "",
     },
     {
       id: 3,
@@ -48,6 +61,7 @@ function App() {
       notes:
         "Enter road through Nersery Rd, then turn left into the loading dock area.",
       dateCreated: new Date("2024-02-18T15:30:00"),
+      imageURL: "",
     },
   ]);
 
@@ -71,6 +85,8 @@ function App() {
       contactName: location.contactName,
       contactNumber: location.contactNumber,
       notes: location.notes,
+      dateCreated: location.dateCreated,
+      imageURL: location.imageURL,
     };
 
     // Add the new location to the locations state
@@ -84,26 +100,36 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Layout />}>
+          <Route path="/" element={<Layout isLoggedIn={isLoggedIn} updateLoginStatus={updateLoginStatus} />}>
             <Route index element={<Home />} />
-            <Route path="login" element={<Login />} />
+            <Route path="login" element={<Login updateLoginStatus={updateLoginStatus} />} />
             <Route path="sign-up" element={<Signup />} />
             <Route path="about" element={<About />} />
             <Route path="contact" element={<Contact />} />
 
-            {/* TODO: Set up authication to access routes below */}
-            <Route
-              path="locations"
-              element={<Locations locations={locations} />}
-            />
-            <Route
-              path="locations/new"
-              element={<NewLocation addLocation={addLocation} />}
-            />
-            <Route
-              path="locations/:locationId"
-              element={<SingleLocation locations={locations} />}
-            />
+            <Route element={<AuthRequired />}>
+              <Route
+                path="locations"
+                element={<Locations locations={locations} />}
+              />
+              <Route
+                path="locations/new"
+                element={<NewLocation addLocation={addLocation} />}
+              />
+              <Route
+                path="locations/:locationId"
+                element={
+                  <SingleLocation
+                    locations={locations}
+                    setLocations={setLocations}
+                  />
+                }
+              ></Route>
+              <Route
+                path="locations/:locationId/edit"
+                element={<EditLocation />}
+              />
+            </Route>
 
             <Route path="*" element={<h1>Not Found</h1>} />
           </Route>
