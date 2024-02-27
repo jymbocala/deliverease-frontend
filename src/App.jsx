@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import Login from "./pages/Login";
@@ -12,16 +12,12 @@ import NewLocation from "./pages/NewLocation";
 import EditLocation from "./pages/EditLocation";
 import AuthRequired from "./components/AuthRequired";
 import Profile from "./pages/Profile";
+import { fetchUserLocations } from "./api/locations";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(
     localStorage.getItem("loggedin")
   );
-
-  // Callback function to update login status
-  const updateLoginStatus = (loggedIn) => {
-    setIsLoggedIn(loggedIn);
-  };
 
   const [locations, setLocations] = useState([
     {
@@ -66,6 +62,23 @@ function App() {
     },
   ]);
 
+  // Callback function to update login status
+  const updateLoginStatus = (loggedIn) => {
+    setIsLoggedIn(loggedIn);
+  };
+
+  useEffect(() => {
+    // Fetch locations data only if the user is logged in
+    if (isLoggedIn) {
+      const getLocations = async () => {
+        const data = await fetchUserLocations();
+        setLocations(data);
+      };
+
+      getLocations();
+    }
+  }, [isLoggedIn]); // Fetch locations data whenever the isLoggedIn state changes
+
   console.log("All locations", locations);
 
   // Function to add a new location to the locations state
@@ -101,9 +114,20 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Layout isLoggedIn={isLoggedIn} updateLoginStatus={updateLoginStatus} />}>
+          <Route
+            path="/"
+            element={
+              <Layout
+                isLoggedIn={isLoggedIn}
+                updateLoginStatus={updateLoginStatus}
+              />
+            }
+          >
             <Route index element={<Home />} />
-            <Route path="login" element={<Login updateLoginStatus={updateLoginStatus} />} />
+            <Route
+              path="login"
+              element={<Login updateLoginStatus={updateLoginStatus} />}
+            />
             <Route path="sign-up" element={<Signup />} />
             <Route path="about" element={<About />} />
             <Route path="contact" element={<Contact />} />
