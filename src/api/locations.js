@@ -36,13 +36,12 @@ const addLocation = async (location) => {
     });
 
     const data = await response.json();
-    console.log(data)
 
     if (!response.ok) {
       throw new Error(data.message);
     }
 
-    return data.id;
+    return data._id;
   } catch (error) {
     throw new Error(error.message);
   }

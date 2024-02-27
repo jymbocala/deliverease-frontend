@@ -92,7 +92,7 @@ const Locations = ({ locations }) => {
             isLastLocation && `rounded-b-lg`
           } ${isFirstLocation && `rounded-t-lg`} ${addBGOpacity(index)}`}
           onClick={() => {
-            console.log("Location clicked:", location._id);
+            // console.log("Location clicked:", location._id);
             goToLocation(location._id);
           }}
         >
