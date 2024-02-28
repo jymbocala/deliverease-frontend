@@ -1,10 +1,14 @@
 import React from "react";
+import Lottie from "lottie-react";
 import { Link as RouterLink } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
 import { useSpring, animated } from "react-spring";
 import { motion } from "framer-motion";
 import { IoIosArrowDown } from "react-icons/io";
 import { useInView } from "react-intersection-observer";
+import mapAnimationData from "../assets/images/map.json";
+import notepadAnimationData from "../assets/images/notepad.json";
+import dashboardAnimationData from "../assets/images/dashboard.json";
 
 const AnimatedArrow = () => {
   return (
@@ -105,12 +109,10 @@ const Home = () => {
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
             {/* Feature 1 Icon */}
-            <div className="sm:w-32 sm:h-32 h-20 w-20 sm:mr-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0 overflow-hidden">
-              <img
-                src="src/assets/images/map-image.png"
-                alt="Map"
-                className="sm:w-48 sm:h-48 w-24 h-24 object-cover"
-              />
+            <div className="sm:w-32 sm:h-32 h-20 w-20 sm:mr-10 inline-flex items-center justify-center rounded-full bg-primary text-indigo-500 flex-shrink-0 overflow-hidden">
+              <div style={{ transform: "scale(2.3)" }}>
+                <Lottie animationData={mapAnimationData} />
+              </div>
             </div>
             {/* Feature 1 Text */}
             <div className="flex-grow sm:text-left text-center mt-6 sm:mt-0">
@@ -145,12 +147,10 @@ const Home = () => {
               </p>
             </div>
             {/* Feature 2 Image */}
-            <div className="sm:w-32 sm:h-32 h-20 w-20 sm:mr-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0 overflow-hidden">
-              <img
-                src="src/assets/images/document-image.png"
-                alt="Map"
-                className="sm:w-48 sm:h-48 w-24 h-24 object-cover"
-              />
+            <div className="sm:w-32 sm:h-32 h-20 w-20 sm:mr-10 inline-flex items-center justify-center rounded-full bg-secondary text-indigo-500 flex-shrink-0 overflow-hidden">
+            <div style={{ transform: "scale(1.2)" }}>
+                <Lottie animationData={notepadAnimationData} />
+              </div>
             </div>
           </motion.div>
 
@@ -164,11 +164,9 @@ const Home = () => {
           >
             {/* Feature 3 Icon */}
             <div className="sm:w-32 sm:h-32 h-20 w-20 sm:mr-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0 overflow-hidden">
-              <img
-                src="src/assets/images/dashboard-image.png"
-                alt="Map"
-                className="sm:w-48 sm:h-48 w-24 h-24 object-cover"
-              />
+            <div style={{ transform: "scale(1)" }}>
+                <Lottie animationData={dashboardAnimationData} />
+              </div>
             </div>
             {/* Feature 3 Text */}
             <div className="flex-grow sm:text-left text-center mt-6 sm:mt-0">
@@ -190,7 +188,7 @@ const Home = () => {
       </section>
       <section className="p-6 bg-base-100 dark:text-gray-100">
         <div id="howDoesItWork" className="container mx-auto mb-64">
-          <h2 className="text-5xl font-bold text-center dark:text-gray-50">
+          <h2 className="text-5xl font-bold text-center text-black">
             How does it work?
           </h2>
           <div className="grid gap-6 my-16 lg:grid-cols-3">

@@ -2,6 +2,7 @@ import { useState } from "react";
 import Logo from "../assets/images/deliverease-logo-cropped.png";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../api/auth";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const Login = ({ updateLoginStatus }) => {
   const [loginFormData, setLoginFormData] = useState({
@@ -101,7 +102,7 @@ const Login = ({ updateLoginStatus }) => {
                     onClick={handleSubmit}
                     disabled={status === "submitting"}
                   >
-                    {status === "submitting" ? "Logging in..." : "Log in"}
+                    {status === "submitting" ? <LoadingSpinner /> : "Log in"}
                   </button>
                 </div>
               </form>
