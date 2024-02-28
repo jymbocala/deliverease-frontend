@@ -190,7 +190,7 @@ const Home = () => {
       </section>
       <section className="p-6 bg-base-100 dark:text-gray-100">
         <div id="howDoesItWork" className="container mx-auto mb-64">
-          <h2 className="text-5xl font-bold text-center dark:text-gray-50">
+          <h2 className="text-5xl font-bold text-center text-black">
             How does it work?
           </h2>
           <div className="grid gap-6 my-16 lg:grid-cols-3">
