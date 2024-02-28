@@ -8,7 +8,12 @@ import {
   FaInfoCircle,
 } from "react-icons/fa";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import { deletePhoto, deleteLocation, fetchUserLocations } from "../api/locations";
+import {
+  deletePhoto,
+  deleteLocation,
+  fetchUserLocations,
+} from "../api/locations";
+import Map from "../components/Map";
 
 const DetailLine = ({ IconComponent, text }) => (
   <div className="flex items-center mb-2 border-b border-gray-200 pb-2">
@@ -20,10 +25,14 @@ const DetailLine = ({ IconComponent, text }) => (
 const SingleLocation = ({ locations, setLocations }) => {
   const nav = useNavigate();
   const { locationId } = useParams();
-  // console.log("locationId:", locationId);
 
+  // Find the location object with the specified locationId
   const location = locations.find((loc) => loc._id === locationId);
-  // console.log("location:", location);
+
+  // Check if the location object exists before accessing its properties
+  if (!location) {
+    return <div>Loading...</div>; // Add loading indicator or handle empty location
+  }
 
   const [open, setOpen] = useState("details");
 
@@ -163,7 +172,7 @@ const SingleLocation = ({ locations, setLocations }) => {
       <section className="py-20 dark:bg-dark lg:py-[120px] flex justify-center items-center">
         <div className="container mx-auto text-center">
           <h2 className="text-2xl font-bold mb-4">
-            {location ? location.name : "Location"}
+            {location && location.name ? location.name : "Location"}
           </h2>
 
           {/* Edit Location button */}
@@ -178,14 +187,14 @@ const SingleLocation = ({ locations, setLocations }) => {
             className="btn btn-outline btn-warning  text-danger py-2 px-4 transform transition duration-500 ease-in-out hover:bg-danger hover:text-white"
             onClick={(e) => {
               e.stopPropagation(); // Stop the click event from bubbling up to the parent
-              document.getElementById(`my_modal_${location._id}`).showModal();
+              document.getElementById(`my_modal_${location?._id}`).showModal(); // Fix here
             }}
           >
             Delete
           </button>
 
           <dialog
-            id={"my_modal_" + location._id}
+            id={"my_modal_" + location?._id} // Fix here
             className="modal modal-bottom sm:modal-middle"
           >
             <div className="modal-box">
@@ -223,6 +232,12 @@ const SingleLocation = ({ locations, setLocations }) => {
           </dialog>
 
           <div className="flex flex-wrap justify-center">
+            {/* Add your MapComponent here */}
+            {location && (
+              <div className="w-full lg:w-[30%] px-4 mx-auto">
+                <Map address={location.address} />
+              </div>
+            )}
             <div className="w-full lg:w-[30%] px-4 mx-auto">
               <div className="mb-4 flex items-center justify-center">
                 <FaInfoCircle className="mr-2" />
