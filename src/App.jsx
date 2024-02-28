@@ -67,7 +67,6 @@ function App() {
     setIsLoggedIn(loggedIn);
   };
 
-
   useEffect(() => {
     // Fetch locations data only if the user is logged in
     if (isLoggedIn) {
@@ -150,7 +149,12 @@ function App() {
               ></Route>
               <Route
                 path="locations/:locationId/edit"
-                element={<EditLocation />}
+                element={
+                  <EditLocation
+                    locations={locations}
+                    setLocations={setLocations}
+                  />
+                }
               />
             </Route>
 

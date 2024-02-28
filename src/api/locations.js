@@ -86,4 +86,28 @@ const deleteLocation = async (locationId) => {
   }
 };
 
-export { fetchUserLocations, addLocation, deletePhoto, deleteLocation };
+// Edit a location
+const editLocation = async (locationId, location) => {
+  try {
+    const response = await fetch(`${BASE_URL}/locations/${locationId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify(location),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.message);
+    }
+
+    return data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+export { fetchUserLocations, addLocation, deletePhoto, deleteLocation, editLocation };
