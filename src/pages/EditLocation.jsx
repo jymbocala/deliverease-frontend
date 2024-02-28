@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import ImageUpload from "../components/ImageUpload";
+import { editLocation } from "../api/locations";
 
-const EditLocation = () => {
+const EditLocation = ({ locations, setLocations }) => {
   // Get the location id from the URL
   const { locationId } = useParams();
+
+  const nav = useNavigate();
 
   // State to store the location data
   const [location, setLocation] = useState({
@@ -20,28 +23,36 @@ const EditLocation = () => {
   });
 
   // Fetch the location data from the API based on the locationId
-  useEffect(
-    () => {
-      async function fetchLocation() {
-        try {
-          const response = await fetch(
-            `http://localhost:3000/locations/${locationId}`
-          );
-          if (!response.ok) {
-            throw new Error("Failed to fetch location details");
-          }
-          const data = await response.json();
-          // Set the location state with the fetched data
-          setLocation(data);
-        } catch (error) {
-          console.error("Error fetching location data:", error);
-        }
-      }
-      fetchLocation();
-    },
-    // Add the location state to the dependency array to re-run the effect when the location state changes or the locationId changes
-    [locationId]
-  );
+  useEffect(() => {
+    const locationToEdit = locations.find((loc) => loc._id === locationId);
+    if (locationToEdit) {
+      setLocation(locationToEdit);
+    }
+  }, [locationId, locations]);
+
+  // // Fetch the location data from the API based on the locationId
+  // useEffect(
+  //   () => {
+  //     async function fetchLocation() {
+  //       try {
+  //         const response = await fetch(
+  //           `http://localhost:3000/locations/${locationId}`
+  //         );
+  //         if (!response.ok) {
+  //           throw new Error("Failed to fetch location details");
+  //         }
+  //         const data = await response.json();
+  //         // Set the location state with the fetched data
+  //         setLocation(data);
+  //       } catch (error) {
+  //         console.error("Error fetching location data:", error);
+  //       }
+  //     }
+  //     fetchLocation();
+  //   },
+  //   // Add the location state to the dependency array to re-run the effect when the location state changes or the locationId changes
+  //   [locationId]
+  // );
 
   // Function to handle the form input changes
   function handleChange(event) {
@@ -66,28 +77,25 @@ const EditLocation = () => {
   };
 
   // Function to handle form submission
-  async function createLocation() {
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     try {
-      const response = await fetch(
-        `http://localhost:3000/locations/${locationId}`,
-        {
-          // Use the PUT method to update the location
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          // Convert the location state to a JSON string so it can be sent in the request body as a JSON object else it will be sent as a string and not an object 
-          body: JSON.stringify(location),
-        }
-      );
-      if (!response.ok) {
-        throw new Error("Failed to update location");
-      }
+      // Call the API function to update the location
+      const updatedLocation = await editLocation(locationId, location);
       console.log("Location updated successfully");
+      // Update the locations state with the updated location
+      const updatedLocations = locations.map((loc) =>
+        loc._id === locationId ? updatedLocation : loc
+      );
+      setLocations(updatedLocations);
+
+      // Redirect to the single location page
+      nav(`/locations/${locationId}`);
+
     } catch (error) {
       console.error("Error updating location:", error);
     }
-  }
+  };
 
   return (
     <>
@@ -96,10 +104,10 @@ const EditLocation = () => {
           {/* Title and tagline */}
           <div className="flex flex-col text-center w-full mb-12">
             <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">
-              New Location
+              Edit {location.name}
             </h1>
             <p className="lg:w-2/3 mx-auto leading-relaxed text-base">
-              Add a new location to the list of locations.
+              Update the details below.
             </p>
           </div>
 
@@ -263,9 +271,9 @@ const EditLocation = () => {
               <div className="p-2 w-full">
                 <button
                   className=" btn flex mx-auto text-white bg-primary border-0 py-2 px-8 focus:outline-none hover:bg-secondary text-lg"
-                  onClick={createLocation}
+                  onClick={handleSubmit}
                 >
-                  Add Location
+                  Update Location
                 </button>
               </div>
             </div>

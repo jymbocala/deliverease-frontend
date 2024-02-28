@@ -106,11 +106,15 @@ function App() {
                     }
                   ></Route>
                   <Route
-                    path="locations/:locationId/edit"
-                    element={<EditLocation />}
+                path="locations/:locationId/edit"
+                element={
+                  <EditLocation
+                    locations={locations}
+                    setLocations={setLocations}
                   />
+                }
+              />
                 </Route>
-
                 <Route path="*" element={<h1>Not Found</h1>} />
               </Route>
             </Routes>
