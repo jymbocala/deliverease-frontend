@@ -86,4 +86,33 @@ const deleteLocation = async (locationId) => {
   }
 };
 
-export { fetchUserLocations, addLocation, deletePhoto, deleteLocation };
+// Fetch Google Maps API key
+const fetchGoogleMapsApiKey = async () => {
+  try {
+    const response = await fetch(`${BASE_URL}/api/maps/api_key`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+
+    const data = await response.json();
+    console.log("Response data:", data);  // Log the response data
+
+    if (!response.ok) {
+      throw new Error(data.message);
+    }
+
+    if (!data.api_key) {
+      throw new Error("API key not found in response");
+    }
+
+    return data.api_key;
+  } catch (error) {
+    console.error("Error fetching API key:", error.message);  // Log any errors
+    throw new Error(error.message);
+  }
+};
+
+
+export { fetchUserLocations, addLocation, deletePhoto, deleteLocation, fetchGoogleMapsApiKey };
+
