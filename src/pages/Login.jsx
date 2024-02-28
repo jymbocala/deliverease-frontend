@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Logo from "../assets/images/deliverease-logo-cropped.png";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { loginUser } from "../api/auth";
 import LoadingSpinner from "../components/LoadingSpinner";
 
@@ -12,6 +12,7 @@ const Login = ({ updateLoginStatus }) => {
 
   const [status, setStatus] = useState("idle");
   const [error, setError] = useState(null);
+  const location = useLocation();
 
   const navigate = useNavigate();
 
@@ -31,7 +32,7 @@ const Login = ({ updateLoginStatus }) => {
 
       // Update the login status in the parent component
       updateLoginStatus(true);
-      
+
       // setError(null);
 
       // Redirect the user to the locations page
@@ -54,11 +55,6 @@ const Login = ({ updateLoginStatus }) => {
       ...prev,
       [name]: value,
     }));
-
-    // console.log("Login form data", {
-    //   ...loginFormData,
-    //   [name]: value,
-    // });
   }
 
   return (
@@ -74,6 +70,11 @@ const Login = ({ updateLoginStatus }) => {
               </div>
               {error?.message && (
                 <h3 className="text-error">{error.message}</h3>
+              )}
+              {location.state?.message && (
+                <h3 className="text-success text-xl pb-4">
+                  {location.state.message}
+                </h3>
               )}
               <form>
                 <div className="mb-6">
