@@ -104,7 +104,7 @@ const EditLocation = ({ locations, setLocations }) => {
           {/* Title and tagline */}
           <div className="flex flex-col text-center w-full mb-12">
             <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">
-              Edit {location.name}
+              Edit {location.name || "Location"}
             </h1>
             <p className="lg:w-2/3 mx-auto leading-relaxed text-base">
               Update the details below.
@@ -128,7 +128,7 @@ const EditLocation = ({ locations, setLocations }) => {
                     name="name"
                     placeholder='E.g. "Kmart Wynumm Plaza"'
                     onChange={handleChange}
-                    value={location.name}
+                    value={location.name || ""}
                     className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                   />
                 </div>
@@ -147,7 +147,7 @@ const EditLocation = ({ locations, setLocations }) => {
                     name="address"
                     placeholder='E.g. "2021 Wynnum Rd, Wynnum, QLD 4178"'
                     onChange={handleChange}
-                    value={location.address}
+                    value={location.address || ""}
                     className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                   />
                 </div>
@@ -166,7 +166,7 @@ const EditLocation = ({ locations, setLocations }) => {
                     name="dockNumber"
                     placeholder='E.g. "Dock 1"'
                     onChange={handleChange}
-                    value={location.dockNumber}
+                    value={location.dockNumber || ""}
                     className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                   />
                 </div>
@@ -185,7 +185,7 @@ const EditLocation = ({ locations, setLocations }) => {
                     name="dockHours"
                     placeholder='E.g. "8am - 5pm"'
                     onChange={handleChange}
-                    value={location.dockHours}
+                    value={location.dockHours || ""}
                     className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                   />
                 </div>
@@ -204,7 +204,7 @@ const EditLocation = ({ locations, setLocations }) => {
                     name="parking"
                     placeholder='E.g. "Parking available at the front of the store for 2 hours"'
                     onChange={handleChange}
-                    value={location.parking}
+                    value={location.parking || ""}
                     className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                   />
                 </div>
@@ -223,7 +223,7 @@ const EditLocation = ({ locations, setLocations }) => {
                     name="contactName"
                     placeholder='E.g. "John Smith", "Receiving Department"'
                     onChange={handleChange}
-                    value={location.contactName}
+                    value={location.contactName || ""}
                     className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                   />
                 </div>
@@ -242,7 +242,7 @@ const EditLocation = ({ locations, setLocations }) => {
                     name="contactNumber"
                     placeholder='E.g. "(07) 3308 5300"'
                     onChange={handleChange}
-                    value={location.contactNumber}
+                    value={location.contactNumber || ""}
                     className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                   />
                 </div>
@@ -260,7 +260,7 @@ const EditLocation = ({ locations, setLocations }) => {
                     name="notes"
                     placeholder="Additional notes about the location."
                     onChange={handleChange}
-                    value={location.notes}
+                    value={location.notes || ""}
                     className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
                   ></textarea>
                 </div>
