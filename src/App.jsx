@@ -13,12 +13,14 @@ import NewLocation from "./pages/NewLocation";
 import EditLocation from "./pages/EditLocation";
 import AuthRequired from "./components/AuthRequired";
 import Profile from "./pages/Profile";
-import { fetchUserLocations, addLocation, fetchGoogleMapsApiKey } from "./api/locations";
+import {
+  fetchUserLocations,
+  addLocation,
+  fetchGoogleMapsApiKey,
+} from "./api/locations";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(
-    localStorage.getItem("loggedin")
-  );
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [googleMapsApiKey, setGoogleMapsApiKey] = useState(null);
   const [locations, setLocations] = useState([]);
 
@@ -29,7 +31,7 @@ function App() {
   useEffect(() => {
     const getGoogleMapsApiKey = async () => {
       const apiKey = await fetchGoogleMapsApiKey();
-      console.log()
+      console.log();
       setGoogleMapsApiKey(apiKey);
     };
 
@@ -94,7 +96,9 @@ function App() {
                   />
                   <Route
                     path="locations/new"
-                    element={<NewLocation handleAddLocation={handleAddLocation} />}
+                    element={
+                      <NewLocation handleAddLocation={handleAddLocation} />
+                    }
                   />
                   <Route
                     path="locations/:locationId"
@@ -106,14 +110,14 @@ function App() {
                     }
                   ></Route>
                   <Route
-                path="locations/:locationId/edit"
-                element={
-                  <EditLocation
-                    locations={locations}
-                    setLocations={setLocations}
+                    path="locations/:locationId/edit"
+                    element={
+                      <EditLocation
+                        locations={locations}
+                        setLocations={setLocations}
+                      />
+                    }
                   />
-                }
-              />
                 </Route>
                 <Route path="*" element={<h1>Not Found</h1>} />
               </Route>
