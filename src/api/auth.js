@@ -1,6 +1,6 @@
 // API functions related to authentication
 
-const BASE_URL = "http://127.0.0.1:3000";
+const BASE_URL = "https://deliverease-api.onrender.com";
 
 // REGISTER USER
 
