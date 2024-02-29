@@ -1,7 +1,91 @@
-import React from "react";
+import { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import Logo from "../assets/images/deliverease-logo-cropped.png";
+import { createUser } from "../api/users";
 
 const Login = () => {
+  const [userData, setUserData] = useState({
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  function handleChange(event) {
+    const { name, value } = event.target;
+    setUserData((prevUserData) => ({
+      ...prevUserData,
+      [name]: value,
+    }));
+  }
+
+  // Function to validate password using regex
+  function validatePassword(password) {
+    const passwordRegex =
+      /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{5,}$/;
+    return passwordRegex.test(password);
+  }
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setIsLoading(true);
+    setErrorMessage(null);
+
+    const { email, password, confirmPassword } = userData;
+
+    // Check for missing email
+    if (!email) {
+      setErrorMessage("Please provide your email.");
+      setIsLoading(false);
+      return;
+    }
+
+    // Check for missing password
+    if (!password || !confirmPassword) {
+      setErrorMessage("Please provide both password fields.");
+      setIsLoading(false);
+      return;
+    }
+
+    // Check if passwords match
+    if (password !== confirmPassword) {
+      setErrorMessage("Passwords do not match.");
+      setIsLoading(false);
+      return;
+    }
+
+    // Validate password
+    if (!validatePassword(password)) {
+      setErrorMessage(
+        "Password must be at least 5 characters long, include a number, and include a special character."
+      );
+      setIsLoading(false);
+      return;
+    }
+
+    try {
+      await createUser(userData);
+      setUserData({
+        email: "",
+        password: "",
+        confirmPassword: "",
+      });
+
+      // Redirect to login page after successful signup
+      navigate("/login", {
+        state: { message: "User created successfully!" },
+      });
+    } catch (error) {
+      setErrorMessage(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <section className="bg-gray-1 py-20 dark:bg-dark lg:py-[120px]">
       <div className="container mx-auto">
@@ -10,27 +94,48 @@ const Login = () => {
             <div className="relative mx-auto max-w-[525px] overflow-hidden rounded-lg bg-white px-10 py-16 text-center dark:bg-dark-2 sm:px-12 md:px-[60px]">
               <div className="mb-10 text-center md:mb-16">
                 <a href="/#" className="mx-auto inline-block max-w-[280px]">
-                  <img src={Logo} alt="DeliverEase Logo"/>
+                  <img src={Logo} alt="DeliverEase Logo" />
                 </a>
               </div>
-              <form>
-                <InputBox type="email" name="email" placeholder="Email" />
+
+              {errorMessage && <h3 className="text-error">{errorMessage}</h3>}
+              <form onSubmit={handleSubmit}>
+                <InputBox
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  value={userData.email}
+                  onChange={handleChange}
+                />
                 <InputBox
                   type="password"
                   name="password"
                   placeholder="Password"
+                  value={userData.password}
+                  onChange={handleChange}
+                />
+                <InputBox
+                  type="password"
+                  name="confirmPassword"
+                  placeholder="Confirm Password"
+                  value={userData.confirmPassword}
+                  onChange={handleChange}
                 />
                 <div className="mb-10">
                   <input
                     type="submit"
                     value="Sign Up"
                     className="w-full cursor-pointer rounded-md border border-primary bg-primary px-5 py-3 text-base font-medium text-white transition hover:bg-opacity-90"
+                    disabled={isLoading}
                   />
                 </div>
               </form>
               <p className="text-base text-body-color dark:text-dark-6">
                 <span className="pr-0.5">Already a member?</span>
-                <a href="/login" className="text-primary hover:underline font-semibold">
+                <a
+                  href="/login"
+                  className="text-primary hover:underline font-semibold"
+                >
                   Log in
                 </a>
               </p>
@@ -264,13 +369,14 @@ const Login = () => {
 
 export default Login;
 
-const InputBox = ({ type, placeholder, name }) => {
+const InputBox = ({ type, placeholder, name, onChange }) => {
   return (
     <div className="mb-6">
       <input
         type={type}
         placeholder={placeholder}
         name={name}
+        onChange={onChange}
         className="w-full rounded-md border border-stroke bg-transparent px-5 py-3 text-base text-body-color outline-none focus:border-primary focus-visible:shadow-none"
       />
     </div>

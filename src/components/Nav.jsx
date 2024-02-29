@@ -1,8 +1,29 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "../assets/images/deliverease-logo.png";
 
-const Nav = () => {
+const Nav = ({ isLoggedIn, updateLoginStatus }) => {
+  // localStorage.removeItem("loggedin");
+
+  // State to check if user is logged in
+  // const [isLoggedIn, setIsLoggedIn] = useState(
+  //   localStorage.getItem("loggedin")
+  // );
+
+  const nav = useNavigate();
+
+  // Function to handle logout
+  const handleLogout = () => {
+    // TODO: Call the logoutUser function from the API
+
+    // Clear localStorage and update login state
+    localStorage.removeItem("loggedin");
+    updateLoginStatus(false);
+
+    // Redirect to home page
+    nav("/");
+  };
+
   return (
     <div
       className="navbar navbar-custom sticky top-0 z-50"
@@ -40,35 +61,39 @@ const Nav = () => {
                 Home
               </Link>
             </li>
+            {isLoggedIn && (
+              <li>
+                <a>Locations</a>
+                <ul className="p-2">
+                  <li>
+                    <Link to="/locations">All Locations</Link>
+                  </li>
+                  <li>
+                    <Link to="/locations/new">New Location</Link>
+                  </li>
+                </ul>
+              </li>
+            )}
             <li>
-              <a>Locations</a>
-              <ul className="p-2">
-                <li>
-                  <a>All Locations</a>
-                </li>
-                <li>
-                  <a>New Location</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a>Contact Us</a>
+              <Link to="/contact">Contact Us</Link>
             </li>
           </ul>
         </div>
 
-        {/* Logo Container */}
-        <div className="logo-container">
-          <img
-            src={Logo}
-            alt="DeliverEase Logo"
-            style={{
-              objectFit: "contain",
-              maxHeight: "250px", // Adjust the logo height here
-              marginLeft: "20px", // Adjust the logo margin here
-            }}
-          />
-        </div>
+        {/* Logo Container - Wrapped in Link */}
+        <Link to="/">
+          <div className="logo-container">
+            <img
+              src={Logo}
+              alt="DeliverEase Logo"
+              style={{
+                objectFit: "contain",
+                maxHeight: "250px", // Adjust the logo height here
+                marginLeft: "20px", // Adjust the logo margin here
+              }}
+            />
+          </div>
+        </Link>
       </div>
 
       {/* Navbar Center (Hidden on smaller screens) */}
@@ -79,19 +104,33 @@ const Nav = () => {
               Home
             </Link>
           </li>
-          <li>
-            <details>
-              <summary className="primary-text">Locations</summary>
-              <ul className="p-2">
-                <li>
-                  <a className="primary-text">New Location</a>
-                </li>
-                <li>
-                  <a className="primary-text">All Locations</a>
-                </li>
-              </ul>
-            </details>
-          </li>
+
+          {isLoggedIn && (
+            <li>
+              <details>
+                <summary className="primary-text">Locations</summary>
+                <ul className="p-2">
+                  <li>
+                    <Link to="/locations/new" className="primary-text">
+                      New Location
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/locations" className="primary-text">
+                      All Locations
+                    </Link>
+                  </li>
+                </ul>
+              </details>
+            </li>
+          )}
+          {isLoggedIn && (
+            <li>
+              <Link to="/profile" className="primary-text">
+                Profile
+              </Link>
+            </li>
+          )}
           <li>
             <Link to="/contact" className="primary-text">
               Contact Us
@@ -102,12 +141,21 @@ const Nav = () => {
 
       {/* Navbar End */}
       <div className="navbar-end">
-        <a
-          className="btn bg-primary hover:bg-secondary text-white transition-colors duration-200"
-          href="/login"
-        >
-          Sign In
-        </a>
+        {isLoggedIn ? (
+          <button
+            onClick={handleLogout}
+            className="btn bg-primary hover:bg-secondary text-white transition-colors duration-200"
+          >
+            Logout
+          </button>
+        ) : (
+          <Link
+            to="/login"
+            className="btn bg-primary hover:bg-secondary text-white transition-colors duration-200"
+          >
+            Sign In
+          </Link>
+        )}
       </div>
     </div>
   );
