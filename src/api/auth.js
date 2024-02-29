@@ -59,4 +59,26 @@ const logoutUser = async () => {
   }
 };
 
-export { loginUser, logoutUser };
+const resetPassword = async (token, newPassword) => {
+  try {
+    const response = await fetch(`${BASE_URL}/reset-password/${token}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ newPassword }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.message);
+    }
+
+    return data; // You can return any relevant data from the response
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+export { loginUser, logoutUser, resetPassword };

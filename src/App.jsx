@@ -13,6 +13,8 @@ import NewLocation from "./pages/NewLocation";
 import EditLocation from "./pages/EditLocation";
 import AuthRequired from "./components/AuthRequired";
 import Profile from "./pages/Profile";
+import ForgotPasswordForm from "./components/ForgotPassword";
+import ResetPassword from "./components/ResetPassword";
 import {
   fetchUserLocations,
   addLocation,
@@ -88,6 +90,8 @@ function App() {
                 <Route path="about" element={<About />} />
                 <Route path="contact" element={<Contact />} />
                 <Route path="profile" element={<Profile />} />
+                <Route path="forgot-password" element={<ForgotPasswordForm />} />
+                <Route path="reset-password/:token" element={<ResetPassword />} />
 
                 <Route element={<AuthRequired />}>
                   <Route
