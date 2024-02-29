@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Logo from "../assets/images/deliverease-logo-cropped.png";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { loginUser } from "../api/auth";
 import LoadingSpinner from "../components/LoadingSpinner";
 
@@ -107,12 +107,12 @@ const Login = ({ updateLoginStatus }) => {
                   </button>
                 </div>
               </form>
-              <a
-                href="/#"
+              <Link
+                to="/forgot-password"
                 className="mb-2 inline-block text-base text-dark hover:text-primary hover:underline"
               >
                 Forget Password?
-              </a>
+              </Link>
               <p className="text-base text-body-color dark:text-dark-6">
                 <span className="pr-0.5">Not a member yet?</span>
                 <a
