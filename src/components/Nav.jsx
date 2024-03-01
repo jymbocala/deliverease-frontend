@@ -1,21 +1,12 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Logo from "../assets/images/deliverease-logo.png";
+import Logo from "../assets/images/deliverease-logo-cropped.png";
 
 const Nav = ({ isLoggedIn, updateLoginStatus }) => {
-  // localStorage.removeItem("loggedin");
-
-  // State to check if user is logged in
-  // const [isLoggedIn, setIsLoggedIn] = useState(
-  //   localStorage.getItem("loggedin")
-  // );
-
   const nav = useNavigate();
 
   // Function to handle logout
   const handleLogout = () => {
-    // TODO: Call the logoutUser function from the API
-
     // Clear localStorage and update login state
     localStorage.removeItem("loggedin");
     updateLoginStatus(false);
@@ -81,16 +72,12 @@ const Nav = ({ isLoggedIn, updateLoginStatus }) => {
         </div>
 
         {/* Logo Container - Wrapped in Link */}
-        <Link to="/">
-          <div className="logo-container">
+        <Link to="/" className="pl-4 md:pl-6 lg:pl-8">
+          <div className="logo-container" style={{ maxWidth: "150px" }}>
             <img
               src={Logo}
               alt="DeliverEase Logo"
-              style={{
-                objectFit: "contain",
-                maxHeight: "250px", // Adjust the logo height here
-                marginLeft: "20px", // Adjust the logo margin here
-              }}
+              className="max-w-full h-auto" // Adjusted the logo size to be responsive
             />
           </div>
         </Link>

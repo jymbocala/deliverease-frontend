@@ -1,36 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useLocation } from "react-router-dom";
 import Logo from "../assets/images/deliverease-logo.png";
 
 const Footer = () => {
-  const [showFooter, setShowFooter] = useState(false);
   const location = useLocation();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const isBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight;
-      setShowFooter(isBottom);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   // Check if the current page is the home page
   const isHomePage = location.pathname === "/";
 
-  // Render the footer only if it's not the home page or if showFooter is true
-  return !isHomePage || showFooter ? (
-    <footer className="bg-base-100 text-gray-600 body-font fixed bottom-0 w-full">
-      <div className="container px-5 py-2 mx-auto flex items-center sm:flex-row flex-col">
-        <a className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
+  // Render the footer only if it's not the home page
+  return !isHomePage ? (
+    <footer className="bg-base-100 text-gray-600 body-font fixed bottom-0 left-0 right-0 z-50">
+      <div className="container px-5 py-4 mx-auto flex flex-col items-center justify-center sm:flex-row">
+        <a href="/" className="hidden sm:flex title-font font-medium items-center mb-4 sm:mb-0">
           <img
             src={Logo}
             alt="DeliverEase Logo"
             className="w-24 h-24 text-white p-2 object-cover transform scale-150 mt-1"
           />
         </a>
-        <p className="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">
+        <p className="text-sm text-gray-500 text-center sm:text-left">
           © 2024 DeliverEase —
           <a
             href="#"
@@ -41,7 +30,7 @@ const Footer = () => {
             @JymBocala & @SamGifford
           </a>
         </p>
-        <span className="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+        <div className="flex mt-2 sm:mt-0 justify-center sm:justify-end">
           <a
             className="text-gray-500"
             href="https://github.com/jymbocala/deliverease-frontend"
@@ -71,7 +60,7 @@ const Footer = () => {
               <path d="M22.225 0H1.77C.79 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.77 24h20.452C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003zM7.079 20.561H3.559V9h3.52v11.561zm-1.767-13.02a2.029 2.029 0 01-2.031-2.021 2.03 2.03 0 012.031-2.021c1.12 0 2.03.909 2.03 2.021a2.029 2.029 0 01-2.03 2.021zm16.261 13.02h-3.514v-5.569c0-1.328-.026-3.037-1.852-3.037-1.852 0-2.136 1.445-2.136 2.939v5.667H9.076V9h3.386v1.578h.048c.472-.894 1.624-1.837 3.343-1.837 3.573 0 4.226 2.353 4.226 5.42v6.4h-.001z"></path>
             </svg>
           </a>
-        </span>
+        </div>
       </div>
     </footer>
   ) : null;
