@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Lottie from "lottie-react";
 import { Link as RouterLink } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
@@ -21,6 +21,19 @@ const Home = () => {
     from: { x: -200 }, // Start off-screen to the left
     config: { duration: 500 }, // Adjust the duration for desired speed
   });
+
+  useEffect(() => {
+    // Add animations when the feature blocks come into view
+    if (inView1) {
+      // Apply animation for feature block 1
+    }
+    if (inView2) {
+      // Apply animation for feature block 2
+    }
+    if (inView3) {
+      // Apply animation for feature block 3
+    }
+  }, [inView1, inView2, inView3]);
 
   return (
     <>
@@ -73,7 +86,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-      {/* Features Section */
+      {/* Features Section */}
       <section className="text-gray-600 body-font" style={{ maxWidth: "100vw", overflowX: "hidden" }}>
         <div id="keyFeatures" className="container px-5 pt-200 py-24 mx-auto">
           {/* Title */}
@@ -120,7 +133,7 @@ const Home = () => {
             transition={{ duration: 0.7, ease: "easeOut" }}
             style={{ maxWidth: "100%" }}
           >
-            {/* Feature 2 Icon */}
+            {/* Feature 2 content */}
             <div className="flex-grow sm:text-left text-center mt-6 sm:mt-0">
               <h2 className="text-gray-900 text-xl title-font font-medium mb-2">
                 Comprehensive Location Details
