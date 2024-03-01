@@ -1,5 +1,6 @@
 import { useDropzone } from "react-dropzone";
 import { useState, useEffect } from "react";
+import { Trash } from "lucide-react";
 
 const ImageUpload = ({ setImageURL }) => {
   const [uploadedFile, setUploadedFile] = useState(null);
@@ -60,6 +61,24 @@ const ImageUpload = ({ setImageURL }) => {
     },
   });
 
+  // Function to delete the photo
+  const handleDeletePhoto = async () => {
+    try {
+      await fetch(
+        `https://deliverease-api.onrender.com/s3/delete/${uploadedFile}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      setImageUrl(null);
+      setImageURL(null);
+      setUploadedFile(null);
+    } catch (error) {
+      console.error("Error deleting photo:", error);
+    }
+  };
+
   return (
     <div className="flex flex-col w-full mt-4">
       {!imageUrl && !uploading && (
@@ -78,9 +97,20 @@ const ImageUpload = ({ setImageURL }) => {
       )}
 
       {imageUrl && (
-        <div className="my-6">
-          <p className="mb-4">Uploaded Image:</p>
-          <img src={imageUrl} alt="Uploaded" className="drop-shadow-md" />
+        <div className="flex flex-col my-6">
+          <p>Uploaded Image:</p>
+          {/* Delete Icon */}
+          <button
+            className="hover:scale-110 self-end mb-2"
+            onClick={handleDeletePhoto}
+          >
+            <Trash />
+          </button>
+          <img
+            src={imageUrl}
+            alt="Uploaded"
+            className="drop-shadow-md border-red-500 border-2 w-full"
+          />
         </div>
       )}
     </div>
