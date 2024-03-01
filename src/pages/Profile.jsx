@@ -26,9 +26,12 @@ function Profile() {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center h-screen">
+        <div className="flex flex-col items-center h-screen py-24 text-gray-600">
             <ToastContainer />
-            <h1 className="mb-16 text-4xl text-center font-medium	text-primary">Update Profile</h1>
+            <h1 className="mb-4 text-4xl text-center font-medium text-primary">PROFILE</h1>
+            <p className="lg:w-2/3 mx-auto leading-relaxed text-base mb-16 text-center">
+                Update your password below.
+            </p>
             <form className="w-full max-w-xs" onSubmit={handleSubmit}>
                 <input
                     className="w-full px-3 py-2 mb-3 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"

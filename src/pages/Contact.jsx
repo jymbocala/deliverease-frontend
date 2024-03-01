@@ -1,4 +1,3 @@
-import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import samPortrait from "../assets/images/sam-portrait.jpeg";
@@ -7,14 +6,14 @@ import jymPortrait from "../assets/images/jym-portrait.png";
 const Contact = () => {
   return (
     <section className="text-gray-600 body-font">
-      <div className="container px-5 py-24 mx-auto">
+      <div className="container px-5 py-24">
         <div className="flex flex-col text-center w-full mb-20">
-          <h1 className="mb-4 text-4xl text-center font-medium	text-primary">
+          <h1 className="mb-4 text-4xl text-center font-medium text-primary">
             CONTACT US
           </h1>
-          <p className="lg:w-2/3 mx-auto leading-relaxed text-base">
+          <p className="lg:w-2/3 mx-auto leading-relaxed text-base mb-4">
             If you have any questions or would like to get in touch, please
-            don't hesitate to contact us.
+            don&apos;t hesitate to contact us.
           </p>
         </div>
         <div className="flex flex-wrap -m-4 justify-center">

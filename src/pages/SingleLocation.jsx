@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   FaMapMarkerAlt,
   FaUser,
@@ -30,7 +30,7 @@ const TabContent = ({ details, tabCategory, open }) => (
   <div
     className={`tabcontent ${
       open === tabCategory ? "block" : "hidden"
-    } p-4 mt-4 border border-gray-300 bg-white shadow-md`}
+    } p-4 mt-4 border border-gray-300 bg-white shadow-md rounded-md`}
   >
     {details}
   </div>
@@ -159,21 +159,20 @@ const SingleLocation = ({ locations, setLocations }) => {
   );
 
   return (
-    <section className="py-20 dark:bg-dark lg:py-[120px] flex justify-center items-center">
-      <div className="container mx-auto text-center relative">
-        {/* Link to All Locations */}
-        <Link
-          to="/locations"
-          className="absolute top-0 left-0 z-10 flex items-center text-primary p-2"
+    <section className="flex justify-center items-center">
+      <div className="container mx-auto text-center relative px-5 py-16">
+        {/* Back Button */}
+        <button
+          onClick={() => nav(`/locations`)}
+          className="flex items-center text-primary mb-4"
         >
-          <FaArrowLeft className="mr-1" />
+          <FaArrowLeft className="mr-2" />
           <span className="text-xs lg:text-sm">Locations</span>
-        </Link>
+        </button>
 
         <div className="mt-10 lg:mt-6">
           {" "}
-          {/* Adjusted margin-top for h1 */}
-          <h1 className="mb-8 text-4xl text-center font-medium text-primary">
+          <h1 className="mb-16 text-4xl text-center font-medium text-primary">
             {location && location.name ? location.name : "Location"}
           </h1>
         </div>
@@ -218,17 +217,12 @@ const SingleLocation = ({ locations, setLocations }) => {
         </dialog>
 
         <div className="flex flex-wrap justify-center">
-          {/* Add your MapComponent here */}
-          {location && (
-            <div className="w-full lg:w-[30%] px-4 mx-auto">
-              <Map key={locationId} address={location.address} />
-            </div>
-          )}
-          <div className="w-full lg:w-[30%] px-4 mx-auto mt-4">
-            <div className="flex flex-row justify-center">
+          {/* Details Group */}
+          <div className="w-full lg:w-[60%]  md:w-70 mx-auto">
+            <div className="flex flex-row justify-center gap-2">
               <a
                 onClick={() => setOpen("details")}
-                className={`cursor-pointer px-2 py-1 text-sm font-medium md:text-base rounded-full ${
+                className={`cursor-pointer px-2 py-1 text-sm font-medium md:text-base rounded-lg ${
                   open === "details"
                     ? "bg-primary text-white"
                     : "text-body-color hover:bg-primary hover:text-white dark:text-dark-6 dark:hover:text-white"
@@ -238,7 +232,7 @@ const SingleLocation = ({ locations, setLocations }) => {
               </a>
               <a
                 onClick={() => setOpen("photos")}
-                className={`cursor-pointer px-2 py-1 text-sm font-medium md:text-base rounded-full ${
+                className={`cursor-pointer px-2 py-1 text-sm font-medium md:text-base rounded-lg ${
                   open === "photos"
                     ? "bg-primary text-white"
                     : "text-body-color hover:bg-primary hover:text-white dark:text-dark-6 dark:hover:text-white"
@@ -248,7 +242,7 @@ const SingleLocation = ({ locations, setLocations }) => {
               </a>
               <a
                 onClick={() => setOpen("edit")}
-                className={`cursor-pointer px-2 py-1 text-sm font-medium md:text-base rounded-full ${
+                className={`cursor-pointer px-2 py-1 text-sm font-medium md:text-base rounded-lg ${
                   open === "edit"
                     ? "bg-primary text-white"
                     : "text-body-color hover:bg-primary hover:text-white dark:text-dark-6 dark:hover:text-white"
@@ -258,7 +252,7 @@ const SingleLocation = ({ locations, setLocations }) => {
               </a>
               <a
                 onClick={() => setOpen("delete")}
-                className={`cursor-pointer px-2 py-1 text-sm font-medium md:text-base rounded-full ${
+                className={`cursor-pointer px-2 py-1 text-sm font-medium md:text-base rounded-lg ${
                   open === "delete"
                     ? "bg-primary text-white"
                     : "text-body-color hover:bg-primary hover:text-white dark:text-dark-6 dark:hover:text-white"
@@ -305,6 +299,13 @@ const SingleLocation = ({ locations, setLocations }) => {
               open={open}
             />
           </div>
+
+          {/* MapComponent */}
+          {location && (
+            <div className="w-full lg:w-[30%] mx-auto mt-16 md:mt-0">
+              <Map key={locationId} address={location.address} />
+            </div>
+          )}
         </div>
       </div>
     </section>

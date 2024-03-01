@@ -82,28 +82,28 @@ const EditLocation = ({ locations, setLocations }) => {
   return (
     <>
       <section className="text-gray-600 body-font relative">
-        <div className="container px-5 py-24 mx-auto">
+        <div className="container px-5 py-16 mx-auto">
           {/* Back Button */}
           <button
             onClick={() => nav(`/locations/${locationId}`)}
             className="flex items-center text-primary mb-4"
           >
             <FaArrowLeft className="mr-2" />
-            Back
+            <span className="text-xs lg:text-sm">Back</span>
           </button>
           {/* Title and tagline */}
           <div className="flex flex-col text-center w-full mb-12">
             <h1 className="mb-4 text-4xl text-center font-medium	text-primary">
               Edit {location.name || "Location"}
             </h1>
-            <p className="lg:w-2/3 mx-auto leading-relaxed text-base">
+            <p className="lg:w-2/3 mx-auto leading-relaxed text-base mb-4">
               Update the details below.
             </p>
           </div>
 
           {/* Form */}
           <div className="lg:w-1/2 md:w-2/3 mx-auto">
-            <div className="flex flex-wrap -m-2">
+            <div className="flex flex-wrap">
               <div className="p-2 w-full">
                 <div className="relative">
                   <label

@@ -41,7 +41,7 @@ const Map = ({ address }) => {
   return (
     <div style={{ height: '400px' }}>
       <GoogleMap
-        mapContainerStyle={{ height: '100%', width: '100%' }}
+        mapContainerStyle={{ height: '100%', width: '100%', borderRadius: '0.375rem' }}
         center={center}
         zoom={8}
       />
