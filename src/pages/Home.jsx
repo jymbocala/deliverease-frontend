@@ -11,7 +11,6 @@ import notepadAnimationData from "../assets/images/notepad.json";
 import dashboardAnimationData from "../assets/images/dashboard.json";
 import HeroPic from "../assets/images/hero.png";
 
-
 const Home = () => {
   const [ref1, inView1] = useInView({ triggerOnce: false });
   const [ref2, inView2] = useInView({ triggerOnce: false });
@@ -26,7 +25,7 @@ const Home = () => {
   return (
     <>
       {/* Hero Section */}
-      <section className="text-gray-600 body-font">
+      <section className="text-gray-600 body-font" style={{ overflowX: "hidden", overflowY: "hidden" }}>
         <div className="container mx-auto max-w-4xl flex px-2 py-24 md:flex-row flex-col items-center">
           <div className="lg:flex-grow md:w-1/2 lg:pr-12 md:pr-8 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
             <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
@@ -74,9 +73,8 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <div style={{ height: "420px" }}></div>
-      {/* Features Section */}
-      <section className="text-gray-600">
+      {/* Features Section */
+      <section className="text-gray-600 body-font" style={{ maxWidth: "100vw", overflowX: "hidden" }}>
         <div id="keyFeatures" className="container px-5 pt-200 py-24 mx-auto">
           {/* Title */}
           <h2 className="text-3xl font-bold text-center mb-6 text-gray-600 body-font">Key Features</h2>
@@ -92,6 +90,7 @@ const Home = () => {
             initial={{ opacity: 0, x: -100 }}
             animate={{ opacity: inView1 ? 1 : 0, x: inView1 ? 0 : -100 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
+            style={{ maxWidth: "100%" }}
           >
             {/* Feature 1 Icon */}
             <div className="sm:w-32 sm:h-32 h-20 w-20 sm:mr-10 inline-flex items-center justify-center rounded-full bg-primary text-indigo-500 flex-shrink-0 overflow-hidden">
@@ -119,6 +118,7 @@ const Home = () => {
             initial={{ opacity: 0, x: 100 }}
             animate={{ opacity: inView2 ? 1 : 0, x: inView2 ? 0 : 100 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
+            style={{ maxWidth: "100%" }}
           >
             {/* Feature 2 Icon */}
             <div className="flex-grow sm:text-left text-center mt-6 sm:mt-0">
@@ -146,6 +146,7 @@ const Home = () => {
             initial={{ opacity: 0, x: -100 }}
             animate={{ opacity: inView3 ? 1 : 0, x: inView3 ? 0 : -100 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
+            style={{ maxWidth: "100%" }}
           >
             {/* Feature 3 Icon */}
             <div className="sm:w-32 sm:h-32 h-20 w-20 sm:mr-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0 overflow-hidden">
@@ -171,7 +172,7 @@ const Home = () => {
           </RouterLink>
         </div>
       </section>
-      <section className="p-6 bg-base-100 dark:text-gray-100 ">
+      <section className="p-6 bg-base-100 dark:text-gray-100" style={{ maxWidth: "100vw", overflowX: "hidden" }}>
         <div id="howDoesItWork" className="container mx-auto mb-64">
           <h2 className="text-3xl font-bold text-center mb-6 text-gray-600 body-font">
             How does it work?
