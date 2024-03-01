@@ -17,13 +17,13 @@ const Nav = ({ isLoggedIn, updateLoginStatus }) => {
 
   return (
     <div
-      className="navbar navbar-custom sticky top-0 z-50"
       style={{
         height: "70px",
         backgroundColor: "#f2f7fd",
         boxShadow: "0 2px 4px 0 rgba(0,0,0,0.2)",
       }}
     >
+      <div className="navbar navbar-custom sticky top-0 z-50 max-w-screen-2xl mx-auto px-4 lg:px-8">
       <div className="navbar-start">
         {/* Dropdown */}
         <div className="dropdown">
@@ -49,7 +49,7 @@ const Nav = ({ isLoggedIn, updateLoginStatus }) => {
           >
             <li>
               <Link to="/" className="primary-text">
-                Home
+                Homee
               </Link>
             </li>
             {isLoggedIn && (
@@ -150,6 +150,7 @@ const Nav = ({ isLoggedIn, updateLoginStatus }) => {
             Sign In
           </Link>
         )}
+      </div>
       </div>
     </div>
   );
