@@ -4,6 +4,8 @@ import ImageUpload from "../components/ImageUpload";
 import { editLocation } from "../api/locations";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { FaArrowLeft } from "react-icons/fa";
+
 
 const EditLocation = ({ locations, setLocations }) => {
   // Get the location id from the URL
@@ -67,6 +69,7 @@ const EditLocation = ({ locations, setLocations }) => {
       );
       setLocations(updatedLocations);
 
+
       toast.success("Location updated successfully");
       setTimeout(() => {
         nav(`/locations/${locationId}`); // Redirect to the single location page
@@ -80,6 +83,14 @@ const EditLocation = ({ locations, setLocations }) => {
     <>
       <section className="text-gray-600 body-font relative">
         <div className="container px-5 py-24 mx-auto">
+          {/* Back Button */}
+          <button
+            onClick={() => nav(`/locations/${locationId}`)}
+            className="flex items-center text-primary mb-4"
+          >
+            <FaArrowLeft className="mr-2" />
+            Back
+          </button>
           {/* Title and tagline */}
           <div className="flex flex-col text-center w-full mb-12">
             <h1 className="mb-4 text-4xl text-center font-medium	text-primary">

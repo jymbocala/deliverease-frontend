@@ -1,6 +1,8 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import samPortrait from "../assets/images/sam-portrait.jpeg";
+import jymPortrait from "../assets/images/jym-portrait.png";
 
 const Contact = () => {
   return (
@@ -16,14 +18,12 @@ const Contact = () => {
           </p>
         </div>
         <div className="flex flex-wrap -m-4 justify-center">
-          {" "}
-          {/* Added justify-center */}
           <div className="p-4 lg:w-1/4 md:w-1/2">
             <div className="h-full flex flex-col items-center text-center">
               <img
                 alt="team"
                 className="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4"
-                src="src/assets/images/sam-portrait.jpeg"
+                src={samPortrait}
               />
               <div className="w-full">
                 <h2 className="title-font font-medium text-lg text-gray-900">
@@ -37,14 +37,14 @@ const Contact = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <FontAwesomeIcon icon={faLinkedin} size="1x" />
+                    <FontAwesomeIcon icon={faLinkedin} size="1x" color="#0e76a8" /> {/* LinkedIn blue */}
                   </a>
                   <a
                     href="https://github.com/scg-code"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <FontAwesomeIcon icon={faGithub} size="1x" />
+                    <FontAwesomeIcon icon={faGithub} size="1x" color="black" /> {/* GitHub black */}
                   </a>
                 </div>
 
@@ -53,13 +53,12 @@ const Contact = () => {
               </div>
             </div>
           </div>
-          {/* Added another contact */}
           <div className="p-4 lg:w-1/4 md:w-1/2">
             <div className="h-full flex flex-col items-center text-center">
               <img
                 alt="team"
                 className="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4"
-                src="src/assets/images/jym-portrait.png"
+                src={jymPortrait}
               />
               <div className="w-full">
                 <h2 className="title-font font-medium text-lg text-gray-900">
@@ -73,14 +72,14 @@ const Contact = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <FontAwesomeIcon icon={faLinkedin} size="1x" />
+                    <FontAwesomeIcon icon={faLinkedin} size="1x" color="#0e76a8" /> {/* LinkedIn blue */}
                   </a>
                   <a
                     href="https://github.com/jymbocala"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <FontAwesomeIcon icon={faGithub} size="1x" />
+                    <FontAwesomeIcon icon={faGithub} size="1x" color="black" /> {/* GitHub black */}
                   </a>
                 </div>
 

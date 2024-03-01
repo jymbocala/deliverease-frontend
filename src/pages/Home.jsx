@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Lottie from "lottie-react";
 import { Link as RouterLink } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
@@ -9,16 +9,7 @@ import { useInView } from "react-intersection-observer";
 import mapAnimationData from "../assets/images/map.json";
 import notepadAnimationData from "../assets/images/notepad.json";
 import dashboardAnimationData from "../assets/images/dashboard.json";
-
-const AnimatedArrow = () => {
-  return (
-    <div className="flex justify-center mt-8">
-      <ScrollLink to="keyFeatures" smooth={true} duration={500}>
-        <IoIosArrowDown className="text-accent animate-bounce text-4xl cursor-pointer" />
-      </ScrollLink>
-    </div>
-  );
-};
+import HeroPic from "../assets/images/hero.png";
 
 const Home = () => {
   const [ref1, inView1] = useInView({ triggerOnce: false });
@@ -31,12 +22,25 @@ const Home = () => {
     config: { duration: 500 }, // Adjust the duration for desired speed
   });
 
+  useEffect(() => {
+    // Add animations when the feature blocks come into view
+    if (inView1) {
+      // Apply animation for feature block 1
+    }
+    if (inView2) {
+      // Apply animation for feature block 2
+    }
+    if (inView3) {
+      // Apply animation for feature block 3
+    }
+  }, [inView1, inView2, inView3]);
+
   return (
     <>
       {/* Hero Section */}
-      <section className="text-gray-600 body-font">
-        <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
-          <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
+      <section className="text-gray-600 body-font" style={{ overflowX: "hidden", overflowY: "hidden" }}>
+        <div className="container mx-auto max-w-4xl flex px-2 py-24 md:flex-row flex-col items-center">
+          <div className="lg:flex-grow md:w-1/2 lg:pr-12 md:pr-8 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
             <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
               Navigate Your Delivery Points With{" "}
               <animated.span
@@ -50,9 +54,9 @@ const Home = () => {
               Experience seamless delivery operations with DeliverEase at your
               fingertips.
             </p>
-            <div className="flex flex-col lg:flex-row justify-center lg:items-center">
+            <div className="flex flex-col lg:flex-row justify-center lg:items-center" style={{ zIndex: 1 }}>
               <RouterLink to="/sign-up" className="mb-4 lg:mb-0">
-                <button className="inline-flex text-white bg-primary border-0 py-2 px-6 focus:outline-none hover:bg-primary-dark rounded text-lg">
+                <button className="inline-flex text-white bg-primary border-0 py-2 px-6 focus:outline-none hover:bg-secondary rounded text-lg">
                   Get Started
                 </button>
               </RouterLink>
@@ -60,38 +64,30 @@ const Home = () => {
                 to="keyFeatures"
                 smooth={true}
                 duration={500}
-                className="ml-0 lg:ml-4"
+                className="ml-0 lg:ml-4 flex items-center"
               >
                 <button
-                  className="inline-flex text-gray-700 bg-secondary border-0 py-2 px-6 focus:outline-none hover:bg-secondary-dark rounded text-lg"
+                  className="inline-flex text-gray-700 bg-transparent border-0 py-2 px-6 focus:outline-none rounded text-lg"
                   style={{ cursor: "pointer" }}
                 >
                   Learn More
                 </button>
+                <IoIosArrowDown className="text-gray-700 animate-bounce text-2xl cursor-pointer ml-[-20px] mt-3" />
               </ScrollLink>
             </div>
           </div>
-          <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
+          <div className="lg:max-w-lg lg:w-full md:w-1/2 w-full">
             <img
               className="object-cover object-center rounded"
               alt="hero"
-              src="src/assets/images/hero.png"
+              src={HeroPic}
               style={{ transform: "scale(2)" }}
             />
           </div>
         </div>
       </section>
-      <AnimatedArrow />
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-        <path
-          fill="#31485e"
-          fillOpacity="0.8"
-          d="M0,224L60,208C120,192,240,160,360,138.7C480,117,600,107,720,138.7C840,171,960,245,1080,272C1200,299,1320,277,1380,266.7L1440,256L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"
-        ></path>
-      </svg>
-      <div style={{ height: "100px" }}></div>
       {/* Features Section */}
-      <section className="text-gray-600">
+      <section className="text-gray-600 body-font" style={{ maxWidth: "100vw", overflowX: "hidden" }}>
         <div id="keyFeatures" className="container px-5 pt-200 py-24 mx-auto">
           {/* Title */}
           <h2 className="text-3xl font-bold text-center mb-6 text-gray-600 body-font">Key Features</h2>
@@ -107,10 +103,11 @@ const Home = () => {
             initial={{ opacity: 0, x: -100 }}
             animate={{ opacity: inView1 ? 1 : 0, x: inView1 ? 0 : -100 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
+            style={{ maxWidth: "100%" }}
           >
             {/* Feature 1 Icon */}
             <div className="sm:w-32 sm:h-32 h-20 w-20 sm:mr-10 inline-flex items-center justify-center rounded-full bg-primary text-indigo-500 flex-shrink-0 overflow-hidden">
-              <div style={{ transform: "scale(2.3)" }}>
+              <div style={{ transform: "scale(1.9)" }}>
                 <Lottie animationData={mapAnimationData} />
               </div>
             </div>
@@ -134,8 +131,9 @@ const Home = () => {
             initial={{ opacity: 0, x: 100 }}
             animate={{ opacity: inView2 ? 1 : 0, x: inView2 ? 0 : 100 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
+            style={{ maxWidth: "100%" }}
           >
-            {/* Feature 2 Icon */}
+            {/* Feature 2 content */}
             <div className="flex-grow sm:text-left text-center mt-6 sm:mt-0">
               <h2 className="text-gray-900 text-xl title-font font-medium mb-2">
                 Comprehensive Location Details
@@ -148,7 +146,7 @@ const Home = () => {
             </div>
             {/* Feature 2 Image */}
             <div className="sm:w-32 sm:h-32 h-20 w-20 sm:mr-10 inline-flex items-center justify-center rounded-full bg-secondary text-indigo-500 flex-shrink-0 overflow-hidden">
-            <div style={{ transform: "scale(1.2)" }}>
+              <div style={{ transform: "scale(1.2)" }}>
                 <Lottie animationData={notepadAnimationData} />
               </div>
             </div>
@@ -161,10 +159,11 @@ const Home = () => {
             initial={{ opacity: 0, x: -100 }}
             animate={{ opacity: inView3 ? 1 : 0, x: inView3 ? 0 : -100 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
+            style={{ maxWidth: "100%" }}
           >
             {/* Feature 3 Icon */}
             <div className="sm:w-32 sm:h-32 h-20 w-20 sm:mr-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0 overflow-hidden">
-            <div style={{ transform: "scale(1)" }}>
+              <div style={{ transform: "scale(1)" }}>
                 <Lottie animationData={dashboardAnimationData} />
               </div>
             </div>
@@ -186,7 +185,7 @@ const Home = () => {
           </RouterLink>
         </div>
       </section>
-      <section className="p-6 bg-base-100 dark:text-gray-100 ">
+      <section className="p-6 bg-base-100 dark:text-gray-100" style={{ maxWidth: "100vw", overflowX: "hidden" }}>
         <div id="howDoesItWork" className="container mx-auto mb-64">
           <h2 className="text-3xl font-bold text-center mb-6 text-gray-600 body-font">
             How does it work?

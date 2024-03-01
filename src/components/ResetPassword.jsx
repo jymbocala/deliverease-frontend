@@ -17,7 +17,7 @@ const ResetPassword = () => {
             return;
         }
         try {
-            const response = await axios.post(`http://localhost:3000/reset-password/${token}`, { newPassword }); // Change 'password' to 'newPassword'
+            const response = await axios.post(`https://deliverease-api.onrender.com/reset-password/${token}`, { newPassword }); // Change 'password' to 'newPassword'
             toast.success(response.data.message);
             setTimeout(() => {
                 navigate('/'); // Redirect to home page
