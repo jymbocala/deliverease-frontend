@@ -10,6 +10,9 @@ import mapAnimationData from "../assets/images/map.json";
 import notepadAnimationData from "../assets/images/notepad.json";
 import dashboardAnimationData from "../assets/images/dashboard.json";
 import HeroPic from "../assets/images/hero.png";
+import signUpGif from "../assets/images/Signup.gif";
+import logLocationGif from "../assets/images/loglocation.gif";
+import seeLocationsGif from "../assets/images/seelocations.gif";
 
 const Home = () => {
   const [ref1, inView1] = useInView({ triggerOnce: false });
@@ -198,6 +201,7 @@ const Home = () => {
               <p className="text-2xl font-semibold">
                 <b>Sign Up</b> to Deliver<em className="text-accent">Ease</em>.
               </p>
+              <img src={signUpGif} alt="Sign Up GIF" />
             </div>
             <div className="flex flex-col p-8 space-y-4 rounded-md bg-primary">
               <div className="flex items-center justify-center flex-shrink-0 w-12 h-12 text-xl font-bold rounded-full bg-accent dark:text-gray-900">
@@ -206,6 +210,7 @@ const Home = () => {
               <p className="text-2xl font-semibold">
                 <b>Easily</b> log all of your delivery locations.
               </p>
+              <img src={logLocationGif} alt="Log Location GIF" />
             </div>
             <div className="flex flex-col p-8 space-y-4 rounded-md bg-primary">
               <div className="flex items-center justify-center flex-shrink-0 w-12 h-12 text-xl font-bold rounded-full bg-accent dark:text-gray-900">
@@ -214,6 +219,7 @@ const Home = () => {
               <p className="text-2xl font-semibold">
                 <b>Search</b> locations quickly on the go.
               </p>
+              <img src={seeLocationsGif} alt="See Locations GIF" />
             </div>
           </div>
         </div>
