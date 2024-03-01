@@ -9,7 +9,7 @@ import {
   FaEdit,
   FaTrash,
   FaClock,
-  FaParking
+  FaParking,
 } from "react-icons/fa";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import {
@@ -45,7 +45,6 @@ const SingleLocation = ({ locations, setLocations }) => {
   useEffect(() => {
     if (!location) {
       // Fetch location data if not available
-
     }
   }, [location, locationId]);
 
@@ -118,7 +117,10 @@ const SingleLocation = ({ locations, setLocations }) => {
             />
             <button
               className="btn btn-outline btn-accent"
-              onClick={handleDeletePhoto}
+              onClick={(e) => {
+                e.target.disabled = true; // Disable the button when clicked
+                handleDeletePhoto();
+              }}
             >
               Delete Photo
             </button>
@@ -197,6 +199,7 @@ const SingleLocation = ({ locations, setLocations }) => {
               className="transform transition duration-500 ease-in-out btn btn-outline btn-error"
               onClick={(e) => {
                 e.stopPropagation(); // Stop the click event from bubbling up to the parent
+                e.target.disabled = true; // Disable the button when clicked
                 handleDeleteLocation();
               }}
             >
@@ -270,32 +273,37 @@ const SingleLocation = ({ locations, setLocations }) => {
               tabCategory="photos"
               open={open}
             />
-<TabContent
-  details={
-    <Link to={`/locations/${locationId}/edit`} className="flex items-center justify-center">
-      <button className="btn btn-primary">
-        <FaEdit className="mr-2" /> Edit
-      </button>
-    </Link>
-  }
-  tabCategory="edit"
-  open={open}
-/>
-<TabContent
-  details={
-    <button
-      className="btn btn-danger"
-      onClick={(e) => {
-        e.stopPropagation(); // Stop the click event from bubbling up to the parent
-        document.getElementById(`my_modal_${location?._id}`).showModal(); 
-      }}
-    >
-      <FaTrash className="mr-2" /> Delete
-    </button>
-  }
-  tabCategory="delete"
-  open={open}
-/>
+            <TabContent
+              details={
+                <Link
+                  to={`/locations/${locationId}/edit`}
+                  className="flex items-center justify-center"
+                >
+                  <button className="btn btn-primary">
+                    <FaEdit className="mr-2" /> Edit
+                  </button>
+                </Link>
+              }
+              tabCategory="edit"
+              open={open}
+            />
+            <TabContent
+              details={
+                <button
+                  className="btn btn-danger"
+                  onClick={(e) => {
+                    e.stopPropagation(); // Stop the click event from bubbling up to the parent
+                    document
+                      .getElementById(`my_modal_${location?._id}`)
+                      .showModal();
+                  }}
+                >
+                  <FaTrash className="mr-2" /> Delete
+                </button>
+              }
+              tabCategory="delete"
+              open={open}
+            />
           </div>
         </div>
       </div>
