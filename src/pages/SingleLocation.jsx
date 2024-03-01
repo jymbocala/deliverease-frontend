@@ -159,14 +159,14 @@ const SingleLocation = ({ locations, setLocations }) => {
   return (
     <section className="py-20 dark:bg-dark lg:py-[120px] flex justify-center items-center">
       <div className="container mx-auto text-center relative">
-        {/* Link to All Locations */}
-        <Link
-          to="/locations"
-          className="absolute top-0 left-0 z-10 flex items-center text-primary p-2"
-        >
-          <FaArrowLeft className="mr-1" />
-          <span className="text-xs lg:text-sm">Locations</span>
-        </Link>
+        {/* Back Button */}
+        <button
+            onClick={() => nav(`/locations`)}
+            className="flex items-center text-primary mb-4"
+          >
+            <FaArrowLeft className="mr-2" />
+            <span className="text-xs lg:text-sm">Locations</span>
+          </button>
 
         <div className="mt-10 lg:mt-6">
           {" "}

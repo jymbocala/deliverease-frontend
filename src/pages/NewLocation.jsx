@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import ImageUpload from "../components/ImageUpload";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { FaArrowLeft } from "react-icons/fa";
 
 const NewLocation = ({ handleAddLocation }) => {
   const nav = useNavigate();
@@ -61,6 +62,14 @@ const NewLocation = ({ handleAddLocation }) => {
       <section className="text-gray-600 body-font relative">
         <ToastContainer />
         <div className="container px-5 py-24 mx-auto">
+          {/* Back Button */}
+          <button
+            onClick={() => nav(`/locations`)}
+            className="flex items-center text-primary mb-4"
+          >
+            <FaArrowLeft className="mr-2" />
+            <span className="text-xs lg:text-sm">Locations</span>
+          </button>
           {/* Title and tagline */}
           <div className="flex flex-col text-center w-full mb-12">
             <h1 className="title-font mb-4 text-4xl text-center font-medium	text-primary">

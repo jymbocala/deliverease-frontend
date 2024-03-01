@@ -89,7 +89,7 @@ const EditLocation = ({ locations, setLocations }) => {
             className="flex items-center text-primary mb-4"
           >
             <FaArrowLeft className="mr-2" />
-            Back
+            <span className="text-xs lg:text-sm">Back</span>
           </button>
           {/* Title and tagline */}
           <div className="flex flex-col text-center w-full mb-12">
