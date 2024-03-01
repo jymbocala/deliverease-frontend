@@ -11,7 +11,7 @@ const ForgotPasswordForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:3000/forgot-password', { email });
+            const response = await axios.post('https://deliverease-api.onrender.com/forgot-password', { email });
             toast.success(response.data.message);
             setTimeout(() => {
                 navigate('/'); // Redirect to home page
