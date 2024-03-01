@@ -52,15 +52,17 @@ const ImageUpload = ({ setImageURL }) => {
 
   return (
     <div>
-      <div
-        {...getRootProps()}
-        className="border-2 border-dashed border-gray-300 rounded-md p-8"
-      >
-        <input {...getInputProps()} />
-        <p className="text-gray-500 text-center">
-          Drop image here, or click to select an image
-        </p>
-      </div>
+      {!imageUrl && (
+        <div
+          {...getRootProps()}
+          className="border-2 border-dashed border-gray-300 rounded-md p-8"
+        >
+          <input {...getInputProps()} />
+          <p className="text-gray-500 text-center">
+            Drop image here, or click to select an image
+          </p>
+        </div>
+      )}
 
       {imageUrl && (
         <div className="mt-4">
