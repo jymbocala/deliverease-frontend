@@ -4,7 +4,7 @@ import Footer from "./Footer";
 
 export default function Layout({ isLoggedIn, updateLoginStatus }) {
     return (
-        <div className="site-wrapper">
+        <div className="flex flex-col min-h-screen">
             <Nav isLoggedIn={isLoggedIn} updateLoginStatus={updateLoginStatus}/>
             <main>
                 <Outlet />

@@ -4,7 +4,7 @@ import Logo from "../assets/images/deliverease-logo-cropped.png";
 
 const Footer = () => {
   return (
-    <footer className="bg-base-100 text-gray-600 body-font fixed bottom-0 left-0 right-0 z-50">
+    <footer className="mt-auto bg-base-100 text-gray-600 body-font w-full">
       <div className="container px-5 py-2 mx-auto flex flex-col items-center justify-center sm:flex-row sm:items-center">
         <a href="/" className="flex title-font font-medium items-center mb-2 sm:mb-0">
           <img
