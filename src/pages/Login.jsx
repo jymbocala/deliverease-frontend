@@ -115,12 +115,12 @@ const Login = ({ updateLoginStatus }) => {
               </Link>
               <p className="text-base text-body-color dark:text-dark-6">
                 <span className="pr-0.5">Not a member yet?</span>
-                <a
-                  href="/sign-up"
+                <Link
+                  to="/sign-up"
                   className="text-primary hover:underline font-semibold"
                 >
                   Sign Up
-                </a>
+                </Link>
               </p>
 
               {/* Corner circles */}
