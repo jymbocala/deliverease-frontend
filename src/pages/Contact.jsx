@@ -18,8 +18,6 @@ const Contact = () => {
           </p>
         </div>
         <div className="flex flex-wrap -m-4 justify-center">
-          {" "}
-          {/* Added justify-center */}
           <div className="p-4 lg:w-1/4 md:w-1/2">
             <div className="h-full flex flex-col items-center text-center">
               <img
@@ -39,14 +37,14 @@ const Contact = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <FontAwesomeIcon icon={faLinkedin} size="1x" />
+                    <FontAwesomeIcon icon={faLinkedin} size="1x" color="#0e76a8" /> {/* LinkedIn blue */}
                   </a>
                   <a
                     href="https://github.com/scg-code"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <FontAwesomeIcon icon={faGithub} size="1x" />
+                    <FontAwesomeIcon icon={faGithub} size="1x" color="black" /> {/* GitHub black */}
                   </a>
                 </div>
 
@@ -55,7 +53,6 @@ const Contact = () => {
               </div>
             </div>
           </div>
-          {/* Added another contact */}
           <div className="p-4 lg:w-1/4 md:w-1/2">
             <div className="h-full flex flex-col items-center text-center">
               <img
@@ -75,14 +72,14 @@ const Contact = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <FontAwesomeIcon icon={faLinkedin} size="1x" />
+                    <FontAwesomeIcon icon={faLinkedin} size="1x" color="#0e76a8" /> {/* LinkedIn blue */}
                   </a>
                   <a
                     href="https://github.com/jymbocala"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <FontAwesomeIcon icon={faGithub} size="1x" />
+                    <FontAwesomeIcon icon={faGithub} size="1x" color="black" /> {/* GitHub black */}
                   </a>
                 </div>
 
