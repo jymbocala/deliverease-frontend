@@ -1,4 +1,3 @@
-// API functions related to locations
 
 const BASE_URL = "https://deliverease-api.onrender.com";
 

@@ -9,6 +9,7 @@ import { useInView } from "react-intersection-observer";
 import mapAnimationData from "../assets/images/map.json";
 import notepadAnimationData from "../assets/images/notepad.json";
 import dashboardAnimationData from "../assets/images/dashboard.json";
+import HeroPic from "../assets/images/hero.png";
 
 const AnimatedArrow = () => {
   return (
@@ -75,7 +76,7 @@ const Home = () => {
             <img
               className="object-cover object-center rounded"
               alt="hero"
-              src="src/assets/images/hero.png"
+              src={HeroPic}
               style={{ transform: "scale(2)" }}
             />
           </div>

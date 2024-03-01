@@ -1,6 +1,8 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import samPortrait from "../assets/images/sam-portrait.jpeg";
+import jymPortrait from "../assets/images/jym-portrait.png";
 
 const Contact = () => {
   return (
@@ -23,7 +25,7 @@ const Contact = () => {
               <img
                 alt="team"
                 className="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4"
-                src="src/assets/images/sam-portrait.jpeg"
+                src={samPortrait}
               />
               <div className="w-full">
                 <h2 className="title-font font-medium text-lg text-gray-900">
@@ -59,7 +61,7 @@ const Contact = () => {
               <img
                 alt="team"
                 className="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4"
-                src="src/assets/images/jym-portrait.png"
+                src={jymPortrait}
               />
               <div className="w-full">
                 <h2 className="title-font font-medium text-lg text-gray-900">
