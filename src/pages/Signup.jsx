@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import Logo from "../assets/images/deliverease-logo-cropped.png";
 import { createUser } from "../api/users";
 
@@ -132,12 +132,12 @@ const Login = () => {
               </form>
               <p className="text-base text-body-color dark:text-dark-6">
                 <span className="pr-0.5">Already a member?</span>
-                <a
-                  href="/login"
+                <Link
+                  to="/login"
                   className="text-primary hover:underline font-semibold"
                 >
                   Log in
-                </a>
+                </Link>
               </p>
 
               {/* Corner circles */}
