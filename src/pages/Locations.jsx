@@ -156,29 +156,35 @@ const Locations = ({ locations }) => {
   });
 
   return (
-    <div className="flex flex-col items-center p-16">
-      <h1 className="mb-16 text-4xl text-center font-medium	text-primary">My Locations</h1>
-      {/* SEARCH */}
-      <div className="flex w-full items-center justify-center">
-        <label className="input input-bordered flex items-center gap-2 grow mr-2">
-          <input
-            type="text"
-            className="grow bg-base-100"
-            placeholder="Search"
-            value={searchText}
-            onChange={(e) => setSearchText(e.target.value)}
-          />
-        </label>
+    <div className="flex flex-col items-center py-16 px-8 mx-auto max-w-screen-xl">
+      <h1 className="mb-16 text-4xl text-center font-medium	text-primary">
+        My Locations
+      </h1>
 
+      <div className="flex items-center justify-center py-4 w-full">
+        {/* Search Bar */}
+        <div className="flex-grow mb-2 md:mb-0 mr-1 md:mr-2">
+          <label className="input input-bordered flex items-center gap-2 w-full">
+            <input
+              type="text"
+              className="w-full bg-base-100"
+              placeholder="Search"
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
+            />
+          </label>
+        </div>
+
+        {/* Vertical Divider */}
         <div className="h-auto min-h-[1em] w-px mx-3 self-stretch bg-gradient-to-tr from-transparent via-neutral-500 to-transparent opacity-20 dark:opacity-100"></div>
 
-        {/* NEW LOCATION BUTTON */}
+        {/* New Location Button without text on small screens */}
         <Link
           to="new"
-          className="btn inline-flex btn-outline btn-primary px-3 text-md ml-2"
+          className="btn inline-flex btn-outline btn-primary px-3 text-md pl-2 md:inline-flex"
         >
           <Plus color="#31485e" />
-          New Location
+          <span className="hidden md:inline-block">New Location</span>
         </Link>
       </div>
 
