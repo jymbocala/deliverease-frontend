@@ -112,9 +112,9 @@ const SingleLocation = ({ locations, setLocations }) => {
   return (
     <section className="py-20 dark:bg-dark lg:py-[120px] flex justify-center items-center">
       <div className="container mx-auto text-center">
-        <h2 className="text-2xl font-bold mb-4">
+        <h1 className="mb-8 text-4xl text-center font-medium	text-primary">
           {location && location.name ? location.name : "Location"}
-        </h2>
+        </h1>
 
         {/* Edit Location button */}
         <Link to={`/locations/${locationId}/edit`}>

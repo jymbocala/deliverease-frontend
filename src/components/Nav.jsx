@@ -53,17 +53,24 @@ const Nav = ({ isLoggedIn, updateLoginStatus }) => {
               </Link>
             </li>
             {isLoggedIn && (
-              <li>
-                <a>Locations</a>
-                <ul className="p-2">
-                  <li>
-                    <Link to="/locations">All Locations</Link>
-                  </li>
-                  <li>
-                    <Link to="/locations/new">New Location</Link>
-                  </li>
-                </ul>
-              </li>
+              <>
+                <li>
+                  <a>Locations</a>
+                  <ul className="p-2">
+                    <li>
+                      <Link to="/locations">All Locations</Link>
+                    </li>
+                    <li>
+                      <Link to="/locations/new">New Location</Link>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <Link to="/profile" className="primary-text">
+                    Profile
+                  </Link>
+                </li>
+              </>
             )}
             <li>
               <Link to="/contact">Contact Us</Link>
