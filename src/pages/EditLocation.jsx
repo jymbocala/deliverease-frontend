@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import ImageUpload from "../components/ImageUpload";
 import { editLocation } from "../api/locations";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const EditLocation = ({ locations, setLocations }) => {
   // Get the location id from the URL
@@ -29,30 +31,6 @@ const EditLocation = ({ locations, setLocations }) => {
       setLocation(locationToEdit);
     }
   }, [locationId, locations]);
-
-  // // Fetch the location data from the API based on the locationId
-  // useEffect(
-  //   () => {
-  //     async function fetchLocation() {
-  //       try {
-  //         const response = await fetch(
-  //           `http://localhost:3000/locations/${locationId}`
-  //         );
-  //         if (!response.ok) {
-  //           throw new Error("Failed to fetch location details");
-  //         }
-  //         const data = await response.json();
-  //         // Set the location state with the fetched data
-  //         setLocation(data);
-  //       } catch (error) {
-  //         console.error("Error fetching location data:", error);
-  //       }
-  //     }
-  //     fetchLocation();
-  //   },
-  //   // Add the location state to the dependency array to re-run the effect when the location state changes or the locationId changes
-  //   [locationId]
-  // );
 
   // Function to handle the form input changes
   function handleChange(event) {
@@ -89,11 +67,12 @@ const EditLocation = ({ locations, setLocations }) => {
       );
       setLocations(updatedLocations);
 
-      // Redirect to the single location page
-      nav(`/locations/${locationId}`);
-
+      toast.success("Location updated successfully");
+      setTimeout(() => {
+        nav(`/locations/${locationId}`); // Redirect to the single location page
+      }, 2000); // Delay of 2 seconds
     } catch (error) {
-      console.error("Error updating location:", error);
+      toast.error(`Error updating location: ${error.message}`);
     }
   };
 

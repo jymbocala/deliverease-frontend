@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ImageUpload from "../components/ImageUpload";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const NewLocation = ({ handleAddLocation }) => {
   const nav = useNavigate();
@@ -28,12 +30,17 @@ const NewLocation = ({ handleAddLocation }) => {
   async function createLocation(e) {
     // Prevent from refreshing the page
     e.preventDefault();
+    try {
+      // Add the new location to the list of locations and get the new id
+      const id = await handleAddLocation(location);
 
-    // Add the new location to the list of locations and get the new id
-    const id = await handleAddLocation(location);
-
-    // Navigate to the new entry page
-    nav(`/locations/${id}`);
+      toast.success("Location added successfully!");
+      setTimeout(() => {
+        nav(`/locations/${id}`); // Navigate to the new entry page
+      }, 2000); // Delay of 2 seconds
+    } catch (error) {
+      toast.error(`Error adding location: ${error.message}`);
+    }
   }
 
   function handleChange(event) {
@@ -52,6 +59,7 @@ const NewLocation = ({ handleAddLocation }) => {
   return (
     <>
       <section className="text-gray-600 body-font relative">
+        <ToastContainer />
         <div className="container px-5 py-24 mx-auto">
           {/* Title and tagline */}
           <div className="flex flex-col text-center w-full mb-12">
