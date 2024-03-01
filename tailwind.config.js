@@ -6,8 +6,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
-  },
+    extend: {
+      fontFamily: {
+        poppins: ["Poppins", "sans-serif"],
+      },
+    },  },
   plugins: [daisyui],
   daisyui: {
     themes: [
@@ -21,7 +24,7 @@ export default {
           "success": "#87d039",
           "warning": "#e2d562",
           "error": "#ff6f6f",
-        },
+        }
       }
     ],
   },

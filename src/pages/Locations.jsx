@@ -157,7 +157,7 @@ const Locations = ({ locations }) => {
 
   return (
     <div className="flex flex-col items-center p-16">
-      <h1 className="mb-16 text-3xl">My Locations</h1>
+      <h1 className="mb-16 text-4xl text-center font-medium	text-primary">My Locations</h1>
       {/* SEARCH */}
       <div className="flex w-full items-center justify-center">
         <label className="input input-bordered flex items-center gap-2 grow mr-2">

@@ -91,10 +91,10 @@ const Home = () => {
       </svg>
       <div style={{ height: "100px" }}></div>
       {/* Features Section */}
-      <section className="text-gray-600 body-font">
+      <section className="text-gray-600">
         <div id="keyFeatures" className="container px-5 pt-200 py-24 mx-auto">
           {/* Title */}
-          <h1 className="text-3xl font-bold text-center mb-6">Key Features</h1>
+          <h2 className="text-3xl font-bold text-center mb-6 text-gray-600 body-font">Key Features</h2>
           {/* Paragraph */}
           <p className="text-lg text-gray-700 text-center mb-40">
             Discover the powerful features of DeliverEase that will
@@ -186,9 +186,9 @@ const Home = () => {
           </RouterLink>
         </div>
       </section>
-      <section className="p-6 bg-base-100 dark:text-gray-100">
+      <section className="p-6 bg-base-100 dark:text-gray-100 ">
         <div id="howDoesItWork" className="container mx-auto mb-64">
-          <h2 className="text-5xl font-bold text-center text-black">
+          <h2 className="text-3xl font-bold text-center mb-6 text-gray-600 body-font">
             How does it work?
           </h2>
           <div className="grid gap-6 my-16 lg:grid-cols-3">

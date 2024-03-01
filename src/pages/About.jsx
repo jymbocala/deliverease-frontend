@@ -12,9 +12,9 @@ const Team = () => {
               <span className="mb-2 block text-lg font-semibold text-primary">
                 The Creators
               </span>
-              <h2 className="mb-3 text-3xl font-bold leading-[1.2] text-black sm:text-4xl md:text-[40px]">
+              <h1 className="mb-3 text-4xl text-center font-medium	text-primary">
                 Meet the Duo Behind DeliverEase
-              </h2>
+              </h1>
               <p className="text-base text-body-color dark:text-dark-6">
                 DeliverEase was created by two junior software engineers, Jym Bocala and Samuel Gifford for their final project at Coder Academy Australia.
               </p>
