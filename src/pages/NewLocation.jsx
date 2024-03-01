@@ -63,10 +63,10 @@ const NewLocation = ({ handleAddLocation }) => {
         <div className="container px-5 py-24 mx-auto">
           {/* Title and tagline */}
           <div className="flex flex-col text-center w-full mb-12">
-            <h1 className=" title-font mb-4 text-4xl text-center font-medium	text-primary">
-              New Location
+            <h1 className="title-font mb-4 text-4xl text-center font-medium	text-primary">
+              NEW LOCATION
             </h1>
-            <p className="lg:w-2/3 mx-auto leading-relaxed text-base">
+            <p className="lg:w-2/3 mx-auto leading-relaxed text-base mb-4">
               Add a new location to the list of locations.
             </p>
           </div>

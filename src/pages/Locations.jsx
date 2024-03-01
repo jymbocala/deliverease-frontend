@@ -156,9 +156,9 @@ const Locations = ({ locations }) => {
   });
 
   return (
-    <div className="flex flex-col items-center py-16 px-8 mx-auto max-w-screen-xl">
+    <div className="flex flex-col w-full items-center py-24 px-8">
       <h1 className="mb-16 text-4xl text-center font-medium	text-primary">
-        My Locations
+        MY LOCATIONS
       </h1>
 
       <div className="flex items-center justify-center py-4 w-full">

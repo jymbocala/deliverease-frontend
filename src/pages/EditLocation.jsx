@@ -96,14 +96,14 @@ const EditLocation = ({ locations, setLocations }) => {
             <h1 className="mb-4 text-4xl text-center font-medium	text-primary">
               Edit {location.name || "Location"}
             </h1>
-            <p className="lg:w-2/3 mx-auto leading-relaxed text-base">
+            <p className="lg:w-2/3 mx-auto leading-relaxed text-base mb-4">
               Update the details below.
             </p>
           </div>
 
           {/* Form */}
           <div className="lg:w-1/2 md:w-2/3 mx-auto">
-            <div className="flex flex-wrap -m-2">
+            <div className="flex flex-wrap">
               <div className="p-2 w-full">
                 <div className="relative">
                   <label

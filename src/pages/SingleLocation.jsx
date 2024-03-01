@@ -171,7 +171,7 @@ const SingleLocation = ({ locations, setLocations }) => {
         <div className="mt-10 lg:mt-6">
           {" "}
           {/* Adjusted margin-top for h1 */}
-          <h1 className="mb-8 text-4xl text-center font-medium text-primary">
+          <h1 className="mb-16 text-4xl text-center font-medium text-primary">
             {location && location.name ? location.name : "Location"}
           </h1>
         </div>
