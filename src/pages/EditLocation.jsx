@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import ImageUpload from "../components/ImageUpload";
 import { editLocation } from "../api/locations";
+import { FaArrowLeft } from "react-icons/fa";
 
 const EditLocation = ({ locations, setLocations }) => {
   // Get the location id from the URL
@@ -91,7 +92,6 @@ const EditLocation = ({ locations, setLocations }) => {
 
       // Redirect to the single location page
       nav(`/locations/${locationId}`);
-
     } catch (error) {
       console.error("Error updating location:", error);
     }
@@ -101,6 +101,14 @@ const EditLocation = ({ locations, setLocations }) => {
     <>
       <section className="text-gray-600 body-font relative">
         <div className="container px-5 py-24 mx-auto">
+          {/* Back Button */}
+          <button
+            onClick={() => nav(`/locations/${locationId}`)}
+            className="flex items-center text-primary mb-4"
+          >
+            <FaArrowLeft className="mr-2" />
+            Back
+          </button>
           {/* Title and tagline */}
           <div className="flex flex-col text-center w-full mb-12">
             <h1 className="mb-4 text-4xl text-center font-medium	text-primary">
