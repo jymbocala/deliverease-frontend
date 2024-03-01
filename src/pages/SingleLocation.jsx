@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   FaMapMarkerAlt,
   FaUser,
@@ -9,7 +9,7 @@ import {
   FaEdit,
   FaTrash,
   FaClock,
-  FaParking
+  FaParking,
 } from "react-icons/fa";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import {
@@ -30,7 +30,7 @@ const TabContent = ({ details, tabCategory, open }) => (
   <div
     className={`tabcontent ${
       open === tabCategory ? "block" : "hidden"
-    } p-4 mt-4 border border-gray-300 bg-white shadow-md`}
+    } p-4 mt-4 border border-gray-300 bg-white shadow-md rounded-md`}
   >
     {details}
   </div>
@@ -45,7 +45,6 @@ const SingleLocation = ({ locations, setLocations }) => {
   useEffect(() => {
     if (!location) {
       // Fetch location data if not available
-
     }
   }, [location, locationId]);
 
@@ -161,16 +160,15 @@ const SingleLocation = ({ locations, setLocations }) => {
       <div className="container mx-auto text-center relative">
         {/* Back Button */}
         <button
-            onClick={() => nav(`/locations`)}
-            className="flex items-center text-primary mb-4"
-          >
-            <FaArrowLeft className="mr-2" />
-            <span className="text-xs lg:text-sm">Locations</span>
-          </button>
+          onClick={() => nav(`/locations`)}
+          className="flex items-center text-primary mb-4"
+        >
+          <FaArrowLeft className="mr-2" />
+          <span className="text-xs lg:text-sm">Locations</span>
+        </button>
 
         <div className="mt-10 lg:mt-6">
           {" "}
-          {/* Adjusted margin-top for h1 */}
           <h1 className="mb-16 text-4xl text-center font-medium text-primary">
             {location && location.name ? location.name : "Location"}
           </h1>
@@ -215,17 +213,12 @@ const SingleLocation = ({ locations, setLocations }) => {
         </dialog>
 
         <div className="flex flex-wrap justify-center">
-          {/* Add your MapComponent here */}
-          {location && (
-            <div className="w-full lg:w-[30%] px-4 mx-auto">
-              <Map key={locationId} address={location.address} />
-            </div>
-          )}
-          <div className="w-full lg:w-[30%] px-4 mx-auto mt-4">
-            <div className="flex flex-row justify-center">
+          {/* Details Group */}
+          <div className="w-full lg:w-[60%]  md:w-70 mx-auto">
+            <div className="flex flex-row justify-center gap-2">
               <a
                 onClick={() => setOpen("details")}
-                className={`cursor-pointer px-2 py-1 text-sm font-medium md:text-base rounded-full ${
+                className={`cursor-pointer px-2 py-1 text-sm font-medium md:text-base rounded-lg ${
                   open === "details"
                     ? "bg-primary text-white"
                     : "text-body-color hover:bg-primary hover:text-white dark:text-dark-6 dark:hover:text-white"
@@ -235,7 +228,7 @@ const SingleLocation = ({ locations, setLocations }) => {
               </a>
               <a
                 onClick={() => setOpen("photos")}
-                className={`cursor-pointer px-2 py-1 text-sm font-medium md:text-base rounded-full ${
+                className={`cursor-pointer px-2 py-1 text-sm font-medium md:text-base rounded-lg ${
                   open === "photos"
                     ? "bg-primary text-white"
                     : "text-body-color hover:bg-primary hover:text-white dark:text-dark-6 dark:hover:text-white"
@@ -245,7 +238,7 @@ const SingleLocation = ({ locations, setLocations }) => {
               </a>
               <a
                 onClick={() => setOpen("edit")}
-                className={`cursor-pointer px-2 py-1 text-sm font-medium md:text-base rounded-full ${
+                className={`cursor-pointer px-2 py-1 text-sm font-medium md:text-base rounded-lg ${
                   open === "edit"
                     ? "bg-primary text-white"
                     : "text-body-color hover:bg-primary hover:text-white dark:text-dark-6 dark:hover:text-white"
@@ -255,7 +248,7 @@ const SingleLocation = ({ locations, setLocations }) => {
               </a>
               <a
                 onClick={() => setOpen("delete")}
-                className={`cursor-pointer px-2 py-1 text-sm font-medium md:text-base rounded-full ${
+                className={`cursor-pointer px-2 py-1 text-sm font-medium md:text-base rounded-lg ${
                   open === "delete"
                     ? "bg-primary text-white"
                     : "text-body-color hover:bg-primary hover:text-white dark:text-dark-6 dark:hover:text-white"
@@ -270,33 +263,45 @@ const SingleLocation = ({ locations, setLocations }) => {
               tabCategory="photos"
               open={open}
             />
-<TabContent
-  details={
-    <Link to={`/locations/${locationId}/edit`} className="flex items-center justify-center">
-      <button className="btn btn-primary">
-        <FaEdit className="mr-2" /> Edit
-      </button>
-    </Link>
-  }
-  tabCategory="edit"
-  open={open}
-/>
-<TabContent
-  details={
-    <button
-      className="btn btn-danger"
-      onClick={(e) => {
-        e.stopPropagation(); // Stop the click event from bubbling up to the parent
-        document.getElementById(`my_modal_${location?._id}`).showModal(); 
-      }}
-    >
-      <FaTrash className="mr-2" /> Delete
-    </button>
-  }
-  tabCategory="delete"
-  open={open}
-/>
+            <TabContent
+              details={
+                <Link
+                  to={`/locations/${locationId}/edit`}
+                  className="flex items-center justify-center"
+                >
+                  <button className="btn btn-primary">
+                    <FaEdit className="mr-2" /> Edit
+                  </button>
+                </Link>
+              }
+              tabCategory="edit"
+              open={open}
+            />
+            <TabContent
+              details={
+                <button
+                  className="btn btn-danger"
+                  onClick={(e) => {
+                    e.stopPropagation(); // Stop the click event from bubbling up to the parent
+                    document
+                      .getElementById(`my_modal_${location?._id}`)
+                      .showModal();
+                  }}
+                >
+                  <FaTrash className="mr-2" /> Delete
+                </button>
+              }
+              tabCategory="delete"
+              open={open}
+            />
           </div>
+
+          {/* MapComponent */}
+          {location && (
+            <div className="w-full lg:w-[30%] mx-auto mt-16 md:mt-0">
+              <Map key={locationId} address={location.address} />
+            </div>
+          )}
         </div>
       </div>
     </section>
