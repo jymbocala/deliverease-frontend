@@ -156,8 +156,8 @@ const SingleLocation = ({ locations, setLocations }) => {
   );
 
   return (
-    <section className="py-20 dark:bg-dark lg:py-[120px] flex justify-center items-center">
-      <div className="container mx-auto text-center relative">
+    <section className="flex justify-center items-center">
+      <div className="container mx-auto text-center relative px-5 py-16">
         {/* Back Button */}
         <button
           onClick={() => nav(`/locations`)}
