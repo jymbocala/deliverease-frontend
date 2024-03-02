@@ -189,7 +189,7 @@ const Home = () => {
         </div>
       </section>
       <section className="p-6 bg-base-100 dark:text-gray-100" style={{ maxWidth: "100vw", overflowX: "hidden" }}>
-        <div id="howDoesItWork" className="container mx-auto mb-64">
+        <div id="howDoesItWork" className="container mx-auto mb-50">
           <h2 className="text-3xl font-bold text-center mb-6 text-gray-600 body-font">
             How does it work?
           </h2>
