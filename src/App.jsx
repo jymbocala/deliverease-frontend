@@ -20,6 +20,7 @@ import {
   addLocation,
   fetchGoogleMapsApiKey,
 } from "./api/locations";
+import HomeSpinner from "./components/HomeSpinner";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -69,8 +70,22 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        {googleMapsApiKey && (
-          <LoadScript googleMapsApiKey={googleMapsApiKey}>
+        {googleMapsApiKey ? (
+         <LoadScript 
+         googleMapsApiKey={googleMapsApiKey} 
+         loadingElement={
+           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+             <div className="spinner" style={{
+               border: '16px solid #f3f3f3',
+               borderRadius: '50%',
+               borderTop: '16px solid #3498db',
+               width: '120px',
+               height: '120px',
+               animation: 'spin 2s linear infinite'
+             }} />
+           </div>
+         }
+       >
             <Routes>
               <Route
                 path="/"
@@ -127,6 +142,8 @@ function App() {
               </Route>
             </Routes>
           </LoadScript>
+        ) : (
+          <HomeSpinner />
         )}
       </BrowserRouter>
     </>
