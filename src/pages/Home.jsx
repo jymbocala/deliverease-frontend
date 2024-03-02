@@ -177,7 +177,7 @@ const Home = () => {
               </h2>
               <p className="leading-relaxed text-base">
                 DeliverEase offers a user-friendly interface designed to
-                simplify the delivery management process...
+                simplify the delivery management process, allowing users to easily navigate, search and organise delivery locations with ease.
               </p>
             </div>
           </motion.div>
