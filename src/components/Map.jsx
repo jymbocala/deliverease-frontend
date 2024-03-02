@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { GoogleMap } from '@react-google-maps/api';
+import { GoogleMap, Marker } from '@react-google-maps/api';
 import { fetchGoogleMapsApiKey } from '../api/locations'; // Adjust the path as needed
 
 const Map = ({ address }) => {
@@ -43,8 +43,10 @@ const Map = ({ address }) => {
       <GoogleMap
         mapContainerStyle={{ height: '100%', width: '100%', borderRadius: '0.375rem' }}
         center={center}
-        zoom={8}
-      />
+        zoom={15}
+      >
+        <Marker position={center} />
+      </GoogleMap>
     </div>
   );
 };
