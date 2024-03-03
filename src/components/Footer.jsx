@@ -1,20 +1,23 @@
-import React from "react";
-import { FaGithub } from "react-icons/fa"; // Import the GitHub icon
+import { FaGithub } from "react-icons/fa";
 import Logo from "../assets/images/deliverease-logo-cropped.png";
 
 const Footer = () => {
   return (
     <footer className="mt-auto bg-base-100 text-gray-600 body-font w-full">
       <div className="container px-5 py-2 mx-auto flex flex-col items-center justify-center sm:flex-row sm:items-center">
-        <a href="/" className="flex title-font font-medium items-center mb-2 sm:mb-0">
+        <a
+          href="/"
+          className="flex title-font font-medium items-center mb-2 sm:mb-0"
+        >
           <img
             src={Logo}
             alt="DeliverEase Logo"
-            className="w-30 h-12 text-white p-2 object-cover transform hidden sm:block" // Reduced the width and height to 24
+            className="w-30 h-12 text-white p-2 object-cover transform hidden sm:block" 
           />
         </a>
-        <p className="text-sm text-gray-500 text-center sm:text-left sm:ml-4 sm:pl-4 sm:border-l sm:border-gray-200 sm:py-2 sm:mt-0 mt-2"> {/* Changed text-base to text-sm */}
-          © 2024 DeliverEase —
+        <p className="text-sm text-gray-500 text-center sm:text-left sm:ml-4 sm:pl-4 sm:border-l sm:border-gray-200 sm:py-2 sm:mt-0 mt-2">
+          {" "}
+          {/* Changed text-base to text-sm */}© 2024 DeliverEase —
           <a
             href="https://www.linkedin.com/in/jym-bocala/" // LinkedIn link for @jymbocala
             className="text-gray-600 ml-1"
@@ -40,7 +43,7 @@ const Footer = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FaGithub className="w-6 h-6 text-gray-600 hover:text-gray-800" /> 
+            <FaGithub className="w-6 h-6 text-gray-600 hover:text-gray-800" />
           </a>
         </div>
       </div>

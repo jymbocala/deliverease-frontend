@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, useLocation, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import Logo from "../assets/images/deliverease-logo-cropped.png";
 import { createUser } from "../api/users";
 
@@ -13,7 +13,6 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  const location = useLocation();
 
   function handleChange(event) {
     const { name, value } = event.target;

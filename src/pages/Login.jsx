@@ -33,8 +33,6 @@ const Login = ({ updateLoginStatus }) => {
       // Update the login status in the parent component
       updateLoginStatus(true);
 
-      // setError(null);
-
       // Redirect the user to the locations page
       navigate("/locations");
 
@@ -71,11 +69,6 @@ const Login = ({ updateLoginStatus }) => {
               {error?.message && (
                 <h3 className="text-error">{error.message}</h3>
               )}
-              {/* {location.state?.message && (
-                <h3 className="text-success text-xl pb-4">
-                  {location.state.message}
-                </h3>
-              )} */}
               {location.state?.message && (
                 <h3
                   className={`text-xl pb-4 ${

@@ -36,14 +36,20 @@ const Contact = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <FontAwesomeIcon icon={faLinkedin} size="1x" color="#0e76a8" /> {/* LinkedIn blue */}
+                    <FontAwesomeIcon
+                      icon={faLinkedin}
+                      size="1x"
+                      color="#0e76a8"
+                    />{" "}
+                    {/* LinkedIn blue */}
                   </a>
                   <a
                     href="https://github.com/scg-code"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <FontAwesomeIcon icon={faGithub} size="1x" color="black" /> {/* GitHub black */}
+                    <FontAwesomeIcon icon={faGithub} size="1x" color="black" />{" "}
+                    {/* GitHub black */}
                   </a>
                 </div>
 
@@ -71,14 +77,20 @@ const Contact = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <FontAwesomeIcon icon={faLinkedin} size="1x" color="#0e76a8" /> {/* LinkedIn blue */}
+                    <FontAwesomeIcon
+                      icon={faLinkedin}
+                      size="1x"
+                      color="#0e76a8"
+                    />{" "}
+                    {/* LinkedIn blue */}
                   </a>
                   <a
                     href="https://github.com/jymbocala"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <FontAwesomeIcon icon={faGithub} size="1x" color="black" /> {/* GitHub black */}
+                    <FontAwesomeIcon icon={faGithub} size="1x" color="black" />{" "}
+                    {/* GitHub black */}
                   </a>
                 </div>
 

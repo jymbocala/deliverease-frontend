@@ -27,10 +27,12 @@ function App() {
   const [googleMapsApiKey, setGoogleMapsApiKey] = useState(null);
   const [locations, setLocations] = useState([]);
 
+  // Update the login status
   const updateLoginStatus = (loggedIn) => {
     setIsLoggedIn(loggedIn);
   };
 
+  // Fetch the Google Maps API key and user locations when the app loads
   useEffect(() => {
     const getGoogleMapsApiKey = async () => {
       const apiKey = await fetchGoogleMapsApiKey();
@@ -40,6 +42,7 @@ function App() {
 
     getGoogleMapsApiKey();
 
+    // Fetch user locations if the user is logged in
     if (isLoggedIn) {
       const getLocations = async () => {
         const data = await fetchUserLocations();
@@ -50,8 +53,8 @@ function App() {
     }
   }, [isLoggedIn]);
 
-  console.log("All locations", locations);
 
+  // Function to add a new location to the user's list of locations (passed as a prop to NewLocation component)
   async function handleAddLocation(location) {
     try {
       const newLocationId = await addLocation(location);
@@ -91,8 +94,14 @@ function App() {
                 <Route path="about" element={<About />} />
                 <Route path="contact" element={<Contact />} />
                 <Route path="profile" element={<Profile />} />
-                <Route path="forgot-password" element={<ForgotPasswordForm />} />
-                <Route path="reset-password/:token" element={<ResetPassword />} />
+                <Route
+                  path="forgot-password"
+                  element={<ForgotPasswordForm />}
+                />
+                <Route
+                  path="reset-password/:token"
+                  element={<ResetPassword />}
+                />
 
                 <Route element={<AuthRequired />}>
                   <Route
