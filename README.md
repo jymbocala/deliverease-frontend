@@ -274,8 +274,8 @@ In our testing approach, we utilized both manual testing and testing frameworks 
   Update: Testing User functionality
   <img src="./docs/tests/users2.png" />
 </p>
-<div>
-  <p align="center">
+<div align="center">
+  <p>
     Testing using SuperTest
   </p>
   <img src="./docs/tests/supertest.png" />
