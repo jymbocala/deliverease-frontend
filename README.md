@@ -11,9 +11,11 @@
 <br/>
 
 ### [Live Site 🔗](https://deliverease.live/)
+
 <br/>
 
 ##### Login credentials for sample user:
+
 ```
 email: deliverease1@gmail.com
 password: password1
@@ -37,6 +39,7 @@ password: password1
 <br/>
 
 #### **Project Links:**
+
 [_• GitHub Repository - Backend_](https://github.com/jymbocala/deliverease-backend)  
 [_• GitHub Repository - Frontend_](https://github.com/jymbocala/deliverease-frontend)  
 [_• Trello Project Board_](https://trello.com/b/jmxlxfhw/deliverease)
@@ -256,6 +259,7 @@ By leveraging these strategies, methodologies, and tools, we fostered effective 
 ---
 
 ### Manual Testing Documentation
+
 In our testing approach, we utilized both manual testing and testing frameworks Jest and Supertest. Manual testing enabled hands-on exploration of our system to identify issues and evaluate user experience. Meanwhile, Jest and Supertest provided structured automation for validating API behavior and endpoint functionality.
 
 <p align="center">
@@ -270,8 +274,9 @@ In our testing approach, we utilized both manual testing and testing frameworks 
   Update: Testing User functionality
   <img src="./docs/tests/users2.png" />
 </p>
-<p align="center">
-  Testing using SuperTest
+<div>
+  <p align="center">
+    Testing using SuperTest
+  </p>
   <img src="./docs/tests/supertest.png" />
-</p>
-
+</div>
