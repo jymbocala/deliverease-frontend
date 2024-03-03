@@ -250,3 +250,9 @@ By leveraging these strategies, methodologies, and tools, we fostered effective 
   GitHub Pull Request - API
   <img src="./docs/pullrequest-api.png" />
 </p>
+
+<br/>
+
+---
+
+### Manual Testing Documentation
