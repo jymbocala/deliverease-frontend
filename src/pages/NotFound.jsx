@@ -12,7 +12,7 @@ const Error = () => {
                   404
                 </h2>
                 <h4 className="mb-3 text-[22px] font-semibold leading-tight text-primary">
-                  Oops! That page can’t be found
+                  Oops! That page can’t be found :(
                 </h4>
                 <Link
                   to="/"

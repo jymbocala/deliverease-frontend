@@ -49,7 +49,7 @@ const Nav = ({ isLoggedIn, updateLoginStatus }) => {
           >
             <li>
               <Link to="/" className="primary-text">
-                Homee
+                Home
               </Link>
             </li>
             {isLoggedIn && (
