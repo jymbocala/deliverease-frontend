@@ -109,7 +109,7 @@ const ImageUpload = ({ setImageURL }) => {
           <img
             src={imageUrl}
             alt="Uploaded"
-            className="drop-shadow-lg w-full"
+            className="drop-shadow-md w-full"
           />
         </div>
       )}

@@ -71,8 +71,19 @@ const Login = ({ updateLoginStatus }) => {
               {error?.message && (
                 <h3 className="text-error">{error.message}</h3>
               )}
-              {location.state?.message && (
+              {/* {location.state?.message && (
                 <h3 className="text-success text-xl pb-4">
+                  {location.state.message}
+                </h3>
+              )} */}
+              {location.state?.message && (
+                <h3
+                  className={`text-xl pb-4 ${
+                    location.state.isFromUnknownUrl
+                      ? "text-error"
+                      : "text-success"
+                  }`}
+                >
                   {location.state.message}
                 </h3>
               )}

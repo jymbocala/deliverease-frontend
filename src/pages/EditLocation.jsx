@@ -258,7 +258,7 @@ const EditLocation = ({ locations, setLocations }) => {
               {/* Image Upload Component */}
               <ImageUpload setImageURL={handleImageUpload} />
 
-              <div className="p-2 w-full">
+              <div className="p-2 w-full mt-6">
                 <button
                   className=" btn flex mx-auto text-white bg-primary border-0 py-2 px-8 focus:outline-none hover:bg-secondary text-lg"
                   onClick={handleSubmit}
