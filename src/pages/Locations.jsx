@@ -116,7 +116,7 @@ const Locations = ({ locations }) => {
               id={"my_modal_" + location._id}
               className="modal modal-bottom sm:modal-middle"
             >
-              <div className="modal-box">
+              <div className="modal-box shadow-lg">
                 <form method="dialog">
                   <button
                     className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
@@ -130,15 +130,21 @@ const Locations = ({ locations }) => {
                     ✕
                   </button>
                 </form>
-                <h3 className="font-bold text-lg">{location.name}</h3>
-                <p className="py-4">{location.address}</p>
-                <p className="py-4">{location.dockNumber}</p>
-                <p className="py-4">{location.dockHours}</p>
-                <p className="py-4">{location.notes}</p>
+                <div className="p-4">
+                  <h3 className="font-bold text-lg mb-4">{location.name}</h3>
+                  <p className="text-gray-700 mb-2">
+                    Address: {location.address}
+                  </p>
+                  <p className="text-gray-700 mb-2">
+                    Dock Number: {location.dockNumber}
+                  </p>
+                  <hr className="my-4 border-gray-300" />
+                  <p className="text-gray-700">Notes: {location.notes}</p>
+                </div>
               </div>
               <form
                 method="dialog"
-                className="modal-backdrop"
+                className="modal-backdrop bg-black bg-opacity-50"
                 onClick={(e) => {
                   e.stopPropagation(); // Stop the click event from bubbling up to the parent
                 }}
@@ -205,35 +211,6 @@ const Locations = ({ locations }) => {
       <ul role="list" className="flex flex-col mt-2 w-full">
         {locationsElements}
       </ul>
-
-      {/* TODO: Add pagination logic */}
-      {/* <div className="join mt-40">
-        <input
-          className="join-item btn btn-square"
-          type="radio"
-          name="options"
-          aria-label="1"
-          checked
-        />
-        <input
-          className="join-item btn btn-square"
-          type="radio"
-          name="options"
-          aria-label="2"
-        />
-        <input
-          className="join-item btn btn-square"
-          type="radio"
-          name="options"
-          aria-label="3"
-        />
-        <input
-          className="join-item btn btn-square"
-          type="radio"
-          name="options"
-          aria-label="4"
-        />
-      </div> */}
     </div>
   );
 };
