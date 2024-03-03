@@ -302,7 +302,7 @@ const SingleLocation = ({ locations, setLocations }) => {
 
           {/* MapComponent */}
           {location && (
-            <div className="w-full lg:w-[30%] mx-auto mt-16 md:mt-0">
+            <div className="w-full lg:w-[30%] mx-auto mt-16 lg:mt-0">
               <Map key={locationId} address={location.address} />
             </div>
           )}
