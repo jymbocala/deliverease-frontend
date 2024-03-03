@@ -13,6 +13,7 @@ import NewLocation from "./pages/NewLocation";
 import EditLocation from "./pages/EditLocation";
 import AuthRequired from "./components/AuthRequired";
 import Profile from "./pages/Profile";
+import NotFound from "./pages/NotFound";
 import ForgotPasswordForm from "./components/ForgotPassword";
 import ResetPassword from "./components/ResetPassword";
 import {
@@ -123,7 +124,7 @@ function App() {
                     }
                   />
                 </Route>
-                <Route path="*" element={<h1>Not Found</h1>} />
+                <Route path="*" element={<NotFound />} />
               </Route>
             </Routes>
           </LoadScript>
