@@ -193,12 +193,25 @@ To streamline our workflow and monitor progress, our team chose to utilize Trell
 </p>
 
 <p align="center">
-  Trello Board
+  Trello Boards
   <img src="./docs/trello-screenshots/trello-feb14.png" />
+  <img src="./docs/trello-screenshots/trello-feb26.png" />
+  <img src="./docs/trello-screenshots/trello-feb28.png" />
+  <img src="./docs/trello-screenshots/trello-mar2.png" />
 </p>
 
 <p align="center">
   Trello Card - Git Workflow Testing
   <img src="./docs/trello-screenshots/trello-card-1.png" />
 </p>
+<p align="center">
+  Trello Card - AWS S3 Integration
+  <img src="./docs/trello-screenshots/trello-card-aws.png" />
+</p>
+
+<p align="center">
+  GitHub Pull Request - API
+  <img src="./docs/trello-screenshots/pullrequest-api.png" />
+</p>
+
 
