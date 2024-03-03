@@ -2,13 +2,22 @@
 
 ## Sam Gifford and Jym Bocala
 
+<br/>
+
+<div align="center">
+  <img src="./docs/home-page.png">
+</div>
+
+<br/>
+
 ### [Live Site 🔗](https://deliverease.live/)
 <br/>
+
 ##### Login credentials for sample user:
 ```
 email: deliverease1@gmail.com
 password: password1
-```  
+```
 
 #### **Contents:**
 
