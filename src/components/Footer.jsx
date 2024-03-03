@@ -1,4 +1,4 @@
-import { FaGithub } from "react-icons/fa"; // Import the GitHub icon
+import { FaGithub } from "react-icons/fa";
 import Logo from "../assets/images/deliverease-logo-cropped.png";
 
 const Footer = () => {
@@ -12,7 +12,7 @@ const Footer = () => {
           <img
             src={Logo}
             alt="DeliverEase Logo"
-            className="w-30 h-12 text-white p-2 object-cover transform hidden sm:block" // Reduced the width and height to 24
+            className="w-30 h-12 text-white p-2 object-cover transform hidden sm:block" 
           />
         </a>
         <p className="text-sm text-gray-500 text-center sm:text-left sm:ml-4 sm:pl-4 sm:border-l sm:border-gray-200 sm:py-2 sm:mt-0 mt-2">
