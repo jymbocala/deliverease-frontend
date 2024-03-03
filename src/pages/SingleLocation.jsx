@@ -117,7 +117,10 @@ const SingleLocation = ({ locations, setLocations }) => {
             />
             <button
               className="btn btn-outline btn-accent"
-              onClick={handleDeletePhoto}
+              onClick={(e) => {
+                e.target.disabled = true; // Disable the button when clicked
+                handleDeletePhoto();
+              }}
             >
               Delete Photo
             </button>
@@ -195,6 +198,7 @@ const SingleLocation = ({ locations, setLocations }) => {
               className="transform transition duration-500 ease-in-out btn btn-outline btn-error"
               onClick={(e) => {
                 e.stopPropagation(); // Stop the click event from bubbling up to the parent
+                e.target.disabled = true; // Disable the button when clicked
                 handleDeleteLocation();
               }}
             >
