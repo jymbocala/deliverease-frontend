@@ -71,7 +71,7 @@ function App() {
     <>
       <BrowserRouter>
         {googleMapsApiKey && (
-          <LoadScript googleMapsApiKey={googleMapsApiKey}>
+          <LoadScript loadingElement={null} googleMapsApiKey={googleMapsApiKey}>
             <Routes>
               <Route
                 path="/"

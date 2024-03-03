@@ -10,6 +10,9 @@ import mapAnimationData from "../assets/images/map.json";
 import notepadAnimationData from "../assets/images/notepad.json";
 import dashboardAnimationData from "../assets/images/dashboard.json";
 import HeroPic from "../assets/images/hero.png";
+import signUpGif from "../assets/images/Signup.gif";
+import logLocationGif from "../assets/images/loglocation.gif";
+import seeLocationsGif from "../assets/images/seelocations.gif";
 
 const Home = () => {
   const [ref1, inView1] = useInView({ triggerOnce: false });
@@ -174,7 +177,7 @@ const Home = () => {
               </h2>
               <p className="leading-relaxed text-base">
                 DeliverEase offers a user-friendly interface designed to
-                simplify the delivery management process...
+                simplify the delivery management process, allowing users to easily navigate, search and organise delivery locations with ease.
               </p>
             </div>
           </motion.div>
@@ -186,7 +189,7 @@ const Home = () => {
         </div>
       </section>
       <section className="p-6 bg-base-100 dark:text-gray-100" style={{ maxWidth: "100vw", overflowX: "hidden" }}>
-        <div id="howDoesItWork" className="container mx-auto mb-64">
+        <div id="howDoesItWork" className="container mx-auto mb-50">
           <h2 className="text-3xl font-bold text-center mb-6 text-gray-600 body-font">
             How does it work?
           </h2>
@@ -198,6 +201,7 @@ const Home = () => {
               <p className="text-2xl font-semibold">
                 <b>Sign Up</b> to Deliver<em className="text-accent">Ease</em>.
               </p>
+              <img src={signUpGif} alt="Sign Up GIF" />
             </div>
             <div className="flex flex-col p-8 space-y-4 rounded-md bg-primary">
               <div className="flex items-center justify-center flex-shrink-0 w-12 h-12 text-xl font-bold rounded-full bg-accent dark:text-gray-900">
@@ -206,6 +210,7 @@ const Home = () => {
               <p className="text-2xl font-semibold">
                 <b>Easily</b> log all of your delivery locations.
               </p>
+              <img src={logLocationGif} alt="Log Location GIF" />
             </div>
             <div className="flex flex-col p-8 space-y-4 rounded-md bg-primary">
               <div className="flex items-center justify-center flex-shrink-0 w-12 h-12 text-xl font-bold rounded-full bg-accent dark:text-gray-900">
@@ -214,6 +219,7 @@ const Home = () => {
               <p className="text-2xl font-semibold">
                 <b>Search</b> locations quickly on the go.
               </p>
+              <img src={seeLocationsGif} alt="See Locations GIF" />
             </div>
           </div>
         </div>
