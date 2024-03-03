@@ -256,3 +256,22 @@ By leveraging these strategies, methodologies, and tools, we fostered effective 
 ---
 
 ### Manual Testing Documentation
+In our testing approach, we utilized both manual testing and testing frameworks Jest and Supertest. Manual testing enabled hands-on exploration of our system to identify issues and evaluate user experience. Meanwhile, Jest and Supertest provided structured automation for validating API behavior and endpoint functionality.
+
+<p align="center">
+  Testing Locations functionality
+  <img src="./docs/tests/locations.png" />
+</p>
+<p align="center">
+  Testing User functionality
+  <img src="./docs/tests/users1.png" />
+</p>
+<p align="center">
+  Update: Testing User functionality
+  <img src="./docs/tests/users2.png" />
+</p>
+<p align="center">
+  Testing using SuperTest
+  <img src="./docs/tests/supertest.png" />
+</p>
+
