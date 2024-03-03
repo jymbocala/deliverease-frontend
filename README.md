@@ -211,7 +211,7 @@ To streamline our workflow and monitor progress, our team chose to utilize Trell
 
 <p align="center">
   GitHub Pull Request - API
-  <img src="./docs/trello-screenshots/pullrequest-api.png" />
+  <img src="./docs/pullrequest-api.png" />
 </p>
 
 
