@@ -2,8 +2,6 @@
 
 const BASE_URL = "https://deliverease-api.onrender.com";
 
-// REGISTER USER
-
 // LOGIN USER
 const loginUser = async (loginFormData) => {
   try {
@@ -22,8 +20,8 @@ const loginUser = async (loginFormData) => {
     }
 
     // Store the token and user ID in local storage
-    localStorage.setItem('token', data.token);
-    localStorage.setItem('userId', data.userId); // Assuming the user's ID is returned as `userId` in the response
+    localStorage.setItem("token", data.token);
+    localStorage.setItem("userId", data.userId); // Assuming the user's ID is returned as `userId` in the response
 
     return data.token;
   } catch (error) {
@@ -39,7 +37,7 @@ const logoutUser = async () => {
       headers: {
         // Include any necessary headers here
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`, // Assuming you have a token stored in localStorage
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     });
 
@@ -52,7 +50,7 @@ const logoutUser = async () => {
     // Clear token
     localStorage.removeItem("token");
 
-    return true; // Or you can return some other relevant data
+    return true;
   } catch (error) {
     console.error("Logout error:", error.message);
     return false;
@@ -75,7 +73,7 @@ const resetPassword = async (token, newPassword) => {
       throw new Error(data.message);
     }
 
-    return data; // You can return any relevant data from the response
+    return data;
   } catch (error) {
     throw new Error(error.message);
   }

@@ -2,10 +2,9 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import ImageUpload from "../components/ImageUpload";
 import { editLocation } from "../api/locations";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaArrowLeft } from "react-icons/fa";
-
 
 const EditLocation = ({ locations, setLocations }) => {
   // Get the location id from the URL
@@ -61,7 +60,7 @@ const EditLocation = ({ locations, setLocations }) => {
     // Prevent the default form submission behaviour (refreshing the page)
     event.preventDefault();
     try {
-      // Call the API function to update the location 
+      // Call the API function to update the location
       const updatedLocation = await editLocation(locationId, location);
       console.log("Location updated successfully");
       // Update the locations state with the updated location

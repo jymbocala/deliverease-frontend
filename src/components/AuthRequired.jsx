@@ -5,10 +5,11 @@ export default function AuthRequired() {
   console.log("Logged in:", isLoggedIn);
   const location = useLocation();
 
+  // If the user is not logged in, redirect to the login page
   if (!isLoggedIn) {
     const isFromUnknownUrl = location.state?.fromUnknownUrl || true;
-    console.log("isFromUnknownUrl:", isFromUnknownUrl);
     return (
+      // Pass the location state to the login page to display a message
       <Navigate
         to="/login"
         state={{ message: "You must login first", isFromUnknownUrl }}

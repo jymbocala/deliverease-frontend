@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import Lottie from "lottie-react";
 import { Link as RouterLink } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
@@ -41,7 +41,10 @@ const Home = () => {
   return (
     <>
       {/* Hero Section */}
-      <section className="text-gray-600 body-font" style={{ overflowX: "hidden", overflowY: "hidden" }}>
+      <section
+        className="text-gray-600 body-font"
+        style={{ overflowX: "hidden", overflowY: "hidden" }}
+      >
         <div className="container mx-auto max-w-4xl flex px-2 py-24 md:flex-row flex-col items-center">
           <div className="lg:flex-grow md:w-1/2 lg:pr-12 md:pr-8 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
             <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
@@ -57,7 +60,10 @@ const Home = () => {
               Experience seamless delivery operations with DeliverEase at your
               fingertips.
             </p>
-            <div className="flex flex-col lg:flex-row justify-center lg:items-center" style={{ zIndex: 1 }}>
+            <div
+              className="flex flex-col lg:flex-row justify-center lg:items-center"
+              style={{ zIndex: 1 }}
+            >
               <RouterLink to="/sign-up" className="mb-4 lg:mb-0">
                 <button className="inline-flex text-white bg-primary border-0 py-2 px-6 focus:outline-none hover:bg-secondary rounded text-lg">
                   Get Started
@@ -90,10 +96,15 @@ const Home = () => {
         </div>
       </section>
       {/* Features Section */}
-      <section className="text-gray-600 body-font" style={{ maxWidth: "100vw", overflowX: "hidden" }}>
+      <section
+        className="text-gray-600 body-font"
+        style={{ maxWidth: "100vw", overflowX: "hidden" }}
+      >
         <div id="keyFeatures" className="container px-5 pt-200 py-24 mx-auto">
           {/* Title */}
-          <h2 className="text-3xl font-bold text-center mb-6 text-gray-600 body-font">Key Features</h2>
+          <h2 className="text-3xl font-bold text-center mb-6 text-gray-600 body-font">
+            Key Features
+          </h2>
           {/* Paragraph */}
           <p className="text-lg text-gray-700 text-center mb-40">
             Discover the powerful features of DeliverEase that will
@@ -177,7 +188,9 @@ const Home = () => {
               </h2>
               <p className="leading-relaxed text-base">
                 DeliverEase offers a user-friendly interface designed to
-                simplify the delivery management process, allowing users to easily navigate, search and organise delivery locations with ease.
+                simplify the delivery management process, allowing users to
+                easily navigate, search and organise delivery locations with
+                ease.
               </p>
             </div>
           </motion.div>
@@ -188,7 +201,10 @@ const Home = () => {
           </RouterLink>
         </div>
       </section>
-      <section className="p-6 bg-base-100 dark:text-gray-100" style={{ maxWidth: "100vw", overflowX: "hidden" }}>
+      <section
+        className="p-6 bg-base-100 dark:text-gray-100"
+        style={{ maxWidth: "100vw", overflowX: "hidden" }}
+      >
         <div id="howDoesItWork" className="container mx-auto mb-50">
           <h2 className="text-3xl font-bold text-center mb-6 text-gray-600 body-font">
             How does it work?

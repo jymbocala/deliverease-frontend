@@ -1,4 +1,3 @@
-
 const BASE_URL = "https://deliverease-api.onrender.com";
 
 // Get all user locations
@@ -85,7 +84,6 @@ const deleteLocation = async (locationId) => {
   }
 };
 
-
 // Edit a location
 const editLocation = async (locationId, location) => {
   try {
@@ -99,17 +97,16 @@ const editLocation = async (locationId, location) => {
     });
 
     const data = await response.json();
-   
+
     if (!response.ok) {
       throw new Error(data.message);
     }
-    
-     return data;
-    } catch (error) {
+
+    return data;
+  } catch (error) {
     throw new Error(error.message);
   }
 };
-
 
 // Fetch Google Maps API key
 const fetchGoogleMapsApiKey = async () => {
@@ -121,7 +118,7 @@ const fetchGoogleMapsApiKey = async () => {
     });
 
     const data = await response.json();
-    console.log("Response data:", data);  // Log the response data
+    console.log("Response data:", data); // Log the response data
 
     if (!response.ok) {
       throw new Error(data.message);
@@ -129,11 +126,16 @@ const fetchGoogleMapsApiKey = async () => {
 
     return data.api_key;
   } catch (error) {
-    console.error("Error fetching API key:", error.message);  // Log any errors
+    console.error("Error fetching API key:", error.message); // Log any errors
     throw new Error(error.message);
   }
 };
 
-
-export { fetchUserLocations, addLocation, deletePhoto, deleteLocation, editLocation , fetchGoogleMapsApiKey };
-
+export {
+  fetchUserLocations,
+  addLocation,
+  deletePhoto,
+  deleteLocation,
+  editLocation,
+  fetchGoogleMapsApiKey,
+};

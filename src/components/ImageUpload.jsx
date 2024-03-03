@@ -1,5 +1,5 @@
 import { useDropzone } from "react-dropzone";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Trash } from "lucide-react";
 
 const ImageUpload = ({ setImageURL }) => {

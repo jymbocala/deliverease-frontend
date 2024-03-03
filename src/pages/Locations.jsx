@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Info, Search, Plus } from "lucide-react";
+import { Info, Plus } from "lucide-react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 
 const Locations = ({ locations }) => {

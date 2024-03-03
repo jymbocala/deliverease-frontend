@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { GoogleMap, Marker } from '@react-google-maps/api';
-import { fetchGoogleMapsApiKey } from '../api/locations'; // Adjust the path as needed
+import { useEffect, useState } from "react";
+import { GoogleMap, Marker } from "@react-google-maps/api";
+import { fetchGoogleMapsApiKey } from "../api/locations"; // Adjust the path as needed
 
 const Map = ({ address }) => {
   const [center, setCenter] = useState({ lat: 0, lng: 0 });
@@ -11,15 +11,19 @@ const Map = ({ address }) => {
     const fetchCoordinates = async () => {
       try {
         const apiKey = await fetchGoogleMapsApiKey(); // Fetch API key from backend
-        const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}`);
+        const response = await fetch(
+          `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
+            address
+          )}&key=${apiKey}`
+        );
         const { results } = await response.json();
         if (results && results.length > 0) {
           const { lat, lng } = results[0].geometry.location;
           setCenter({ lat, lng });
         }
       } catch (error) {
-        console.error('Error fetching coordinates:', error);
-        setError('Error fetching coordinates');
+        console.error("Error fetching coordinates:", error);
+        setError("Error fetching coordinates");
       } finally {
         setLoading(false);
       }
@@ -39,9 +43,13 @@ const Map = ({ address }) => {
   }
 
   return (
-    <div style={{ height: '400px' }}>
+    <div style={{ height: "400px" }}>
       <GoogleMap
-        mapContainerStyle={{ height: '100%', width: '100%', borderRadius: '0.375rem' }}
+        mapContainerStyle={{
+          height: "100%",
+          width: "100%",
+          borderRadius: "0.375rem",
+        }}
         center={center}
         zoom={15}
       >
