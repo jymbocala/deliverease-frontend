@@ -118,7 +118,8 @@ const fetchGoogleMapsApiKey = async () => {
     });
 
     const data = await response.json();
-    console.log("Response data:", data); // Log the response data
+    // Log the response data
+    // console.log("Response data:", data); 
 
     if (!response.ok) {
       throw new Error(data.message);
