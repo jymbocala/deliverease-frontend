@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import samPortrait from "../assets/images/sam-portrait.jpeg";
-import jymPortrait from "../assets/images/jym-portrait.png";
+import jymPortrait from "../assets/images/jym-portrait2.jpg";
 
 const Contact = () => {
   return (
